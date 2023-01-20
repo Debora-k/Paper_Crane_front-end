@@ -55,7 +55,7 @@ pnpm format
 
 ## Notes
 
-- This codebase uses the [Conventional Commits](https://conventionalcommits.org/ specification for commit messages
+- This codebase uses the [Conventional Commits](https://conventionalcommits.org/) specification for commit messages
   - Read guidelines for how to format your commit messages
   - This allows us to generate changelogs and releases via the release workflow: `.github/workfows/release.yml`
   - Config : `commitlintrc.json`
