@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Paper Crane Client (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+![release](https://github.com/Debora-k/Paper_Crane_front-end/actions/workflows/release.yml/badge.svg)
+[![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-%23fe5196)](https://conventionalcommits.org/)
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+- [node/npm](http://nodejs.org/)
+- [pnpm](https://pnpm.io/)
 
-### `npm start`
+Install pnpm:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```bash
+# via npm
+npm i -g pnpm
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+# via binaries
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+```
 
-### `npm test`
+Verify installations:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm -v && node -v && pnpm -v
+# 8.19.2
+# v18.12.0
+# 7.25.1
+```
 
-### `npm run build`
+## Development
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Install dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```bash
+pnpm i
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Start development server:
 
-### `npm run eject`
+```bash
+pnpm start
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Visit [http://localhost:3000/](http://localhost:3000/)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Scripts
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```bash
+# lint w/ eslint
+pnpm lint
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+# format w/ prettier
+pnpm format
+```
 
-## Learn More
+## Notes
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- This codebase uses the [Conventional Commits](https://conventionalcommits.org/ specification for commit messages
+  - Read guidelines for how to format your commit messages
+  - This allows us to generate changelogs and releases via the release workflow: `.github/workfows/release.yml`
+  - Config : `commitlintrc.json`
+- Release Workflow:
+  - Requires `GH_TOKEN` secret
+    - Generate token (repo owner only)
+      - Profile (top right) -> Developer settings -> Personal access tokens
+        - Either `Fine-grained tokens` or `Tokens (classic)` work
+        - Required permission: `admin:repo` (if setting branch protection rules), `repo`, `workflow`, `write:packages`
+    - Settings -> Secrets and variables -> Actions -> New repository secret
+      - Name: GH_TOKEN
+      - Secret: <your_token>
+- Hosting
+  - Free/easy options for staging: [Vercel](https://vercel.com/), [Netlify](https://www.netlify.com/)
+- Development workflow
+  - Recommended to set branch protection rules and only work on feature branches (instead of directly committing to main), then issuing pull requests for review to be merged into main branch
+    - This allows us to see if deployment succeeds (the code builds, or tests pass, etc.) before merging into main
+  - Syncing feature branch with main
+    - Avoid using `rebase` as it does not preserve history and causes other problems as well
+    - Use: `git merge origin main` while in feature branch, then resolve any conflicts one-by-one
+      - (do not force merge as it can potentially delete someone else's work)
