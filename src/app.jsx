@@ -19,13 +19,15 @@ export const App = () => {
 
         {/* These routes are for admins */}
         <Route exact path='/admin/projects' element={<AdminProjects />}></Route>
+        {/* project urls, need more work*/}
+        <Route exact path='/admin/projects/:projectId' element={<AdminProjects />}></Route>
         <Route exact path='/admin/video' element={<AdminVideo />}></Route>
         <Route exact path='/admin/repository' element={<AdminRepository />}></Route>
         <Route exact path='/admin/employees' element={<AdminEmployees />}></Route>
         <Route exact path='/admin/clients' element={<AdminClients />}></Route>
         <Route exact path='/admin/calendar' element={<AdminCalendar />}></Route>
         {/* path='*' is for temporary */}
-        <Route exact path='*' element={<Navigate to='/admin/projects' />}></Route>
+        <Route path='*' element={<Navigate to='/admin/projects' />}></Route>
       </Routes>
     </BrowserRouter>
   );
