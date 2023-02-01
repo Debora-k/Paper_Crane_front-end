@@ -15,7 +15,7 @@ const AdminProjects = () => {
 
   // listRows will contain the arrays below
   const listRows = [];
-  // Thought if there are missing values, so created three for loops just in case
+  // add project rows to the listRows
   for (let i = 0; i < projectNames.length; i++) {
     listRows.push(
       <div className='row'>
