@@ -6,22 +6,22 @@ import './admin.navbar.css';
 const AdminNavbar = () => {
   return (
     <div>
-      <span>
+      <span className='page'>
         <Link to='/admin/projects'>Projects</Link>
       </span>
-      <span>
+      <span className='page'>
         <Link to='/admin/video'>Video</Link>
       </span>
-      <span>
+      <span className='page'>
         <Link to='/admin/repository'>Repository</Link>
       </span>
-      <span>
+      <span className='page'>
         <Link to='/admin/calendar'>Calendar</Link>
       </span>
-      <span>
+      <span className='page'>
         <Link to='/admin/employees'>Employees</Link>
       </span>
-      <span>
+      <span className='page'>
         <Link to='/admin/clients'>Clients</Link>
       </span>
     </div>

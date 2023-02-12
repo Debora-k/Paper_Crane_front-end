@@ -29,7 +29,7 @@ npm -v && node -v && pnpm -v
 
 ## Development
 
-Install dependencies:
+Install dependencies (if package.json changes, then run this command. e.g) like I just downloaded antd package):
 
 ```bash
 pnpm i
