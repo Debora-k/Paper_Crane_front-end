@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import AdminNavbar from './admin.navbar';
 import './admin.video.page.css';
 
-const AdminRepository = () => {
+const AdminVideo = () => {
   // bring Database of projects with projects' names
   const projects = [
     { projectId: 1, pName: 'Project1' },
@@ -26,7 +26,7 @@ const AdminRepository = () => {
   const projectList = projects.map((project) => {
     return (
       <div key={project.projectId}>
-        <Link to={`/admin/repository/repohistory/${project.projectId}`}>{project.pName}</Link>
+        <Link to={`/admin/video/history/${project.projectId}`}>{project.pName}</Link>
       </div>
     );
   });
@@ -50,4 +50,4 @@ const AdminRepository = () => {
   );
 };
 
-export default AdminRepository;
+export default AdminVideo;
