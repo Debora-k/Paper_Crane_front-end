@@ -1,3 +1,5 @@
-span {
+.page {
+  margin-left: 30px;
   margin-right: 80px;
+  margin-bottom: 300px;
 }

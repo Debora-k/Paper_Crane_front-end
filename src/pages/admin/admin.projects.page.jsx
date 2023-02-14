@@ -7,23 +7,27 @@ import AdminNavbar from './admin.navbar';
 import './admin.projects.page.css';
 
 const AdminProjects = () => {
-  const projectId = [1, 2, 3];
   // Fake values for displaying rows in this page until back-end is ready
-  const projectNames = ['Project1', 'Project2', 'Project3'];
-  const description = ['Brief Description', 'Brief Description', 'Brief Description'];
-  const progressbar = [80, 30, 90];
+  const projects = [
+    { projectId: 1, pName: 'Project1', description: 'Brief Description', progressbar: 80 },
+    { projectId: 2, pName: 'Project2', description: 'Brief Description', progressbar: 30 },
+    { projectId: 3, pName: 'Project3', description: 'Brief Description', progressbar: 90 },
+  ];
 
   // listRows will contain the arrays below
   const listRows = [];
   // add project rows to the listRows
-  for (let i = 0; i < projectNames.length; i++) {
+  for (let i = 0; i < projects.length; i++) {
     listRows.push(
       <div className='row'>
         {/* From "projectId" it leads to the right link */}
-        <Link to={`/admin/projects/${projectId[i]}`}>{projectNames[i]}</Link>
-        <p>{description[i]}</p>
+        <Link to={`/admin/projects/${projects[i].projectId}`}>{projects[i].pName}</Link>
+        <p>{projects[i].description}</p>
         <div className='progressbar'>
-          <CircularProgressbar value={progressbar[i]} text={`${progressbar[i]}%`} />
+          <CircularProgressbar
+            value={projects[i].progressbar}
+            text={`${projects[i].progressbar}%`}
+          />
         </div>
       </div>,
     );
