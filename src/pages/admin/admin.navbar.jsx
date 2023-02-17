@@ -5,7 +5,7 @@ import './admin.navbar.css';
 
 const AdminNavbar = () => {
   return (
-    <div>
+    <div className='navBar'>
       <span className='page'>
         <Link to='/admin/projects'>Projects</Link>
       </span>

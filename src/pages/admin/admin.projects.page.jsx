@@ -37,7 +37,7 @@ const AdminProjects = () => {
     <div>
       {/* call admin navbar */}
       <AdminNavbar />
-      <ul>{listRows}</ul>
+      <ul className='body'>{listRows}</ul>
     </div>
   );
 };
