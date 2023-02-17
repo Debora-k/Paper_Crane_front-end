@@ -39,7 +39,9 @@ export const App = () => {
         ></Route>
 
         <Route exact path='/admin/employees' element={<AdminEmployees />}></Route>
+        {/* <Route exact path='/admin/employees/:empId/edit' element={< />}></Route> */}
         <Route exact path='/admin/clients' element={<AdminClients />}></Route>
+        {/* <Route exact path='/admin/clients/:clientId/edit' element={</>}></Route> */}
         <Route exact path='/admin/calendar' element={<AdminCalendar />}></Route>
         {/* path='*' is for temporary */}
         <Route path='*' element={<Navigate to='/admin/projects' />}></Route>

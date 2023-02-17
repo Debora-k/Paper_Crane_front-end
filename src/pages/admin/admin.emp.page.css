@@ -1,0 +1,35 @@
+/* container class holds all of elements except the nav bar */
+.container {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+}
+
+/* Current employees' info */
+.empRows {
+  display: flex;
+  width: 600px;
+  align-items: center;
+  justify-content: space-evenly;
+  margin-left: 50px;
+}
+
+/* Columns from empRows */
+.column {
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  align-items: center;
+}
+
+.columnHeader {
+  flex-grow: 1;
+  flex-basis: 0;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+/* Create account part */
+.CreateEmpAccount {
+  padding-left: 90px;
+}
