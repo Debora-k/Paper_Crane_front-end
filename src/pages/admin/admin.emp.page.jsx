@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import './admin.emp.page.css';
 import AdminNavbar from './admin.navbar';
 
+/**
+ * In the futuer, we will need to work on admin.emp.edit.page.jsx by clicking 'Edit' button
+ *
+ */
 const AdminEmployees = () => {
   const employees = [
     // empId will be given automatically from back-end

@@ -5,6 +5,10 @@ import { Link } from 'react-router-dom';
 import './admin.clients.page.css';
 import AdminNavbar from './admin.navbar';
 
+/**
+ * In the futuer, we will work on the part of leading other pages by clicking on links(buttons of view and edit)
+ *
+ */
 const AdminClients = () => {
   const clients = [
     // empId will be given automatically from back-end
