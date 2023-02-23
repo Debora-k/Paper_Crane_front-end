@@ -1,0 +1,11 @@
+.navBar {
+  display: flex;
+  justify-content: center;
+  margin-top: 90px;
+  margin-bottom: 100px;
+}
+
+.page {
+  margin-left: 30px;
+  margin-right: 80px;
+}
