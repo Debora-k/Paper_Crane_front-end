@@ -48,12 +48,12 @@ const AdminClients = () => {
         <p className='column'>{clients[i].email}</p>
         {/* edit and view buttons */}
         <p className='buttonColumn'>
-          <Link to={`/admin/clients/${clients[i].empId}/view`}>
+          <Link to={`/admin/clients/${clients[i].cId}/view`}>
             <button type='button'>View</button>
           </Link>
         </p>
         <p className='buttonColumn'>
-          <Link to={`/admin/clients/${clients[i].empId}/edit`}>
+          <Link to={`/admin/clients/${clients[i].cId}/edit`}>
             <button type='button'>Edit</button>
           </Link>
         </p>

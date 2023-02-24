@@ -1,12 +1,12 @@
-import DragDropBox from 'components/dragDrop/dragDropBox.component';
+import UploadVideo from 'components/uploadVideo/selectFile.component';
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import AdminNavbar from './admin.navbar';
-import './admin.repo.page.css';
+import './admin.videohistory.page.css';
 
-const AdminRepository = () => {
+const AdminVideoHistory = () => {
   // bring Database of projects with projects' names
   const projects = [
     { projectId: 1, pName: 'Project1' },
@@ -14,7 +14,7 @@ const AdminRepository = () => {
     { projectId: 3, pName: 'Project3' },
   ];
   // dropdown for selecting a specific project
-  const [selectedProject, setSelectedProject] = useState(projects[0]);
+  const [selectedProject, setSelectedProject] = useState(projects[0].projectId);
   const dropdownList = projects.map((project) => {
     return (
       <option key={project.projectId} value={project.projectId}>
@@ -22,12 +22,11 @@ const AdminRepository = () => {
       </option>
     );
   });
-
   // read the project list
   const projectList = projects.map((project) => {
     return (
       <div key={project.projectId}>
-        <Link to={`/admin/repository/repohistory/${project.projectId}`}>{project.pName}</Link>
+        <Link to={`/admin/video/history/${project.projectId}`}>{project.pName}</Link>
       </div>
     );
   });
@@ -39,16 +38,16 @@ const AdminRepository = () => {
         <div className='uploadVideo'>
           <select
             className='dropdown'
-            value={selectedProject.projectId}
-            onChange={(e) => setSelectedProject(e.target.value)}
+            value={selectedProject}
+            onChange={(e) => setSelectedProject(Number(e.target.value))}
           >
             {dropdownList}
           </select>
-          <DragDropBox />
+          <UploadVideo />
         </div>
       </div>
     </div>
   );
 };
 
-export default AdminRepository;
+export default AdminVideoHistory;
