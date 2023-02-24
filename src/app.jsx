@@ -53,7 +53,7 @@ export const App = () => {
 
         {/* path for Employee pages */}
         <Route exact path='/employee/projects' element={<EmpProjects />}></Route>
-        <Route exact path='/employee/empTaskLists' element={<EmpTaskLists />}></Route>
+        <Route exact path='/employee/taskLists' element={<EmpTaskLists />}></Route>
         <Route exact path='/employee/calendar' element={<EmpCalendar />}></Route>
         <Route exact path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
       </Routes>
