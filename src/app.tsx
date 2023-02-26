@@ -11,6 +11,7 @@ import AdminVideoHistory from 'pages/admin/admin.videohistory.page';
 import EmpCalendar from 'pages/employee/emp.cal.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
+import EmpWorkingHoursDetail from 'pages/employee/emp.workinghours.detail.page';
 import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
@@ -51,6 +52,10 @@ export const App = () => {
         <Route path='/employee/taskLists' element={<EmpTaskLists />}></Route>
         <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
         <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
+        <Route
+          path='/employee/workinghours/detail/:projectId'
+          element={<EmpWorkingHoursDetail />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

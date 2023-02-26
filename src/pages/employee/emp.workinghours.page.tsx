@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import '../../components/progressbar/style.css';
 import EmpNavbar from './emp.navbar';
 import './emp.workinghours.page.css';
 
@@ -20,7 +19,9 @@ const EmpWorkingHours = () => {
     listRows.push(
       <div className='row'>
         {/* From "projectId" it leads to the right link */}
-        <Link to={`/employee/projects/${projects[i].projectId}`}>{projects[i].pName}</Link>
+        <Link to={`/employee/workinghours/detail/${projects[i].projectId}`}>
+          {projects[i].pName}
+        </Link>
         <p>{`You have been working on ${projects[i].pName} for ${projects[i].workingHours} hours`}</p>
       </div>,
     );
