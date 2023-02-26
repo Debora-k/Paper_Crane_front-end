@@ -11,7 +11,7 @@ import AdminVideoHistory from 'pages/admin/admin.videohistory.page';
 import EmpCalendar from 'pages/employee/emp.cal.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
-// import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
+import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -30,10 +30,7 @@ export const App = () => {
         {/* project urls, need more work*/}
         <Route path='/admin/projects/:projectId' element={<AdminProjects />}></Route>
         <Route path='/admin/video' element={<AdminVideo />}></Route>
-        <Route
-          path='/admin/video/videohistory/:projectId'
-          element={<AdminVideoHistory />}
-        ></Route>
+        <Route path='/admin/video/videohistory/:projectId' element={<AdminVideoHistory />}></Route>
 
         <Route path='/admin/repository' element={<AdminRepository />}></Route>
         <Route
@@ -53,7 +50,7 @@ export const App = () => {
         <Route path='/employee/projects' element={<EmpProjects />}></Route>
         <Route path='/employee/taskLists' element={<EmpTaskLists />}></Route>
         <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
-        {/* <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route> */}
+        <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
       </Routes>
     </BrowserRouter>
   );
