@@ -1,6 +1,7 @@
+import { DatePicker, useDatePickGetter, useDatePickReset } from '@bcad1591/react-date-picker';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
-import { Modal } from 'antd';
+import { Button, Modal } from 'antd';
 import React, { useState } from 'react';
 
 import './emp.cal.page.css';
@@ -18,6 +19,9 @@ function renderEventContent(eventInfo) {
 }
 
 const EmpCalendar = () => {
+  const { pickedDates } = useDatePickGetter();
+  const resetFunc = useDatePickReset();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleRequest = () => {
@@ -37,7 +41,35 @@ const EmpCalendar = () => {
           open={isModalOpen}
           onOk={handleRequest}
           onCancel={handleCancel}
-        ></Modal>
+          width={1000}
+          footer={[
+            <Button
+              key='reset'
+              style={{ backgroundColor: 'black', color: 'white', float: 'left' }}
+              onClick={resetFunc}
+            >
+              Reset
+            </Button>,
+            <Button key='cancel' onClick={handleCancel}>
+              Cancel
+            </Button>,
+            <Button
+              key='request'
+              style={{ backgroundColor: 'black', color: 'white' }}
+              onClick={handleRequest}
+            >
+              Send Request
+            </Button>,
+          ]}
+        >
+          {' '}
+          <div>
+            {/* This is another calendar after clicking 'Request' button */}
+            <DatePicker disablePreviousDays />
+            <div>{pickedDates.firstPickedDate?.toString()}</div>
+            <div>{pickedDates.secondPickedDate?.toString()}</div>
+          </div>
+        </Modal>
         <FullCalendar
           plugins={[dayGridPlugin]}
           initialView='dayGridMonth'

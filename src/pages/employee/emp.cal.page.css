@@ -9,3 +9,8 @@
   margin-right: 250px;
   margin-left: 250px;
 }
+
+:root {
+  --fc-highlight-color: gray;
+  --fc-today-bg-color: #ebedef;
+}
