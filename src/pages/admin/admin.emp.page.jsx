@@ -1,9 +1,10 @@
+import Header from 'components/Header/Header';
+import Navbar from 'components/Navbar/Navbar';
 import CreateEmpAccount from 'components/createAccount/admin.emp.createAccount';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './admin.emp.page.css';
-import AdminNavbar from './admin.navbar';
 
 /**
  * In the futuer, we will need to work on admin.emp.edit.page.jsx by clicking 'Edit' button
@@ -56,7 +57,8 @@ const AdminEmployees = () => {
 
   return (
     <div>
-      <AdminNavbar />
+      <Header />
+      <Navbar />
       <div className='container'>
         <ul>
           {columHeaders} {empRows}

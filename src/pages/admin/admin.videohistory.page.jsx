@@ -1,9 +1,10 @@
+import Header from 'components/Header/Header';
+import Navbar from 'components/Navbar/Navbar';
 import UploadVideo from 'components/uploadVideo/selectFile.component';
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import AdminNavbar from './admin.navbar';
 import './admin.videohistory.page.css';
 
 const AdminVideoHistory = () => {
@@ -32,7 +33,8 @@ const AdminVideoHistory = () => {
   });
   return (
     <div>
-      <AdminNavbar />
+      <Header />
+      <Navbar />
       <div className='container'>
         <div className='repoProjectList'>{projectList}</div>
         <div className='uploadVideo'>

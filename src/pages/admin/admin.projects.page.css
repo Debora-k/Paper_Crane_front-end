@@ -1,4 +1,4 @@
-.row {
+/* .row {
   display: flex;
   height: 200px;
   align-items: center;
@@ -10,4 +10,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+} */
+
+.row {
+  display: flex;
+  height: fit-content;
+  padding-top: 40px;
+  padding-bottom: 20px;
+  max-height: 200px;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
 }

@@ -1,7 +1,8 @@
+import Header from 'components/Header/Header';
+import Navbar from 'components/Navbar/Navbar';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import AdminNavbar from './admin.navbar';
 import './admin.repohistory.page.css';
 
 const AdminRepoHistory = () => {
@@ -21,7 +22,8 @@ const AdminRepoHistory = () => {
   });
   return (
     <div>
-      <AdminNavbar />
+      <Header />
+      <Navbar />
       <div className='container'>
         <div className='repoProjectList'>{projectList}</div>
       </div>

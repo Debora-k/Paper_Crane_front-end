@@ -1,9 +1,9 @@
 /* container class holds all of elements except the nav bar */
-.container {
-  margin-top: 100px;
+/* .container { */
+/* margin-top: 100px;
   display: flex;
-  align-items: center;
-}
+  align-items: center; */
+/* } */
 
 /* Current clients' info */
 .clientRows {
@@ -11,7 +11,7 @@
   width: 700px;
   align-items: center;
   justify-content: space-evenly;
-  margin-left: 100px;
+  padding: 5px 10px;
 }
 
 /* Columns from clientRows */
@@ -34,9 +34,4 @@
   flex-grow: 0.7;
   flex-basis: 0;
   font-weight: bold;
-}
-
-/* Create account part */
-.CreateClientAccount {
-  padding-left: 100px;
 }

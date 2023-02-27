@@ -1,9 +1,10 @@
+import Header from 'components/Header/Header';
+import Navbar from 'components/Navbar/Navbar';
 import CreateClientAccount from 'components/createAccount/admin.clients.createAccount';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import './admin.clients.page.css';
-import AdminNavbar from './admin.navbar';
 
 /**
  * In the futuer, we will work on the part of leading other pages by clicking on links(buttons of view and edit)
@@ -63,7 +64,8 @@ const AdminClients = () => {
 
   return (
     <div>
-      <AdminNavbar />
+      <Header />
+      <Navbar />
       <div className='container'>
         <ul>
           {columHeaders} {clientRows}

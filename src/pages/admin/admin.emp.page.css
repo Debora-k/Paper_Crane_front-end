@@ -1,9 +1,9 @@
 /* container class holds all of elements except the nav bar */
-.container {
+/* .container {
   margin-top: 100px;
   display: flex;
   align-items: center;
-}
+} */
 
 /* Current employees' info */
 .empRows {
@@ -12,6 +12,7 @@
   align-items: center;
   justify-content: space-evenly;
   margin-left: 50px;
+  padding: 5px 10px;
 }
 
 /* Columns from empRows */

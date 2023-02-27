@@ -1,9 +1,10 @@
+import Header from 'components/Header/Header';
+import Navbar from 'components/Navbar/Navbar';
 import DragDropBox from 'components/dragDrop/dragDropBox.component';
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import AdminNavbar from './admin.navbar';
 import './admin.repo.page.css';
 
 const AdminRepository = () => {
@@ -33,7 +34,8 @@ const AdminRepository = () => {
   });
   return (
     <div>
-      <AdminNavbar />
+      <Header />
+      <Navbar />
       <div className='container'>
         <div className='repoProjectList'>{projectList}</div>
         <div className='uploadVideo'>

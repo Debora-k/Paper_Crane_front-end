@@ -5,7 +5,156 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  width: fit-content;
+  height: 80px;
+  padding: 0 20px;
+  border-radius: 20px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+.App {
+  width: 100%;
+  max-width: 1000px;
+  margin: auto auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.container {
+  margin-top: 50px;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 50px;
+  margin: auto auto;
+  box-shadow: 2px 2px 2px #e0dfdf, -2px -2px 2px #e0dfdf, 0px 2px 2px #e0dfdf, 2px 0px 2px #e0dfdf,
+    0px -2px 2px #e0dfdf, -2px 0px 2px #e0dfdf, -2px 2px 2px #e0dfdf, 2px -2px 2px #e0dfdf;
+  border-radius: 10px;
+}
+.content--container {
+  padding-bottom: 40px;
+  font-size: 1.2rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-left: 50px;
+  padding-right: 50px;
+  margin: auto auto;
+  /* box-shadow: 2px 2px 2px #e0dfdf, -2px -2px 2px #e0dfdf, 0px 2px 2px #e0dfdf, 2px 0px 2px #e0dfdf,
+    0px -2px 2px #e0dfdf, -2px 0px 2px #e0dfdf, -2px 2px 2px #e0dfdf, 2px -2px 2px #e0dfdf;
+  border-radius: 10px; */
+}
+.header--container {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+}
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile--container {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.profile--container > button {
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 60px;
+  background-color: #fff;
+  border: 0;
+  font-size: 1.2rem;
+}
+.logo-btn {
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 60px;
+  background-color: #fff;
+  border: 0;
+  font-size: 1.2rem;
+}
+
+.profile--details {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+.projectTitle {
+  font-size: 2rem;
+  font-weight: 700;
+}
+.task-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 30px;
+}
+.task {
+  display: grid;
+  grid-template-columns: 10% 40% auto;
+  align-items: center;
+}
+.heading {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+.status-box {
+  height: 15px;
+  width: 15px;
+  border: 1px solid;
+  content: '';
+}
+.status-box:hover {
+  cursor: pointer;
+}
+
+.notDone {
+  background-color: #fff;
+}
+
+.done {
+  background-color: #000;
+}
+
+.inProgress {
+  background-color: #b0b0b0;
+}
+
+.active {
+  color: #fff;
+  background-color: #100e0e69;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
+}
+
+.superadmin-btn {
+  height: 50px;
+  width: fit-content;
+  padding: 5px 20px;
+  background-color: #5b585869;
+  border: 0;
+  border-radius: 20px;
 }
