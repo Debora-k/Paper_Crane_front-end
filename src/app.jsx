@@ -1,3 +1,4 @@
+// import admin pages
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
@@ -6,6 +7,11 @@ import AdminRepository from 'pages/admin/admin.repo.page';
 import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
 import AdminVideoHistory from 'pages/admin/admin.videohistory.page';
+// import employee pages
+import EmpCalendar from 'pages/employee/emp.cal.page';
+import EmpProjects from 'pages/employee/emp.projects.page';
+import EmpTaskLists from 'pages/employee/emp.tasklists.page';
+import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -16,7 +22,6 @@ export const App = () => {
       <Routes>
         {/* Comment out few pages until working on it */}
         {/* <Route exact path='/login' element={<Login />}></Route> */}
-        {/* <Route exact path='/employee/projects' element={<EmployeeProjects />}></Route> */}
         {/* <Route exact path='/client/projects' element={<ClientProjects />}></Route> */}
         {/* <Route exact path="/logout" element={<Logout />} /> </Route> */}
 
@@ -45,6 +50,12 @@ export const App = () => {
         <Route exact path='/admin/calendar' element={<AdminCalendar />}></Route>
         {/* path='*' is for temporary */}
         <Route path='*' element={<Navigate to='/admin/projects' />}></Route>
+
+        {/* path for Employee pages */}
+        <Route exact path='/employee/projects' element={<EmpProjects />}></Route>
+        <Route exact path='/employee/taskLists' element={<EmpTaskLists />}></Route>
+        <Route exact path='/employee/calendar' element={<EmpCalendar />}></Route>
+        <Route exact path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
       </Routes>
     </BrowserRouter>
   );
