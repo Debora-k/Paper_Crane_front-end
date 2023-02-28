@@ -14,7 +14,7 @@ const AdminVideo = () => {
     { projectId: 3, pName: 'Project3' },
   ];
   // dropdown for selecting a specific project
-  const [selectedProject, setSelectedProject] = useState(projects[0]);
+  const [selectedProject, setSelectedProject] = useState(projects[0].projectId);
   const dropdownList = projects.map((project) => {
     return (
       <option key={project.projectId} value={project.projectId}>
@@ -38,8 +38,8 @@ const AdminVideo = () => {
         <div className='uploadVideo'>
           <select
             className='dropdown'
-            value={selectedProject.projectId}
-            onChange={(e) => setSelectedProject(e.target.value)}
+            value={selectedProject}
+            onChange={(e) => setSelectedProject(Number(e.target.value))}
           >
             {dropdownList}
           </select>

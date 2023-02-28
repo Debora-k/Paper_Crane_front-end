@@ -9,6 +9,8 @@ import TaskboardItemCard, { TaskboardItemCardProps } from './TaskboardItemCard';
 import { TaskboardItem, TaskboardItemStatus } from './TaskboardTypes';
 
 const TaskboardColRoot = styled(Card)`
+  background-color: white;
+  border-width: 2px;
   user-select: none;
   flex: 1;
   margin: 0.5rem;

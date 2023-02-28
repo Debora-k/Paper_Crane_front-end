@@ -1,0 +1,15 @@
+.title {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+.projectInfo {
+  font-size: 9px;
+}
+
+.container {
+  display: flex;
+  gap: 100px;
+}
+.firstColumn {
+}

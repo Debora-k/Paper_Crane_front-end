@@ -39,7 +39,7 @@ const FileInput = ( {folderPath, updateFolderTree} ) =>
                 {
                     let overwrite = window.confirm("A file with the same name already exists. Do you want to continue?");
                     if (overwrite) {
-                        formData.append("overwrite", true);
+                        formData.append("overwrite", "true");
                         axios.post('/uploadFile', formData)
                              .then(response => {
                                 console.log(response.data);

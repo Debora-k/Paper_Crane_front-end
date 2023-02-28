@@ -29,6 +29,8 @@ function FolderTreeContainer() {
     return (
       <div className="FolderTreeContainer">
         <FolderTree 
+        // style wasn't here at first, due to TS complained, created null style
+        style={null}
           tree={tree}
           updateFolderTree={updateFolderTree}
         />

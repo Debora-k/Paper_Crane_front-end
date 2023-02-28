@@ -7,6 +7,7 @@ import Taskboard from '../../views/employee/tasklists/Taskboard';
 import EmpNavbar from './emp.navbar';
 
 const StyledLayout = styled(Layout)`
+  background-color: white;
   /* We can't use "height: 100vh; width: 100vw;" here.
   Otherwise, when there is a horizontal scrollbar etc, 
   because that we set a constant height, there will be a vertical one too.  */

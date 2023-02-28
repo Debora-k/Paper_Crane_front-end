@@ -4,8 +4,9 @@
     "baseUrl": "src",
     "allowJs": true,
     "esModuleInterop": true,
-    "strict": false
+    "strict": false,
+    "noImplicitUseStrict": true
   },
-  "include": ["src"],
+  "include": ["src","custom.d.ts"],
   "exclude": ["node_modules"]
 }
