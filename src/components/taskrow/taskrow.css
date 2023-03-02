@@ -1,0 +1,14 @@
+.status-box {
+  height: 15px;
+  width: 15px;
+  border: 1px solid;
+  content: '';
+}
+.status-box:hover {
+  cursor: pointer;
+}
+.task {
+  display: grid;
+  grid-template-columns: 10% 40% auto;
+  align-items: center;
+}
