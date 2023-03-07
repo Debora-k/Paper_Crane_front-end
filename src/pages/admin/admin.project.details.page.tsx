@@ -1,7 +1,7 @@
 // import { data } from 'projectsData';
 import Header from 'components/Header/Header';
 import TaskRow from 'components/taskrow/TaskRow';
-import { nanoid } from 'nanoid';
+
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -14,7 +14,7 @@ export const ProjectDetails = (props) => {
   // })
 
   const data = {
-    id: nanoid(),
+    id: 1,
     title: 'Project1',
     description: 'Project 1',
     status: '80',

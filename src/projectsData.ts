@@ -1,8 +1,6 @@
-import { nanoid } from 'nanoid';
-
 export const data = [
   {
-    id: nanoid(),
+    id: 1,
     title: 'Project1',
     description: 'Project 1',
     status: '80',
@@ -43,7 +41,7 @@ export const data = [
     ],
   },
   {
-    id: nanoid(),
+    id: 2,
     title: 'Project2',
     description: 'Project 2',
     status: '70',
@@ -84,7 +82,7 @@ export const data = [
     ],
   },
   {
-    id: nanoid(),
+    id: 3,
     title: 'Project3',
     description: 'Project 3',
     status: '0',
@@ -125,7 +123,7 @@ export const data = [
     ],
   },
   {
-    id: nanoid(),
+    id: 4,
     title: 'Project4',
     description: 'Project 4',
     status: '30',
@@ -166,7 +164,7 @@ export const data = [
     ],
   },
   {
-    id: nanoid(),
+    id: 5,
     title: 'Project5',
     description: 'Project 5',
     status: '40',
@@ -207,7 +205,7 @@ export const data = [
     ],
   },
   {
-    id: nanoid(),
+    id: 6,
     title: 'Project6',
     description: 'Project 6',
     status: '60',
