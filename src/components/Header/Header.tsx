@@ -1,20 +1,22 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+
 import Logo from '../../assets/logo.png';
-import './header.css'
+import './header.css';
+
 export default function Header() {
   return (
     <div className='header--container'>
       <Link to={'/'}>
         <div className='logo'>
-          <img src={Logo} alt='logo' width={'100px'}/>
+          <img src={Logo} alt='logo' width={'100px'} />
         </div>
       </Link>
 
       <div className='flex-row profile--container'>
-        <Link to={'/superadmin/showadmins'} className='flex-row logout-btn'>
+        {/* <Link to={'/superadmin/showadmins'} className='flex-row logout-btn'>
           <button className='superadmin-btn'>SuperAdmin Page</button>
-        </Link>
+        </Link> */}
 
         <button className='flex-row logout-btn'>Logout</button>
         <button className='flex-row Contact'>Contact Us</button>

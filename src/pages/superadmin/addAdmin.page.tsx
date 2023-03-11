@@ -1,26 +1,44 @@
-import { AdminContext } from 'app';
-import React, { useContext, useState } from 'react';
-import SuperAdminNavbar from 'components/superAdminNavbar/SuperAdminNavbar';
-import './addAdmin.page.css';
+import { DataContext } from 'app';
 import Header from 'components/Header/Header';
+import SuperAdminNavbar from 'components/superAdminNavbar/SuperAdminNavbar';
+import React, { useContext, useState } from 'react';
+
+
+
+import './addAdmin.page.css';
+
 
 function AddAdmin() {
   const [alert, setAlert] = useState(false);
-  const {admins, setAdmins}  = useContext(AdminContext);
+  const { admins, setAdmins } = useContext(DataContext);
   const [newAdmin, setNewAdmin] = useState({
-    userId: admins.length + 1,
+    userId: (admins.length > 0 ? admins[admins.length - 1].userId + 1 : 1),
     name: '',
     username: '',
     domain: '',
-    type: 'default',
+    type: '',
   });
 
   const handleSubmit = (e) => {
-  e.preventDefault();
+    e.preventDefault();
     setAdmins((prevState) => {
-      return [...prevState, { ...newAdmin, email: `${newAdmin.username}@${newAdmin.domain}` }];
+      return [
+        ...prevState,
+        {
+          userId: newAdmin.userId,
+          name: newAdmin.name,
+          type: newAdmin.type,
+          email: `${newAdmin.username}@${newAdmin.domain}`,
+        },
+      ];
     });
-    setNewAdmin({ userId: admins.length + 1, name: '', username: '', domain: '', type: 'default' });
+    setNewAdmin({
+      userId: admins.length > 0 ? admins[admins.length - 1].userId + 1 : 1,
+      name: '',
+      username: '',
+      domain: '',
+      type: '',
+    });
     setAlert(true);
     setTimeout(() => {
       setAlert(false);
@@ -38,7 +56,7 @@ function AddAdmin() {
   };
   return (
     <>
-    <Header/>
+      <Header />
       <SuperAdminNavbar />
       <div className='superAdmin--container'>
         <div className='add-admin-form'>
@@ -47,20 +65,27 @@ function AddAdmin() {
             <label htmlFor='userId' className='labels'>
               User Id:
             </label>
-            <input
-              type={'text'}
-              value={'{Valid Default Value}'}
-              id='userId'
-              name='userId'
-              disabled
-            />
+            <input type={'text'} value={newAdmin.userId} id='userId' name='userId' disabled />
           </div>
 
           <div className='input-row'>
             <label htmlFor='userId' className='labels'>
               Type:
             </label>
-            <input type={'text'} value={'{Valid Default Value}'} id='type' name='type' disabled />
+            {/* <input type={'text'} value={newAdmin.type} id='type' name='type' disabled /> */}
+            <select
+              name='type'
+              id='type'
+              onChange={handleChange}
+              placeholder='Select type of admin'
+              required
+            >
+              <option selected disabled>
+                Select Type of Admin
+              </option>
+              <option value='developer'>developer</option>
+              <option value='designer'>designer</option>
+            </select>
           </div>
 
           <div className='input-row'>

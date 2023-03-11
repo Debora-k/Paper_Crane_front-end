@@ -1,5 +1,6 @@
 // import admin pages
 import { adminsData } from 'adminData';
+import {data} from './projectsData'
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
@@ -20,32 +21,17 @@ import SuperAdmin from 'pages/superadmin/manageAdmin.page';
 import React, { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { DataContextType, admin, project } from 'views/admin/tasklists/adminDataTypes';
 
-type admin = {
-  userId: number;
-  name: string;
-  email: string;
-  type: string;
-}[];
-
-interface AdminContextType {
-  admins: admin;
-  setAdmins: React.Dispatch<React.SetStateAction<admin | null>>;
-}
-
-export const AdminContext = createContext<AdminContextType | null>(null);
+export const DataContext = createContext<DataContextType | null>(null);
 
 export const App = () => {
   const [admins, setAdmins] = useState<admin | null>(adminsData);
-  const [currId, setCurrId] = useState('');
+  const [projects, setProjects] = useState<project | null>(data);
 
-  const handleClick = () => {
-    setCurrId('');
-  };
   return (
     <div className='App'>
-    <AdminContext.Provider value={{ admins, setAdmins }}>
-
+    <DataContext.Provider value={{ admins, setAdmins, projects, setProjects }}>
       <BrowserRouter>
         <Routes>
           {/* Comment out few pages until working on it */}
@@ -56,23 +42,23 @@ export const App = () => {
           {/* These routes are for admins */}
           <Route
             path='/admin/projects'
-            element={<AdminProjects handleClick={handleClick} />}
-          ></Route>
+            element={<AdminProjects/>}
+            ></Route>
           <Route
             path={`/admin/project/:projectid`}
-            element={<ProjectDetails id={currId} />}
-          ></Route>
+            element={<ProjectDetails />}
+            ></Route>
           <Route path='/admin/video' element={<AdminVideo />}></Route>
           <Route
             path='/admin/video/videohistory/:projectId'
             element={<AdminVideoHistory />}
-          ></Route>
+            ></Route>
 
           <Route path='/admin/repository' element={<AdminRepository />}></Route>
           <Route
             path='/admin/repository/repohistory/:projectId'
             element={<AdminRepoHistory />}
-          ></Route>
+            ></Route>
 
           <Route path='/admin/employees' element={<AdminEmployees />}></Route>
           {/* <Route exact path='/admin/employees/:empId/edit' element={< />}></Route> */}
@@ -91,10 +77,10 @@ export const App = () => {
           <Route
             path='/employee/workinghours/detail/:projectId'
             element={<EmpWorkingHoursDetail />}
-          ></Route>
+            ></Route>
         </Routes>
       </BrowserRouter>
-    </AdminContext.Provider>
+    </DataContext.Provider>
     </div>
   );
 };

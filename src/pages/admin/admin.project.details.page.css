@@ -1,22 +1,5 @@
-.status-box {
-  height: 15px;
-  width: 15px;
-  border: 1px solid;
-  content: '';
-}
 .status-box:hover {
   cursor: pointer;
-}
-.notDone {
-  background-color: #fff;
-}
-
-.done {
-  background-color: #000;
-}
-
-.inProgress {
-  background-color: #b0b0b0;
 }
 .profile--container {
   width: fit-content;
@@ -42,7 +25,7 @@
 }
 .task {
   display: grid;
-  grid-template-columns: 10% 40% auto;
+  grid-template-columns: 10% 40% 40% auto;
   align-items: center;
 }
 .profile--details {
@@ -53,4 +36,32 @@
 .projectTitle {
   font-size: 2rem;
   font-weight: 700;
+}
+.edit {
+  width: fit-content;
+}
+.edit:hover {
+  cursor: pointer;
+  background-color: #fff;
+}
+.add-task {
+  font-size: 16px;
+  border: 0;
+  background-color: #5b585869;
+  border-radius: 20px;
+  width: fit-content;
+  height: fit-content;
+  margin: 0 auto;
+  padding: 5px 10px;
+}
+.status-info-container {
+  gap: 100px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mb-50 {
+  margin-bottom: 50px;
 }
