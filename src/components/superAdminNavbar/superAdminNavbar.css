@@ -1,6 +1,6 @@
-.AdminNavBar {
+.SuperAdminNavBar {
   max-width: 1000px;
-  width: 100%;
+  width: 40vw;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,7 +8,7 @@
   background-color: #5b585869;
   border-radius: 20px;
 }
-.AdminNavBar > a {
+.SuperAdminNavBar > a {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -22,7 +22,7 @@
   text-decoration: none;
   color: #000;
 }
-.AdminNavBar > a:hover {
+.SuperAdminNavBar > a:hover {
   background-color: #100e0e69;
   color: #fff;
 }

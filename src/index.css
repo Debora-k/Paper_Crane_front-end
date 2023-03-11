@@ -5,7 +5,48 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  width: fit-content;
+  height: 80px;
+  padding: 0 20px;
+  border-radius: 20px;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+.App {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.justify-center {
+  width: 70vw;
+  margin: 0 auto;
+}
+
+.flex-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+a {
+  text-decoration: none;
+}
+button {
+  cursor: pointer;
 }

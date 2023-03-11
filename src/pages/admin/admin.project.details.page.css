@@ -1,0 +1,56 @@
+.status-box {
+  height: 15px;
+  width: 15px;
+  border: 1px solid;
+  content: '';
+}
+.status-box:hover {
+  cursor: pointer;
+}
+.notDone {
+  background-color: #fff;
+}
+
+.done {
+  background-color: #000;
+}
+
+.inProgress {
+  background-color: #b0b0b0;
+}
+.profile--container {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.profile--container > button {
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 60px;
+  background-color: #fff;
+  border: 0;
+  font-size: 1.2rem;
+}
+.task-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 30px;
+}
+.task {
+  display: grid;
+  grid-template-columns: 10% 40% auto;
+  align-items: center;
+}
+.profile--details {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 30px;
+}
+.projectTitle {
+  font-size: 2rem;
+  font-weight: 700;
+}
