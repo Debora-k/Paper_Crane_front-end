@@ -50,7 +50,7 @@ function SuperAdmin() {
         <div className='admin-row'>
           <div className='userId heading align-center'>User Id</div>
           <div className='name heading align-center'>Name</div>
-          <div className='details heading align-center'>Details</div>
+          <div className='details heading align-center'>Description</div>
           {/* <button className='delete-btn align-center' onClick={handleDeleteButton}>
             Delete
           </button> */}

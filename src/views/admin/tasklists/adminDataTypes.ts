@@ -1,4 +1,4 @@
-import React from 'React'
+import React from 'react'
 export type admin = {
   readonly userId: number;
   name: string;

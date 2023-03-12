@@ -3,16 +3,13 @@ import Header from 'components/Header/Header';
 import SuperAdminNavbar from 'components/superAdminNavbar/SuperAdminNavbar';
 import React, { useContext, useState } from 'react';
 
-
-
 import './addAdmin.page.css';
-
 
 function AddAdmin() {
   const [alert, setAlert] = useState(false);
   const { admins, setAdmins } = useContext(DataContext);
   const [newAdmin, setNewAdmin] = useState({
-    userId: (admins.length > 0 ? admins[admins.length - 1].userId + 1 : 1),
+    userId: admins.length > 0 ? admins[admins.length - 1].userId + 1 : 1,
     name: '',
     username: '',
     domain: '',
