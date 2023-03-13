@@ -59,3 +59,8 @@
 #domain:disabled {
   border-bottom: 1px solid;
 }
+
+select,
+select:focus {
+  border: 0;
+}

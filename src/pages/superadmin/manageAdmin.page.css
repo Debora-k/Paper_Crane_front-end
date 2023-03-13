@@ -16,12 +16,8 @@
   flex-direction: column;
   gap: 20px;
 }
-.delete-btn {
-  font-size: 20px;
-  border: 0;
-  background-color: #5b585869;
-  border-radius: 20px;
-  width: 80px;
+.delete-btn:hover {
+  cursor: pointer;
 }
 .edit-btn:hover {
   background-color: #100e0e69;
@@ -30,4 +26,18 @@
 }
 .align-center {
   text-align: center;
+}
+
+.button-row {
+  display: flex;
+  gap: 20px;
+}
+
+.mb-4 {
+  margin-bottom: 1rem;
+}
+
+.space {
+  display: flex;
+  justify-content: flex-end;
 }

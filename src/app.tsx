@@ -20,81 +20,62 @@ import SuperAdmin from 'pages/superadmin/manageAdmin.page';
 import React, { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { DataContextType, admin, project } from 'views/admin/tasklists/adminDataTypes';
 
-type admin = {
-  userId: number;
-  name: string;
-  email: string;
-  type: string;
-}[];
+import { data } from './projectsData';
 
-interface AdminContextType {
-  admins: admin;
-  setAdmins: React.Dispatch<React.SetStateAction<admin | null>>;
-}
-
-export const AdminContext = createContext<AdminContextType | null>(null);
+export const DataContext = createContext<DataContextType | null>(null);
 
 export const App = () => {
   const [admins, setAdmins] = useState<admin | null>(adminsData);
-  const [currId, setCurrId] = useState('');
+  const [projects, setProjects] = useState<project | null>(data);
 
-  const handleClick = () => {
-    setCurrId('');
-  };
   return (
     <div className='App'>
-    <AdminContext.Provider value={{ admins, setAdmins }}>
+      <DataContext.Provider value={{ admins, setAdmins, projects, setProjects }}>
+        <BrowserRouter>
+          <Routes>
+            {/* Comment out few pages until working on it */}
+            {/* <Route exact path='/login' element={<Login />}></Route> */}
+            {/* <Route exact path='/client/projects' element={<ClientProjects />}></Route> */}
+            {/* <Route exact path="/logout" element={<Logout />} /> </Route> */}
 
-      <BrowserRouter>
-        <Routes>
-          {/* Comment out few pages until working on it */}
-          {/* <Route exact path='/login' element={<Login />}></Route> */}
-          {/* <Route exact path='/client/projects' element={<ClientProjects />}></Route> */}
-          {/* <Route exact path="/logout" element={<Logout />} /> </Route> */}
+            {/* These routes are for admins */}
+            <Route path='/admin/projects' element={<AdminProjects />}></Route>
+            <Route path={`/admin/project/:projectid`} element={<ProjectDetails />}></Route>
+            <Route path='/admin/video' element={<AdminVideo />}></Route>
+            <Route
+              path='/admin/video/videohistory/:projectId'
+              element={<AdminVideoHistory />}
+            ></Route>
 
-          {/* These routes are for admins */}
-          <Route
-            path='/admin/projects'
-            element={<AdminProjects handleClick={handleClick} />}
-          ></Route>
-          <Route
-            path={`/admin/project/:projectid`}
-            element={<ProjectDetails id={currId} />}
-          ></Route>
-          <Route path='/admin/video' element={<AdminVideo />}></Route>
-          <Route
-            path='/admin/video/videohistory/:projectId'
-            element={<AdminVideoHistory />}
-          ></Route>
+            <Route path='/admin/repository' element={<AdminRepository />}></Route>
+            <Route
+              path='/admin/repository/repohistory/:projectId'
+              element={<AdminRepoHistory />}
+            ></Route>
 
-          <Route path='/admin/repository' element={<AdminRepository />}></Route>
-          <Route
-            path='/admin/repository/repohistory/:projectId'
-            element={<AdminRepoHistory />}
-          ></Route>
-
-          <Route path='/admin/employees' element={<AdminEmployees />}></Route>
-          {/* <Route exact path='/admin/employees/:empId/edit' element={< />}></Route> */}
-          <Route path='/admin/clients' element={<AdminClients />}></Route>
-          {/* <Route exact path='/admin/clients/:clientId/edit' element={</>}></Route> */}
-          <Route path='/admin/calendar' element={<AdminCalendar />}></Route>
-          {/* path='*' is for temporary */}
-          <Route path='*' element={<Navigate to='/admin/projects' />}></Route>
-          <Route path='/superadmin/showadmins' element={<SuperAdmin />}></Route>
-          <Route path='/superadmin/addadmin' element={<AddAdmin />}></Route>
-          {/* path for Employee pages */}
-          <Route path='/employee/projects' element={<EmpProjects />}></Route>
-          <Route path='/employee/taskLists' element={<EmpTaskLists />}></Route>
-          <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
-          <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
-          <Route
-            path='/employee/workinghours/detail/:projectId'
-            element={<EmpWorkingHoursDetail />}
-          ></Route>
-        </Routes>
-      </BrowserRouter>
-    </AdminContext.Provider>
+            <Route path='/admin/employees' element={<AdminEmployees />}></Route>
+            {/* <Route exact path='/admin/employees/:empId/edit' element={< />}></Route> */}
+            <Route path='/admin/clients' element={<AdminClients />}></Route>
+            {/* <Route exact path='/admin/clients/:clientId/edit' element={</>}></Route> */}
+            <Route path='/admin/calendar' element={<AdminCalendar />}></Route>
+            {/* path='*' is for temporary */}
+            <Route path='*' element={<Navigate to='/admin/projects' />}></Route>
+            <Route path='/superadmin/showadmins' element={<SuperAdmin />}></Route>
+            <Route path='/superadmin/addadmin' element={<AddAdmin />}></Route>
+            {/* path for Employee pages */}
+            <Route path='/employee/projects' element={<EmpProjects />}></Route>
+            <Route path='/employee/taskLists' element={<EmpTaskLists />}></Route>
+            <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
+            <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
+            <Route
+              path='/employee/workinghours/detail/:projectId'
+              element={<EmpWorkingHoursDetail />}
+            ></Route>
+          </Routes>
+        </BrowserRouter>
+      </DataContext.Provider>
     </div>
   );
 };

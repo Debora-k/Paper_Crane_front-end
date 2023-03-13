@@ -1,26 +1,23 @@
-import PropTypes from 'prop-types';
+import { EditOutlined } from '@ant-design/icons';
 import React from 'react';
-import './taskrow.css'
-export default function TaskRow(props) {
+import { TaskRowItem } from 'views/admin/tasklists/adminModatTypes';
+
+import './taskrow.css';
+
+export default function TaskRow({ task, status, assigned, openTaskItemModal }: TaskRowItem) {
   function getProgress() {
-    if (props.status === -1) return '#fff';
-    else if (props.status === 1) return '#000';
-    else if (props.status === 0) return '#B0B0B0';
+    if (status === -1) return '#f45c2e';
+    else if (status === 1) return '#30f558';
+    else if (status === 0) return '#f4c331';
   }
-//   const statusStyle = {
-//     backgroundColor: getProgress(),
-//   };
   return (
     <div className='task'>
-      <div className={`status-box`} style = {{backgroundColor: getProgress()}}></div>
-      <div className='task-title'>{props.task}</div>
-      <div className='assigned'>{props.assigned}</div>
+      <div className={`status-box`} style={{ backgroundColor: getProgress() }}></div>
+      <div className='task-title'>{task}</div>
+      <div className='assigned'>{assigned}</div>
+      <div className='edit ' onClick={openTaskItemModal}>
+        <EditOutlined className='edit' style={{ fontSize: '16px', color: '#000' }} />
+      </div>
     </div>
   );
 }
-
-TaskRow.propTypes = {
-  task: PropTypes.string,
-  status: PropTypes.number,
-  assigned: PropTypes.string,
-};
