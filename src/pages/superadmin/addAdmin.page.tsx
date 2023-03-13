@@ -30,7 +30,7 @@ function AddAdmin() {
       ];
     });
     setNewAdmin({
-      userId: admins.length > 0 ? admins[admins.length - 1].userId + 1 : 1,
+      userId: admins.length > 0 ? admins.length + 2 : 1,
       name: '',
       username: '',
       domain: '',
@@ -69,20 +69,14 @@ function AddAdmin() {
             <label htmlFor='userId' className='labels'>
               Type:
             </label>
-            {/* <input type={'text'} value={newAdmin.type} id='type' name='type' disabled /> */}
-            <select
-              name='type'
+            <input
+              type={'text'}
+              value={newAdmin.type}
               id='type'
+              name='type'
               onChange={handleChange}
-              placeholder='Select type of admin'
-              required
-            >
-              <option selected disabled>
-                Select Type of Admin
-              </option>
-              <option value='developer'>developer</option>
-              <option value='designer'>designer</option>
-            </select>
+            />
+            {/* <input type={'text'} value={newAdmin.userId} id='userId' name='userId' disabled /> */}
           </div>
 
           <div className='input-row'>
