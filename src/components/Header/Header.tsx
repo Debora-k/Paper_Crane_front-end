@@ -9,7 +9,7 @@ export default function Header() {
     <div className='header--container'>
       <Link to={'/'}>
         <div className='logo'>
-          <img src={Logo} alt='logo' width={'100px'} />
+          <img className='invertedLogo' src={Logo} alt='logo' width={'100px'} />
         </div>
       </Link>
 
@@ -18,7 +18,7 @@ export default function Header() {
           <button className='superadmin-btn'>SuperAdmin Page</button>
         </Link> */}
 
-        <button className='flex-row logout-btn'>Logout</button>
+        <button className='flex-row logout-btn'>Log Out</button>
         <button className='flex-row Contact'>Contact Us</button>
         <button className='flex-row profile-btn'>
           <i className='fa-solid fa-user'></i>

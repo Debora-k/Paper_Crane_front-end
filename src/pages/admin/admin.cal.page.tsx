@@ -1,5 +1,6 @@
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
+import Header from 'components/Header/Header';
 import React from 'react';
 
 import './admin.cal.page.css';
@@ -19,6 +20,7 @@ function renderEventContent(eventInfo) {
 const AdminCalendar = () => {
   return (
     <div>
+      <Header />
       <AdminNavbar />
       <div className='calendar'>
         <FullCalendar
