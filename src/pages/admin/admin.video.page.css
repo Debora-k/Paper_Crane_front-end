@@ -17,3 +17,17 @@
   margin-left: 50px;
   margin-right: 150px;
 }
+
+.buttonBar {
+  width: 950px;
+  margin: 0 auto;
+}
+
+.videoList {
+  display: flex;
+  flex-flow: wrap;
+  gap: 40px;
+  width: 1000px;
+  margin: 0 auto;
+  margin-top: 40px;
+}

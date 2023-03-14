@@ -1,3 +1,4 @@
+import Header from 'components/Header/Header';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -21,6 +22,7 @@ const AdminRepoHistory = () => {
   });
   return (
     <div>
+      <Header />
       <AdminNavbar />
       <div className='container'>
         <div className='repoProjectList'>{projectList}</div>

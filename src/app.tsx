@@ -1,5 +1,5 @@
 // import admin pages
-import { adminsData } from 'adminData';
+import { adminsData } from 'dummyData/adminData';
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
@@ -8,7 +8,6 @@ import AdminProjects from 'pages/admin/admin.projects.page';
 import AdminRepository from 'pages/admin/admin.repo.page';
 import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
-import AdminVideoHistory from 'pages/admin/admin.videohistory.page';
 // import employee pages
 import EmpCalendar from 'pages/employee/emp.cal.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
@@ -22,7 +21,7 @@ import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DataContextType, admin, project } from 'views/admin/tasklists/adminDataTypes';
 
-import { data } from './projectsData';
+import { data } from './dummyData/projectsData';
 
 export const DataContext = createContext<DataContextType | null>(null);
 
@@ -44,10 +43,10 @@ export const App = () => {
             <Route path='/admin/projects' element={<AdminProjects />}></Route>
             <Route path={`/admin/project/:projectid`} element={<ProjectDetails />}></Route>
             <Route path='/admin/video' element={<AdminVideo />}></Route>
-            <Route
+            {/* <Route
               path='/admin/video/videohistory/:projectId'
               element={<AdminVideoHistory />}
-            ></Route>
+            ></Route> */}
 
             <Route path='/admin/repository' element={<AdminRepository />}></Route>
             <Route

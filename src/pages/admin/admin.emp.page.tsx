@@ -1,3 +1,4 @@
+import Header from 'components/Header/Header';
 import CreateEmpAccount from 'components/createAccount/admin.emp.createAccount';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -56,6 +57,7 @@ const AdminEmployees = () => {
 
   return (
     <div>
+      <Header />
       <AdminNavbar />
       <div className='container'>
         <ul>

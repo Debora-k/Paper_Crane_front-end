@@ -1,16 +1,29 @@
-.superadmin-btn {
+/* .superadmin-btn {
   height: 50px;
   width: fit-content;
   padding: 5px 20px;
   background-color: #5b585869;
   border: 0;
   border-radius: 20px;
-}
+} */
 .header--container {
   height: 80px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 70vw;
+  width: 85vw;
   margin: 10px auto 0;
+}
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: 80px;
+  padding: 0 20px;
+  border-radius: 20px;
+}
+
+.invertedLogo {
+  filter: invert(100%);
 }

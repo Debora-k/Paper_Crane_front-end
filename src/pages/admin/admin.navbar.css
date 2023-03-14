@@ -4,10 +4,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin: 20px auto;
-  background-color: #5b585869;
+  margin: 40px auto 90px;
   border-radius: 20px;
+  font-family: 'proxima-nova', sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  font-size: 20px;
 }
+
 .AdminNavBar > a {
   display: flex;
   flex-direction: column;
@@ -19,14 +23,11 @@
   padding-right: 10px;
   border-radius: 20px;
   cursor: pointer;
-  text-decoration: none;
   color: #000;
 }
 .AdminNavBar > a:hover {
-  background-color: #100e0e69;
-  color: #fff;
+  text-decoration: underline;
 }
 .active {
-  color: #fff;
-  background-color: #100e0e69;
+  text-decoration: underline;
 }
