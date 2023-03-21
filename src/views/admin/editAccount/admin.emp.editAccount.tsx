@@ -1,26 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 
-const PasswordErrorMessage = () => {
-  return <p className='FieldError'>Password should be at least 6 characters</p>;
-};
+// const PasswordErrorMessage = () => {
+//   return <p className='FieldError'>Password should be at least 6 characters</p>;
+// };
 
-function CreateEmpAccount() {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState({
-    value: '',
-    isTouched: false,
-  });
-  const [role, setRole] = useState('role');
+function EditEmpAccount(props: any) {
+  const [firstName, setFirstName] = useState(props.firstName);
+  const [lastName, setLastName] = useState(props.lastName);
+  const [email, setEmail] = useState(props.email);
+  //   const [password, setPassword] = useState({
+  //     value: '',
+  //     isTouched: false,
+  //   });
+  const [role, setRole] = useState(props.role);
+
+  useEffect(() => {
+    setFirstName(props.firstName);
+    setLastName(props.lastName);
+    // setPassword({ value: '', isTouched: false });
+    setEmail(props.email);
+    setRole(props.role);
+  }, [props.email, props.firstName, props.lastName, props.role]);
 
   const getIsFormValid = () => {
     if (
       firstName.length > 0 &&
       email.length > 0 &&
-      password.value.length >= 6 &&
-      (role === 'developer' || role === 'designer')
+      //   password.value.length >= 6 &&
+      (role === 'Developer' || role === 'Designer')
     ) {
       return true;
     } else {
@@ -29,24 +37,25 @@ function CreateEmpAccount() {
   };
 
   const clearForm = () => {
-    setFirstName('');
-    setLastName('');
-    setPassword({ value: '', isTouched: false });
-    setEmail('');
-    setRole('role');
+    setFirstName(props.firstName);
+    setLastName(props.lastNmae);
+    // setPassword({ value: '', isTouched: false });
+    setEmail(props.email);
+    setRole(props.role);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert('Account created!');
+    alert('Account edited!');
+    // contact to back-end here
     clearForm();
   };
 
   return (
-    <div className='CreateEmpAccount'>
+    <div className='EditEmpAccount'>
       <form onSubmit={handleSubmit}>
         <fieldset>
-          <h3>Create Employee Account</h3>
+          <h3>Edit Employee Account</h3>
           <div className='Field'>
             <label>
               First name <sup>*</sup>
@@ -75,7 +84,7 @@ function CreateEmpAccount() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          <div className='Field'>
+          {/* <div className='Field'>
             <label>
               Password <sup>*</sup>
             </label>
@@ -86,20 +95,23 @@ function CreateEmpAccount() {
               onChange={(e) => setPassword({ ...password, value: e.target.value })}
             />
             {password.value.length < 6 && password.isTouched === true && <PasswordErrorMessage />}
-          </div>
+          </div> */}
           <div className='Field'>
             <label>
               Role <sup>*</sup>
             </label>
             <select value={role} onChange={(e) => setRole(e.target.value)}>
               <option value='role'>Role</option>
-              <option value='developer'>Developer</option>
-              <option value='designer'>Designer</option>
+              <option value='Developer'>Developer</option>
+              <option value='Designer'>Designer</option>
             </select>
           </div>
           <br></br>
           <button type='submit' disabled={!getIsFormValid()}>
-            Create account
+            Edit account
+          </button>
+          <button type='button' onClick={props.onCancel}>
+            Cancel
           </button>
         </fieldset>
       </form>
@@ -107,4 +119,4 @@ function CreateEmpAccount() {
   );
 }
 
-export default CreateEmpAccount;
+export default EditEmpAccount;

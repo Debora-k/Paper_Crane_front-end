@@ -1,7 +1,7 @@
 import Header from 'components/Header/Header';
-import CreateEmpAccount from 'components/createAccount/admin.emp.createAccount';
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import CreateEmpAccount from 'views/admin/createAccount/admin.emp.createAccount';
+import EditEmpAccount from 'views/admin/editAccount/admin.emp.editAccount';
 
 import './admin.emp.page.css';
 import AdminNavbar from './admin.navbar';
@@ -11,15 +11,48 @@ import AdminNavbar from './admin.navbar';
  *
  */
 const AdminEmployees = () => {
-  const employees = [
+  const [employees, setEmployees] = useState([
     // empId will be given automatically from back-end
-    { empId: 1, firstName: 'Debora', lastName: 'Kwon', role: 'Developer' },
-    { empId: 2, firstName: 'Parshant', lastName: 'Rehal', role: 'Developer' },
-    { empId: 3, firstName: 'Marcus', lastName: 'Lau', role: 'Developer' },
-    { empId: 4, firstName: 'Hashem', lastName: 'Al-Wadeai', role: 'Developer' },
-    { empId: 5, firstName: 'Ben', lastName: 'Wood', role: 'Developer' },
-    { empId: 6, firstName: 'Reece', lastName: 'Cheshire', role: 'Developer' },
-  ];
+    {
+      empId: 1,
+      firstName: 'Debora',
+      lastName: 'Kwon',
+      role: 'Developer',
+      email: 'fake1@gmail.com',
+    },
+    {
+      empId: 2,
+      firstName: 'Parshant',
+      lastName: 'Rehal',
+      role: 'Developer',
+      email: 'fake2@gmail.com',
+    },
+    { empId: 3, firstName: 'Marcus', lastName: 'Lau', role: 'Developer', email: 'fake3@gmail.com' },
+    {
+      empId: 4,
+      firstName: 'Hashem',
+      lastName: 'Al-Wadeai',
+      role: 'Developer',
+      email: 'fake4@gmail.com',
+    },
+    { empId: 5, firstName: 'Ben', lastName: 'Wood', role: 'Developer', email: 'fake5@gmail.com' },
+    {
+      empId: 6,
+      firstName: 'Reece',
+      lastName: 'Cheshire',
+      role: 'Developer',
+      email: 'fake6@gmail.com',
+    },
+  ]);
+
+  const [selectedEmployee, setSelectedEmployee] = useState<{
+    empId: number;
+    firstName: string;
+    lastName: string;
+    role: string;
+    email: string;
+  }>();
+
   // column headers for employees list
   const columHeaders = [
     <div key='headers' className='empRows'>
@@ -47,9 +80,22 @@ const AdminEmployees = () => {
         <p className='column'>{employees[i].role}</p>
         {/* edit button */}
         <p className='column'>
-          <Link to={`/admin/employees/${employees[i].empId}/edit`}>
-            <button type='button'>Edit</button>
-          </Link>
+          <button type='button' onClick={() => setSelectedEmployee(employees[i])}>
+            Edit
+          </button>
+        </p>
+        {/* delete button */}
+        <p className='column'>
+          <button
+            type='button'
+            onClick={() =>
+              setEmployees((prevState) => {
+                return prevState.filter((emp) => emp.empId !== employees[i].empId);
+              })
+            }
+          >
+            Delete
+          </button>
         </p>
       </div>,
     );
@@ -63,7 +109,17 @@ const AdminEmployees = () => {
         <ul>
           {columHeaders} {empRows}
         </ul>
-        <CreateEmpAccount />
+        {selectedEmployee ? (
+          <EditEmpAccount
+            firstName={selectedEmployee.firstName}
+            lastName={selectedEmployee.lastName}
+            role={selectedEmployee.role}
+            email={selectedEmployee.email}
+            onCancel={() => setSelectedEmployee(undefined)}
+          />
+        ) : (
+          <CreateEmpAccount />
+        )}
       </div>
     </div>
   );
