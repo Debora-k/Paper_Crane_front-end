@@ -1,7 +1,8 @@
 import Header from 'components/Header/Header';
-import CreateClientAccount from 'components/createAccount/admin.clients.createAccount';
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import CreateClientAccount from 'views/admin/createAccount/admin.clients.createAccount';
+import EditClientAccount from 'views/admin/editAccount/admin.client.editAccount';
 
 import './admin.clients.page.css';
 import AdminNavbar from './admin.navbar';
@@ -11,7 +12,7 @@ import AdminNavbar from './admin.navbar';
  *
  */
 const AdminClients = () => {
-  const clients = [
+  const [clients, setClients] = useState([
     // empId will be given automatically from back-end
     { cId: 1, name: 'Debora', company: 'Paper Crane', email: '1234@gmail.com' },
     { cId: 2, name: 'Parshant', company: 'Paper Crane', email: '1234@gmail.com' },
@@ -19,7 +20,15 @@ const AdminClients = () => {
     { cId: 4, name: 'Hashem', company: 'Paper Crane', email: '1234@gmail.com' },
     { cId: 5, name: 'Ben', company: 'Paper Crane', email: '1234@gmail.com' },
     { cId: 6, name: 'Reece', company: 'Paper Crane', email: '1234@gmail.com' },
-  ];
+  ]);
+
+  const [selectedClient, setSelectedClient] = useState<{
+    cId: number;
+    name: string;
+    company: string;
+    email: string;
+  }>();
+
   // column headers for employees list
   const columHeaders = [
     <div key='headers' className='clientRows'>
@@ -54,9 +63,19 @@ const AdminClients = () => {
           </Link>
         </p>
         <p className='buttonColumn'>
-          <Link to={`/admin/clients/${clients[i].cId}/edit`}>
-            <button type='button'>Edit</button>
-          </Link>
+          <button type='button' onClick={() => setSelectedClient(clients[i])}>
+            Edit
+          </button>
+        </p>
+        <p className='buttonColumn'>
+          <button
+            type='button'
+            onClick={() =>
+              setClients((prevState) => prevState.filter((client) => client.cId !== clients[i].cId))
+            }
+          >
+            Delete
+          </button>
         </p>
       </div>,
     );
@@ -70,7 +89,16 @@ const AdminClients = () => {
         <ul>
           {columHeaders} {clientRows}
         </ul>
-        <CreateClientAccount />
+        {selectedClient ? (
+          <EditClientAccount
+            firstName={selectedClient.name}
+            companyName={selectedClient.company}
+            email={selectedClient.email}
+            onCancel={() => setSelectedClient(undefined)}
+          />
+        ) : (
+          <CreateClientAccount />
+        )}
       </div>
     </div>
   );
