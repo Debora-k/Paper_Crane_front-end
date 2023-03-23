@@ -3,12 +3,13 @@ import { project } from 'views/admin/tasklists/adminDataTypes';
 export const data: project = [
   {
     id: 1,
-    title: 'Project1',
+    pName: 'Project1',
     description: 'Project 1',
-    status: '80',
+    estimatedHours: 60,
+    currentWorkedHours: 30,
     client: 'asdf1',
-    dueDate: '01-10-23',
-    repository: 'www.repo1.com',
+    startDate: '2023-03-01',
+    endDate: '2023-04-18',
     tasks: [
       {
         id: 1,
@@ -50,12 +51,13 @@ export const data: project = [
   },
   {
     id: 2,
-    title: 'Project2',
+    pName: 'Project2',
     description: 'Project 2',
-    status: '70',
+    estimatedHours: 80,
+    currentWorkedHours: 70,
     client: 'asdf2',
-    dueDate: '02-10-23',
-    repository: 'www.repo2.com',
+    startDate: '2023-03-01',
+    endDate: '2023-04-18',
     tasks: [
       {
         id: 7,
@@ -97,12 +99,13 @@ export const data: project = [
   },
   {
     id: 3,
-    title: 'Project3',
+    pName: 'Project3',
     description: 'Project 3',
-    status: '0',
+    estimatedHours: 40,
+    currentWorkedHours: 0,
     client: 'asdf3',
-    dueDate: '03-10-23',
-    repository: 'www.repo3.com',
+    startDate: '2023-03-01',
+    endDate: '2023-04-18',
     tasks: [
       {
         id: 13,
@@ -144,12 +147,13 @@ export const data: project = [
   },
   {
     id: 4,
-    title: 'Project4',
+    pName: 'Project4',
     description: 'Project 4',
-    status: '30',
+    estimatedHours: 250,
+    currentWorkedHours: 100,
     client: 'asdf4',
-    dueDate: '04-10-23',
-    repository: 'www.repo4.com',
+    startDate: '2023-03-01',
+    endDate: '2023-04-18',
     tasks: [
       {
         id: 19,
@@ -184,100 +188,6 @@ export const data: project = [
       {
         id: 24,
         task: 'task 24',
-        status: 0,
-        assigned: 'parshant',
-      },
-    ],
-  },
-  {
-    id: 5,
-    title: 'Project5',
-    description: 'Project 5',
-    status: '40',
-    client: 'asdf5',
-    dueDate: '05-10-23',
-    repository: 'www.repo5.com',
-    tasks: [
-      {
-        id: 25,
-        task: 'task 25',
-        status: -1,
-        assigned: 'parshant',
-      },
-      {
-        id: 26,
-        task: 'task 26',
-        status: -1,
-        assigned: 'parshant',
-      },
-      {
-        id: 27,
-        task: 'task 27',
-        status: -1,
-        assigned: 'parshant',
-      },
-      {
-        id: 28,
-        task: 'task 28',
-        status: -1,
-        assigned: 'parshant',
-      },
-      {
-        id: 29,
-        task: 'task 29',
-        status: -1,
-        assigned: 'parshant',
-      },
-      {
-        id: 30,
-        task: 'task 30',
-        status: -1,
-        assigned: 'parshant',
-      },
-    ],
-  },
-  {
-    id: 6,
-    title: 'Project6',
-    description: 'Project 6',
-    status: '60',
-    client: 'asdf6',
-    dueDate: '06-10-23',
-    repository: 'www.repo6.com',
-    tasks: [
-      {
-        id: 31,
-        task: 'task 31',
-        status: 1,
-        assigned: 'parshant',
-      },
-      {
-        id: 32,
-        task: 'task 32',
-        status: 0,
-        assigned: 'parshant',
-      },
-      {
-        id: 33,
-        task: 'task 33',
-        status: -1,
-        assigned: 'parshant',
-      },
-      {
-        id: 34,
-        task: 'task 34',
-        status: -1,
-        assigned: 'parshant',
-      },
-      {
-        id: 35,
-        task: 'task 35',
-        status: 0,
-        assigned: 'parshant',
-      },
-      {
-        id: 36,
-        task: 'task 36',
         status: 0,
         assigned: 'parshant',
       },

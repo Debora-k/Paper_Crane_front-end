@@ -15,11 +15,11 @@ export default function AdminProjects(props) {
     return (
       <ProjectRow
         id={project.id}
-        title={project.title}
+        title={project.pName}
         description={project.description}
-        status={project.status}
+        estimatedHours={project.estimatedHours}
+        currentWorkedHours={project.currentWorkedHours}
         key={project.id}
-        tasks={project.tasks}
       />
     );
   });

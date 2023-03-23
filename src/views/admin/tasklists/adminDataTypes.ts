@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+
 export type admin = {
   readonly userId: number;
   name: string;
@@ -15,12 +16,13 @@ export type task = {
 
 export type project = {
   readonly id: number;
-  title?: string;
+  pName?: string;
   description?: string;
-  status?: string;
+  estimatedHours?: number;
+  currentWorkedHours?: number;
   client?: string;
-  dueDate?: string;
-  repository?: string;
+  startDate?: string;
+  endDate?: string;
   tasks?: task[];
 }[];
 
@@ -30,7 +32,6 @@ export interface DataContextType {
   projects: project;
   setProjects: React.Dispatch<React.SetStateAction<project | null>>;
 }
-
 
 export enum Status {
   // eslint-disable-next-line no-unused-vars
