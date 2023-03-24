@@ -10,6 +10,7 @@ export const projectsVideoData = [
     link: 'https://youtube.com/#1',
     cover: trainingImg,
     type: ['project', 'emp'],
+    visible: true,
     description: 'This video is for project1',
   },
   {
@@ -18,6 +19,7 @@ export const projectsVideoData = [
     link: 'https://youtube.com/#2',
     cover: trainingImg,
     type: ['project', 'client'],
+    visible: true,
     description: 'This video is for project2',
   },
   {
@@ -26,6 +28,7 @@ export const projectsVideoData = [
     link: 'https://youtube.com/#3',
     cover: trainingImg,
     type: ['project', 'client'],
+    visible: true,
     description: 'This video is for project3',
   },
   {
@@ -34,6 +37,7 @@ export const projectsVideoData = [
     link: 'https://youtube.com/#4',
     cover: trainingImg,
     type: ['project', 'emp'],
+    visible: true,
     description: 'This video is for project4',
   },
 ];
