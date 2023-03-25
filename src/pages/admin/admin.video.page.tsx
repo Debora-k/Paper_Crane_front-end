@@ -21,6 +21,8 @@ const AdminVideo = () => {
   // employees mean all employees can see the video list
   const [data, setData] = useState(empVideoData);
   const handleChange = (value) => {
+    setSelectedProjectId('Select Project');
+    setSelectedProjectAudience('Select');
     if (value === 'developers') {
       setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developers')));
     } else if (value === 'designers') {
@@ -37,9 +39,11 @@ const AdminVideo = () => {
     }
   };
   // handleProjectChange is for the project dropdown (first displayed one)
-  const [selectedProjectId, setSelectedProjectId] = useState();
+  const [selectedProjectId, setSelectedProjectId] = useState<any>('Select Project');
+  const [selectedProjectAudience, setSelectedProjectAudience] = useState('Select');
   const handleProjectChange = (value) => {
     setSelectedProjectId(value);
+    setSelectedProjectAudience('Select');
     setData(
       projectsVideoData.filter((projectsEmpVideoData) => projectsEmpVideoData.projectId === value),
     );
@@ -48,13 +52,14 @@ const AdminVideo = () => {
   // handleClientVideo is for the project-client dropdown
   // after choosing one project from first dropdown
 
-  const handleProjectVideo = (value) => {
+  const handleProjectVideo = (value: string) => {
     setData(
       projectsVideoData.filter(
         (clientVideoData) =>
           clientVideoData.projectId === selectedProjectId && clientVideoData.type.includes(value),
       ),
     );
+    setSelectedProjectAudience(value);
   };
   const videoList = data.map((videoData) => {
     return (
@@ -65,6 +70,7 @@ const AdminVideo = () => {
         type={videoData.type}
         link={videoData.link}
         cover={videoData.cover}
+        visible={videoData.visible}
       />
     );
   });
@@ -90,15 +96,17 @@ const AdminVideo = () => {
       <div className='buttonBar'>
         {/* Dropdown options for projects */}
         <Select
-          defaultValue={projects[0].projectId}
+          value={selectedProjectId}
+          defaultValue='Select Project'
           options={projects.map((project) => ({ value: project.projectId, label: project.pName }))}
           style={{ width: 200, marginRight: 15 }}
           onChange={handleProjectChange}
         ></Select>
         {/* Dropdown options for a selected project */}
-        {selectedProjectId && (
+        {selectedProjectId !== 'Select Project' && (
           <Select
-            defaultValue='client'
+            value={selectedProjectAudience}
+            defaultValue='Select'
             options={[
               { value: 'client', label: 'Client' },
               { value: 'emp', label: 'Employee' },
@@ -109,7 +117,7 @@ const AdminVideo = () => {
         )}
         /{/* Dropdown options for employees */}
         <Select
-          defaultValue={'Employees'}
+          defaultValue='Select Role'
           options={[
             { value: 'developers', label: 'Developers' },
             { value: 'designers', label: 'Designers' },

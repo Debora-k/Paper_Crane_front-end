@@ -6,6 +6,7 @@ export const empVideoData = [
     link: 'https://www.youtube.com/#dev1',
     cover: trainingImg,
     type: ['developers'],
+    visible: true,
     description: 'Essential tranning video for juniors1',
   },
   {
@@ -13,6 +14,7 @@ export const empVideoData = [
     link: 'https://www.youtube.com/#dev2',
     cover: trainingImg,
     type: ['developers'],
+    visible: true,
     description: 'Essential tranning video for juniors2',
   },
   {
@@ -20,6 +22,7 @@ export const empVideoData = [
     link: 'https://www.youtube.com/#designer1',
     cover: trainingImg,
     type: ['designers'],
+    visible: true,
     description: 'Essential tranning video for designers1',
   },
   {
@@ -27,6 +30,7 @@ export const empVideoData = [
     link: 'https://www.youtube.com/#designer2',
     cover: trainingImg,
     type: ['designers'],
+    visible: true,
     description: 'Essential tranning video for designers2',
   },
   {
@@ -34,6 +38,7 @@ export const empVideoData = [
     link: 'https://www.youtube.com/#employees1',
     cover: trainingImg,
     type: ['designers', 'developers'],
+    visible: true,
     description: 'Essential tranning video for employees1',
   },
   {
@@ -41,6 +46,7 @@ export const empVideoData = [
     link: 'https://www.youtube.com/#employees2',
     cover: trainingImg,
     type: ['designers', 'developers'],
+    visible: true,
     description: 'Essential tranning video for employees2',
   },
 ];
