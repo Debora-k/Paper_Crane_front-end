@@ -15,7 +15,7 @@ const EmpWorkingHoursDetail = () => {
       startDate: new Date('Feburary 25, 2023'),
       endDate: new Date('March 25, 2023'),
       estimatedHours: 60,
-      currentWorkingHours: 30,
+      currentWorkedHours: 30,
     };
   };
   return (
@@ -38,11 +38,12 @@ const EmpWorkingHoursDetail = () => {
         <div className='progressbar'>
           <CircularProgressbar
             value={
-              (getProjectDetail().currentWorkingHours / getProjectDetail().estimatedHours) * 100
+              (getProjectDetail().currentWorkedHours / getProjectDetail().estimatedHours) * 100
             }
-            text={`${getProjectDetail().currentWorkingHours} / ${
-              getProjectDetail().estimatedHours
-            }`}
+            text={`${
+              (getProjectDetail().currentWorkedHours / getProjectDetail().estimatedHours) * 100
+            } %
+            `}
           />
         </div>
       </div>
