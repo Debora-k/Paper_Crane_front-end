@@ -10,9 +10,6 @@ body {
   margin: 0;
 }
 
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
-} */
 .App {
   width: 100vw;
   display: flex;
@@ -42,4 +39,22 @@ button {
   font-family: 'proxima-nova', sans-serif;
   font-weight: 450;
   font-style: normal;
+}
+
+.profile--container {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+/* profile--container button is for header button css */
+.profile--container button {
+  width: fit-content;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 60px;
+  background-color: #fff;
+  border: 0;
+  font-size: 1.2rem;
 }

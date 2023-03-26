@@ -1,5 +1,5 @@
 import { DataContext } from 'app';
-import Header from 'components/Header/Header';
+import AdminHeader from 'components/Header/adminHeader';
 import ProjectRow from 'components/projectrow/ProjectRow';
 import { useContext } from 'react';
 import React from 'react';
@@ -25,7 +25,7 @@ export default function AdminProjects(props) {
   });
   return (
     <>
-      <Header />
+      <AdminHeader />
       <AdminNavbar />
       <div className='justify-center'>
         <ul className='content--container'>{listRows}</ul>

@@ -1,4 +1,4 @@
-import Header from 'components/Header/Header';
+import AdminHeader from 'components/Header/adminHeader';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CreateClientAccount from 'views/admin/createAccount/admin.clients.createAccount';
@@ -83,7 +83,7 @@ const AdminClients = () => {
 
   return (
     <div>
-      <Header />
+      <AdminHeader />
       <AdminNavbar />
       <div className='container'>
         <ul>

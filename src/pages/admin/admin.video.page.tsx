@@ -1,5 +1,5 @@
 import { Button, Modal, Select } from 'antd';
-import Header from 'components/Header/Header';
+import AdminHeader from 'components/Header/adminHeader';
 import UploadVideo from 'components/uploadVideo/selectFile.component';
 import VideoCard from 'components/videoCard/videoCard';
 import React from 'react';
@@ -91,7 +91,7 @@ const AdminVideo = () => {
 
   return (
     <div>
-      <Header />
+      <AdminHeader />
       <AdminNavbar />
       <div className='buttonBar'>
         {/* Dropdown options for projects */}
