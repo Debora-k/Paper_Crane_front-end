@@ -15,6 +15,10 @@ import EmpProjects from 'pages/employee/emp.projects.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
 import EmpWorkingHoursDetail from 'pages/employee/emp.workinghours.detail.page';
 import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
+import ForgotPasswordPage from 'pages/forgot-password/forgot-password.page';
+import Login from 'pages/login/login.page';
+import ResetPasswordPage from 'pages/reset-password/reset-password.page';
+import ResetSuccessPage from 'pages/reset-success/reset-success.page';
 import AddAdmin from 'pages/superadmin/addAdmin.page';
 import SuperAdmin from 'pages/superadmin/manageAdmin.page';
 import React, { createContext, useState } from 'react';
@@ -42,6 +46,10 @@ export const App = () => {
 
             {/* These routes are for admins */}
             <Route path='/admin/projects' element={<AdminProjects />}></Route>
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/forgot-password' element={<ForgotPasswordPage />}></Route>
+            <Route path='/reset-password' element={<ResetPasswordPage />}></Route>
+            <Route path='/reset-success' element={<ResetSuccessPage />}></Route>
             <Route path={`/admin/project/:projectid`} element={<AdminProjectDetails />}></Route>
             <Route path='/admin/video' element={<AdminVideo />}></Route>
             <Route path='/admin/proposals' element={<AdminProposals />}></Route>
