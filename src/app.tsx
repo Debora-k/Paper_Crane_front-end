@@ -5,6 +5,7 @@ import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
 import AdminProjectDetails from 'pages/admin/admin.project.details.page';
 import AdminProjects from 'pages/admin/admin.projects.page';
+import AdminProposals from 'pages/admin/admin.proposals.page';
 import AdminRepository from 'pages/admin/admin.repo.page';
 import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
@@ -43,10 +44,7 @@ export const App = () => {
             <Route path='/admin/projects' element={<AdminProjects />}></Route>
             <Route path={`/admin/project/:projectid`} element={<AdminProjectDetails />}></Route>
             <Route path='/admin/video' element={<AdminVideo />}></Route>
-            {/* <Route
-              path='/admin/video/videohistory/:projectId'
-              element={<AdminVideoHistory />}
-            ></Route> */}
+            <Route path='/admin/proposals' element={<AdminProposals />}></Route>
 
             <Route path='/admin/repository' element={<AdminRepository />}></Route>
             <Route

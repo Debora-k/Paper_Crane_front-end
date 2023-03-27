@@ -1,4 +1,4 @@
-import Header from 'components/Header/Header';
+import AdminHeader from 'components/Header/adminHeader';
 import DragDropBox from 'components/dragDrop/dragDropBox.component';
 import React from 'react';
 import { useState } from 'react';
@@ -34,7 +34,7 @@ const AdminRepository = () => {
   });
   return (
     <div>
-      <Header />
+      <AdminHeader />
       <AdminNavbar />
       <div className='container'>
         <div className='repoProjectList'>{projectList}</div>

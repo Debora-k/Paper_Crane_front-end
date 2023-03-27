@@ -1,7 +1,7 @@
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import { Button, Modal } from 'antd';
-import Header from 'components/Header/Header';
+import AdminHeader from 'components/Header/adminHeader';
 import React, { useState } from 'react';
 
 import { timeoffRequests } from '../../dummyData/timeoffRequests';
@@ -115,7 +115,7 @@ const AdminCalendar = () => {
 
   return (
     <div>
-      <Header />
+      <AdminHeader />
       <AdminNavbar />
       <div className='calendar'>
         <Modal

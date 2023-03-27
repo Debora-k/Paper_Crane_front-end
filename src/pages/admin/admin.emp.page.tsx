@@ -1,4 +1,4 @@
-import Header from 'components/Header/Header';
+import AdminHeader from 'components/Header/adminHeader';
 import React, { useState } from 'react';
 import CreateEmpAccount from 'views/admin/createAccount/admin.emp.createAccount';
 import EditEmpAccount from 'views/admin/editAccount/admin.emp.editAccount';
@@ -103,7 +103,7 @@ const AdminEmployees = () => {
 
   return (
     <div>
-      <Header />
+      <AdminHeader />
       <AdminNavbar />
       <div className='container'>
         <ul>

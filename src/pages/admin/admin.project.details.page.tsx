@@ -1,4 +1,4 @@
-import Header from 'components/Header/Header';
+import AdminHeader from 'components/Header/adminHeader';
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useParams } from 'react-router-dom';
@@ -21,8 +21,7 @@ const AdminProjectDetails = () => {
   };
   return (
     <div>
-      {/* call admin navbar */}
-      <Header />
+      <AdminHeader />
       <AdminNavbar />
       <div className='container'>
         <div className='firstColumn'>
