@@ -1,37 +1,44 @@
 /* container class holds all of elements except the nav bar */
-.container {
-  margin-top: 100px;
+.containerAdminEmp {
+  margin-top: 30px;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 /* Current employees' info */
 .empRows {
   display: flex;
-  width: 600px;
+  width: 750px;
   align-items: center;
   justify-content: space-evenly;
-  margin-left: 50px;
 }
 
-/* Columns from empRows */
+/* Columns from AdminEmpRows */
 .column {
-  flex-grow: 1;
+  flex-grow: 5;
   flex-basis: 0;
   display: flex;
   align-items: center;
+}
+
+.buttonColumn {
+  flex-grow: 2;
 }
 
 .columnHeader {
-  flex-grow: 1;
+  flex-grow: 5;
   flex-basis: 0;
-  display: flex;
-  align-items: center;
+  font-weight: bold;
+}
+
+.columnHeaderSmall {
+  flex-grow: 2;
+  flex-basis: 0;
   font-weight: bold;
 }
 /* Create account part */
 .CreateEmpAccount {
-  padding-left: 90px;
+  padding-left: 5px;
 }
 
 /* Edit account part */

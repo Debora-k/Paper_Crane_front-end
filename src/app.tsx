@@ -3,6 +3,7 @@ import { adminsData } from 'dummyData/adminData';
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
+import AdminEmpWorkedHours from 'pages/admin/admin.emp.workedHours';
 import AdminProjectDetails from 'pages/admin/admin.project.details.page';
 import AdminProjects from 'pages/admin/admin.projects.page';
 import AdminProposals from 'pages/admin/admin.proposals.page';
@@ -53,12 +54,19 @@ export const App = () => {
             ></Route>
 
             <Route path='/admin/employees' element={<AdminEmployees />}></Route>
+            <Route
+              path={`/admin/employees/:empId/workedhours`}
+              element={<AdminEmpWorkedHours />}
+            ></Route>
             <Route path='/admin/clients' element={<AdminClients />}></Route>
             <Route path='/admin/calendar' element={<AdminCalendar />}></Route>
             {/* path='*' is for temporary */}
             <Route path='*' element={<Navigate to='/admin/projects' />}></Route>
+
+            {/* path for SuperAdmin pages */}
             <Route path='/superadmin/showadmins' element={<SuperAdmin />}></Route>
             <Route path='/superadmin/addadmin' element={<AddAdmin />}></Route>
+
             {/* path for Employee pages */}
             <Route path='/employee/projects' element={<EmpProjects />}></Route>
             <Route path='/employee/taskLists' element={<EmpTaskLists />}></Route>

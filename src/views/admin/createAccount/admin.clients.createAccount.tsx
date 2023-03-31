@@ -8,6 +8,7 @@ const PasswordErrorMessage = () => {
 function CreateClientAccount() {
   const [firstName, setFirstName] = useState('');
   const [companyName, setCompanyName] = useState('');
+  const [type, setType] = useState(2);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState({
     value: '',
@@ -25,6 +26,7 @@ function CreateClientAccount() {
   const clearForm = () => {
     setFirstName('');
     setCompanyName('');
+    setType(2);
     setPassword({ value: '', isTouched: false });
     setEmail('');
   };
@@ -42,9 +44,7 @@ function CreateClientAccount() {
         <fieldset>
           <h3>Create Client Account</h3>
           <div className='Field'>
-            <label>
-              Name <sup>*</sup>
-            </label>
+            <label>Name</label>
             <input
               placeholder='First name'
               value={firstName}
@@ -60,6 +60,15 @@ function CreateClientAccount() {
               value={companyName}
               onChange={(e) => setCompanyName(e.target.value)}
             />
+          </div>
+          <div className='Field'>
+            <label>
+              Type <sup>*</sup>
+            </label>
+            <select value={type} onChange={(e) => setType(Number(e.target.value))}>
+              <option value='2'>Single Contract</option>
+              <option value='1'>Ongoing Contract</option>
+            </select>
           </div>
           <div className='Field'>
             <label>
