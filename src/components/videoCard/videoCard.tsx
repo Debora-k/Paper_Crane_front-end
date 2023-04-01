@@ -6,7 +6,29 @@ import avatarImg from '../../assets/avatar.jpeg';
 
 const { Meta } = Card;
 
-const VideoCard = ({ title, description, cover, link, visible }: any) => (
+const VideoCard = ({
+  title,
+  description,
+  type,
+  cover,
+  link,
+  visible,
+  toggleVisibility,
+  onEdit,
+  onDelete,
+  isAdmin,
+}: {
+  title: string;
+  description: string;
+  type: string[];
+  cover: string;
+  link: string;
+  visible: boolean;
+  toggleVisibility: any;
+  onEdit: any;
+  onDelete: any;
+  isAdmin: boolean;
+}) => (
   <Card
     style={{ width: 300 }}
     cover={
@@ -14,11 +36,20 @@ const VideoCard = ({ title, description, cover, link, visible }: any) => (
         <img alt='example' src={cover} style={{ width: 300 }} />
       </a>
     }
-    actions={[
-      visible === true ? <EyeFilled key='shown' /> : <EyeInvisibleFilled key='hidden' />,
-      <EditOutlined key='edit' />,
-      <DeleteFilled key='delete' />,
-    ]}
+    actions={
+      isAdmin === true
+        ? [
+            visible === true ? (
+              <EyeFilled key='shown' onClick={toggleVisibility} />
+            ) : (
+              <EyeInvisibleFilled onClick={toggleVisibility} key='hidden' />
+            ),
+            <EditOutlined key='edit' onClick={onEdit} />,
+            <DeleteFilled key='delete' onClick={onDelete} />,
+          ]
+        : // to emp and client pages buttons aren't displayed
+          undefined
+    }
   >
     <Meta avatar={<Avatar src={avatarImg} />} title={title} description={description} />
   </Card>
