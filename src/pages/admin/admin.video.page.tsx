@@ -23,17 +23,17 @@ const AdminVideo = () => {
   const handleChange = (value) => {
     setSelectedProjectId('Select Project');
     setSelectedProjectAudience('Select');
-    if (value === 'developers') {
-      setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developers')));
-    } else if (value === 'designers') {
+    if (value === 'developer') {
+      setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developer')));
+    } else if (value === 'designer') {
       setData(
-        empVideoData.filter((designerVideoData) => designerVideoData.type.includes('designers')),
+        empVideoData.filter((designerVideoData) => designerVideoData.type.includes('designer')),
       );
     } else if (value === 'employees') {
       setData(
         empVideoData.filter(
           (empVideoData) =>
-            empVideoData.type.includes('developers') && empVideoData.type.includes('designers'),
+            empVideoData.type.includes('developer') && empVideoData.type.includes('designer'),
         ),
       );
     }
@@ -119,8 +119,8 @@ const AdminVideo = () => {
         <Select
           defaultValue='Select Role'
           options={[
-            { value: 'developers', label: 'Developers' },
-            { value: 'designers', label: 'Designers' },
+            { value: 'developer', label: 'Developers' },
+            { value: 'designer', label: 'Designers' },
             { value: 'employees', label: 'Employees' },
           ]}
           style={{ width: 200, marginLeft: 15 }}

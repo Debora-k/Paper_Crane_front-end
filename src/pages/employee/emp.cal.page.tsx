@@ -2,6 +2,7 @@ import { DatePicker, useDatePickGetter, useDatePickReset } from '@bcad1591/react
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import { Button, Modal } from 'antd';
+import EmpHeader from 'components/Header/empHeader';
 import React, { useState } from 'react';
 
 import './emp.cal.page.css';
@@ -33,6 +34,7 @@ const EmpCalendar = () => {
   };
   return (
     <div>
+      <EmpHeader />
       <EmpNavbar />
       <div className='calendar'>
         {/* This one is a popup after clicking 'Reqeust' button */}

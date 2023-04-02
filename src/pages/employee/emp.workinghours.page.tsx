@@ -1,3 +1,4 @@
+import EmpHeader from 'components/Header/empHeader';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -29,6 +30,7 @@ const EmpWorkingHours = () => {
 
   return (
     <div>
+      <EmpHeader />
       {/* call employee navbar */}
       <EmpNavbar />
       <ul className='body'>{listRows}</ul>

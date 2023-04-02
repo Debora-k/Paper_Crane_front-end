@@ -12,8 +12,10 @@ import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
 // import employee pages
 import EmpCalendar from 'pages/employee/emp.cal.page';
+import EmpProjectDetails from 'pages/employee/emp.project.details.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
+import EmpVideo from 'pages/employee/emp.video.page';
 import EmpWorkingHoursDetail from 'pages/employee/emp.workinghours.detail.page';
 import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
 import AddAdmin from 'pages/superadmin/addAdmin.page';
@@ -69,7 +71,13 @@ export const App = () => {
 
             {/* path for Employee pages */}
             <Route path='/employee/projects' element={<EmpProjects />}></Route>
-            <Route path='/employee/taskLists' element={<EmpTaskLists />}></Route>
+            <Route
+              path='/employee/project/:projectId/details'
+              element={<EmpProjectDetails />}
+            ></Route>
+            <Route path='/employee/video' element={<EmpVideo />}></Route>
+
+            <Route path='/employee/tasklist' element={<EmpTaskLists />}></Route>
             <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
             <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
             <Route
