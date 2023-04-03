@@ -1,5 +1,6 @@
 import { gray } from '@ant-design/colors';
 import Layout, { Content } from 'antd/lib/layout/layout';
+import EmpHeader from 'components/Header/empHeader';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -25,6 +26,7 @@ const StyledContent = styled(Content)`
 function EmpTaskLists() {
   return (
     <div>
+      <EmpHeader />
       <EmpNavbar />
       <StyledLayout>
         <StyledContent>

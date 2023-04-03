@@ -23,6 +23,25 @@ const AdminVideo = () => {
   // projects mean videos for the people who are related to that project
   const [data, setData] = useState([...empVideoData, ...projectsVideoData]);
 
+  const handleChange = (value) => {
+    setSelectedProjectId('Select Project');
+    setSelectedProjectAudience('Select');
+    if (value === 'developer') {
+      setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developer')));
+    } else if (value === 'designer') {
+      setData(
+        empVideoData.filter((designerVideoData) => designerVideoData.type.includes('designer')),
+      );
+    } else if (value === 'employees') {
+      setData(
+        empVideoData.filter(
+          (empVideoData) =>
+            empVideoData.type.includes('developer') && empVideoData.type.includes('designer'),
+        ),
+      );
+    }
+  };
+
   // handleProjectChange is for the project dropdown (first displayed one)
   const [selectedProjectId, setSelectedProjectId] = useState<any>('Select Project');
   const [selectedProjectAudience, setSelectedProjectAudience] = useState('Select');
@@ -218,8 +237,8 @@ const AdminVideo = () => {
         <Select
           defaultValue='Select Role'
           options={[
-            { value: 'developers', label: 'Developers' },
-            { value: 'designers', label: 'Designers' },
+            { value: 'developer', label: 'Developers' },
+            { value: 'designer', label: 'Designers' },
             { value: 'employees', label: 'Employees' },
           ]}
           style={{ width: 200, marginLeft: 15 }}
