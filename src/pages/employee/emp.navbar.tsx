@@ -15,6 +15,8 @@ const EmpNavbar = () => {
       <NavLink to='/employee/calendar'>Calendar</NavLink>
 
       <NavLink to='/employee/video'>Video</NavLink>
+
+      <NavLink to='/employee/clients'>Clients</NavLink>
     </div>
   );
 };
