@@ -65,26 +65,6 @@ const AdminVideo = () => {
     setSelectedProjectAudience(value);
   };
 
-  const handleChange = (value) => {
-    setSelectedProjectId('Select Project');
-    setSelectedProjectAudience('Select');
-
-    if (value === 'developers') {
-      setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developers')));
-    } else if (value === 'designers') {
-      setData(
-        empVideoData.filter((designerVideoData) => designerVideoData.type.includes('designers')),
-      );
-    } else if (value === 'employees') {
-      setData(
-        empVideoData.filter(
-          (empVideoData) =>
-            empVideoData.type.includes('developers') && empVideoData.type.includes('designers'),
-        ),
-      );
-    }
-  };
-
   const [clickedData, setClickedData] = useState<any>();
   const [clickedI, setClickedI] = useState<any>();
   const videoList = data.map((videoData, i) => {
