@@ -24,10 +24,10 @@ const VideoCard = ({
   cover: string;
   link: string;
   visible: boolean;
-  toggleVisibility: any;
-  onEdit: any;
-  onDelete: any;
-  isAdmin: boolean;
+  toggleVisibility?: any;
+  onEdit?: any;
+  onDelete?: any;
+  isAdmin?: boolean;
 }) => (
   <Card
     style={{ width: 300 }}
