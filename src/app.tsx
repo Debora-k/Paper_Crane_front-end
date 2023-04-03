@@ -31,6 +31,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DataContextType, admin, project } from 'views/admin/tasklists/adminDataTypes';
 
 import { data } from './dummyData/projectsData';
+import ClientDashboardNonOnGoingPage from 'pages/client/client.dashboard.non.ongoing.page';
+import ClientDashboardOnGoingPage from 'pages/client/client.dashboard.ongoing.page';
 
 export const DataContext = createContext<DataContextType | null>(null);
 
@@ -49,6 +51,14 @@ export const App = () => {
             {/* <Route exact path="/logout" element={<Logout />} /> </Route> */}
 
             {/* These routes are for admins */}
+            <Route
+              path='/client/dashboard/ongoing'
+              element={<ClientDashboardOnGoingPage />}
+            ></Route>
+            <Route
+              path='/client/dashboard/non-ongoing'
+              element={<ClientDashboardNonOnGoingPage />}
+            ></Route>
             <Route path='/admin/projects' element={<AdminProjects />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/forgot-password' element={<ForgotPasswordPage />}></Route>
