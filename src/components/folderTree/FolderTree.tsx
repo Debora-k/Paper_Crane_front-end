@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 // Components
 import Folder from './Folder';
@@ -41,5 +42,18 @@ function FolderTree( {style, tree, updateFolderTree} ) {
         </div>
     );
 }
+
+FolderTree.propTypes = {
+    style: PropTypes.object,
+    tree: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            folderPath: PropTypes.string.isRequired,
+            children: PropTypes.array
+        }).isRequired
+    ).isRequired,
+    updateFolderTree: PropTypes.func.isRequired
+};
 
 export default FolderTree;

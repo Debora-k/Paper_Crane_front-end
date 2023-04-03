@@ -24,6 +24,9 @@ import React, { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DataContextType, admin, project } from 'views/admin/tasklists/adminDataTypes';
+//import client pages
+import ClientProjects from 'pages/client/client.projects.page';
+import ClientRepository from 'pages/client/client.repo.page';
 
 import { data } from './dummyData/projectsData';
 
@@ -84,6 +87,10 @@ export const App = () => {
               path='/employee/workinghours/detail/:projectId'
               element={<EmpWorkingHoursDetail />}
             ></Route>
+
+            {/* path for Client page */}
+          <Route path='/client/projects' element={<ClientProjects />}></Route>
+          <Route path='/client/repository' element={<ClientRepository />}></Route>
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>

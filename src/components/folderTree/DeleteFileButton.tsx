@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Icons
 import deleteFileIcon from './Icons/Deletefile.svg';
@@ -17,7 +18,7 @@ function DeleteFileButton( {name, folderPath, updateFolderTree}) {
             formData.append("fileName", name);
             formData.append("folderPath", folderPath);
     
-            axios.delete("/deleteFile", { data: formData })
+            axios.delete("http://localhost:8080/deleteFile", { data: formData })
                  .then(response => {
                     console.log(response.data);
                     updateFolderTree();
@@ -37,5 +38,11 @@ function DeleteFileButton( {name, folderPath, updateFolderTree}) {
                 />
     )
 }
+
+DeleteFileButton.propTypes = {
+    name: PropTypes.string.isRequired,
+    folderPath: PropTypes.string.isRequired,
+    updateFolderTree: PropTypes.func.isRequired
+};
 
 export default DeleteFileButton;

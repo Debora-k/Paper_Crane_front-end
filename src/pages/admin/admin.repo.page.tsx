@@ -1,5 +1,5 @@
 import AdminHeader from 'components/Header/adminHeader';
-import DragDropBox from 'components/dragDrop/dragDropBox.component';
+// import DragDropBox from 'components/dragDrop/dragDropBox.component';
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
@@ -46,7 +46,7 @@ const AdminRepository = () => {
           >
             {dropdownList}
           </select>
-          <DragDropBox />
+          {/* <DragDropBox /> */}
         </div>
       </div>
     </div>

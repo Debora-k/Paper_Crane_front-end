@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // CSS
 import './FolderTreeContainer.css';
@@ -11,8 +12,10 @@ function FolderTreeContainer() {
 
     const [tree, setTree] = useState([]);
   
+    // Dummy data
+    // id: 
     const updateFolderTree = () => {
-      axios.get('/getFolderStructure')
+      axios.get('http://localhost:8080/getFolderStructure')
            .then(response => {
               setTree(response.data);
            })
@@ -30,7 +33,7 @@ function FolderTreeContainer() {
       <div className="FolderTreeContainer">
         <FolderTree 
         // style wasn't here at first, due to TS complained, created null style
-        style={null}
+          style={null}
           tree={tree}
           updateFolderTree={updateFolderTree}
         />
@@ -38,4 +41,10 @@ function FolderTreeContainer() {
     );
   }
 
-  export default FolderTreeContainer;
+  FolderTreeContainer.propTypes = {
+    style: PropTypes.object,
+    tree: PropTypes.array,
+    updateFolderTree: PropTypes.func
+  };
+
+export default FolderTreeContainer;
