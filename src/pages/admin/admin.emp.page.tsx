@@ -1,49 +1,15 @@
 import AdminHeader from 'components/Header/adminHeader';
+import { AdminEmpData } from 'dummyData/adminEmpData';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import CreateEmpAccount from 'views/admin/createAccount/admin.emp.createAccount';
 import EditEmpAccount from 'views/admin/editAccount/admin.emp.editAccount';
 
 import './admin.emp.page.css';
 import AdminNavbar from './admin.navbar';
 
-/**
- * In the futuer, we will need to work on admin.emp.edit.page.jsx by clicking 'Edit' button
- *
- */
 const AdminEmployees = () => {
-  const [employees, setEmployees] = useState([
-    // empId will be given automatically from back-end
-    {
-      empId: 1,
-      firstName: 'Debora',
-      lastName: 'Kwon',
-      role: 'Developer',
-      email: 'fake1@gmail.com',
-    },
-    {
-      empId: 2,
-      firstName: 'Parshant',
-      lastName: 'Rehal',
-      role: 'Developer',
-      email: 'fake2@gmail.com',
-    },
-    { empId: 3, firstName: 'Marcus', lastName: 'Lau', role: 'Developer', email: 'fake3@gmail.com' },
-    {
-      empId: 4,
-      firstName: 'Hashem',
-      lastName: 'Al-Wadeai',
-      role: 'Developer',
-      email: 'fake4@gmail.com',
-    },
-    { empId: 5, firstName: 'Ben', lastName: 'Wood', role: 'Developer', email: 'fake5@gmail.com' },
-    {
-      empId: 6,
-      firstName: 'Reece',
-      lastName: 'Cheshire',
-      role: 'Developer',
-      email: 'fake6@gmail.com',
-    },
-  ]);
+  const [employees, setEmployees] = useState(AdminEmpData);
 
   const [selectedEmployee, setSelectedEmployee] = useState<{
     empId: number;
@@ -56,12 +22,15 @@ const AdminEmployees = () => {
   // column headers for employees list
   const columHeaders = [
     <div key='headers' className='empRows'>
-      <p className='columnHeader'>ID</p>
+      <p className='columnHeaderSmall'>ID</p>
       <p className='columnHeader'>First Name</p>
       <p className='columnHeader'>Last Name</p>
       <p className='columnHeader'>Role</p>
-      {/* this empty p is for 'Edit' buttons' column header */}
-      <p className='column'></p>
+      <p className='columnHeader'>Worked Hours</p>
+      {/* these empty p are for 'buttons' column header */}
+      <p className='buttonColumn'></p>
+      <p className='buttonColumn'></p>
+      <p className='buttonColumn'></p>
     </div>,
   ];
 
@@ -71,21 +40,29 @@ const AdminEmployees = () => {
   for (let i = 0; i < employees.length; i++) {
     empRows.push(
       <div className='empRows'>
-        <p className='column'>{employees[i].empId}</p>
+        <p className='buttonColumn'>{employees[i].empId}</p>
 
         <p className='column'>{employees[i].firstName}</p>
 
         <p className='column'>{employees[i].lastName} </p>
 
         <p className='column'>{employees[i].role}</p>
+
+        <p className='column'>{employees[i].workedHours}</p>
+
+        <p className='buttonColumn'>
+          <Link to={`/admin/employees/${employees[i].empId}/workedhours`}>
+            <button type='button'>View</button>
+          </Link>
+        </p>
         {/* edit button */}
-        <p className='column'>
+        <p className='buttonColumn'>
           <button type='button' onClick={() => setSelectedEmployee(employees[i])}>
             Edit
           </button>
         </p>
         {/* delete button */}
-        <p className='column'>
+        <p className='buttonColumn'>
           <button
             type='button'
             onClick={() =>
@@ -105,7 +82,7 @@ const AdminEmployees = () => {
     <div>
       <AdminHeader />
       <AdminNavbar />
-      <div className='container'>
+      <div className='containerAdminEmp'>
         <ul>
           {columHeaders} {empRows}
         </ul>

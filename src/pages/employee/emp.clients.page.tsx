@@ -1,13 +1,13 @@
-import AdminHeader from 'components/Header/adminHeader';
+import EmpHeader from 'components/Header/empHeader';
 import { AdminClientData } from 'dummyData/adminClientData';
 import React, { useState } from 'react';
 import CreateClientAccount from 'views/admin/createAccount/admin.clients.createAccount';
 import EditClientAccount from 'views/admin/editAccount/admin.client.editAccount';
 
-import './admin.clients.page.css';
-import AdminNavbar from './admin.navbar';
+import './emp.clients.page.css';
+import EmpNavbar from './emp.navbar';
 
-const AdminClients = () => {
+const EmpClients = () => {
   const [clients, setClients] = useState(AdminClientData);
 
   const [selectedClient, setSelectedClient] = useState<{
@@ -72,8 +72,8 @@ const AdminClients = () => {
 
   return (
     <div>
-      <AdminHeader />
-      <AdminNavbar />
+      <EmpHeader />
+      <EmpNavbar />
       <div className='container'>
         <ul>
           {columHeaders} {clientRows}
@@ -94,4 +94,4 @@ const AdminClients = () => {
   );
 };
 
-export default AdminClients;
+export default EmpClients;

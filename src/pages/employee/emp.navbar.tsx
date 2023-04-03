@@ -1,23 +1,22 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './emp.navbar.css';
 
 const EmpNavbar = () => {
   return (
-    <div className='navBar'>
-      <span className='page'>
-        <Link to='/employee/projects'>Projects</Link>
-      </span>
-      <span className='page'>
-        <Link to='/employee/taskLists'>Task Lists</Link>
-      </span>
-      <span className='page'>
-        <Link to='/employee/workinghours'>Working Hours</Link>
-      </span>
-      <span className='page'>
-        <Link to='/employee/calendar'>Calendar</Link>
-      </span>
+    <div className='EmpNavBar'>
+      <NavLink to='/employee/projects'>Projects</NavLink>
+
+      <NavLink to='/employee/tasklist'>Task Lists</NavLink>
+
+      <NavLink to='/employee/workinghours'>Working Hours</NavLink>
+
+      <NavLink to='/employee/calendar'>Calendar</NavLink>
+
+      <NavLink to='/employee/video'>Video</NavLink>
+
+      <NavLink to='/employee/clients'>Clients</NavLink>
     </div>
   );
 };

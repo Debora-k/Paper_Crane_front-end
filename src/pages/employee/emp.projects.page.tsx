@@ -1,3 +1,4 @@
+import EmpHeader from 'components/Header/empHeader';
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { Link } from 'react-router-dom';
@@ -21,7 +22,7 @@ const EmpProjects = () => {
     listRows.push(
       <div className='row'>
         {/* From "projectId" it leads to the right link */}
-        <Link to={`/employee/projects/${projects[i].projectId}`}>{projects[i].pName}</Link>
+        <Link to={`/employee/project/${projects[i].projectId}/details`}>{projects[i].pName}</Link>
         <p>{projects[i].description}</p>
         <div className='progressbar'>
           <CircularProgressbar
@@ -35,6 +36,7 @@ const EmpProjects = () => {
 
   return (
     <div>
+      <EmpHeader />
       {/* call employee navbar */}
       <EmpNavbar />
       <ul className='body'>{listRows}</ul>

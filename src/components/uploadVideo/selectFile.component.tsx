@@ -1,40 +1,16 @@
 import { UploadOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Select, Upload, message } from 'antd';
+import { Button, Form, Input, Select, Upload } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
-
-// import trainingImg from '../../assets/training.jpeg';
-// import { empVideoData } from '../../dummyData/empVideoData';
 
 const { Option } = Select;
 
-const UploadVideo = () => {
+// UploadVideo for uploading or editing video cards
+const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: any) => {
   const [fileList, setFileList] = useState([]);
-  const [uploading, setUploading] = useState(false);
-  const handleUpload = () => {
-    const formData = new FormData();
-    fileList.forEach((file) => {
-      formData.append('files[]', file);
-    });
-    setUploading(true);
-    // we can edit fetch part later when we implement API
-    fetch('https://www.mocky.io/v2/5cc8019d300000980a055e76', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then(() => {
-        setFileList([]);
-        message.success('upload successfully.');
-      })
-      .catch(() => {
-        message.error('upload failed.');
-      })
-      .finally(() => {
-        setUploading(false);
-      });
-  };
+  const [thumbnailList, setThumbnailList] = useState([]);
+
   const props = {
     onRemove: (file) => {
       const index = fileList.indexOf(file);
@@ -46,29 +22,50 @@ const UploadVideo = () => {
       setFileList([...fileList, file]);
       return false;
     },
-    fileList,
+    fileList: fileList,
+  };
+  const thumbnailProps = {
+    onRemove: (file) => {
+      const index = thumbnailList.indexOf(file);
+      const newThumbnailList = thumbnailList.slice();
+      newThumbnailList.splice(index, 1);
+      setThumbnailList(newThumbnailList);
+    },
+    beforeUpload: (file) => {
+      setThumbnailList([...thumbnailList, file]);
+      return false;
+    },
+    fileList: thumbnailList,
+  };
+  const onCancel = () => {
+    setThumbnailList([]);
+    setFileList([]);
+    handleCancel();
   };
   const onFinish = (values) => {
-    //   alert('Success');
-    //   empVideoData.push({
-    //     title: values.title,
-    //     link: values.link,
-    //     cover: trainingImg,
-    //     type: values.type,
-    //     description: values.description,
-    //   });
+    form.resetFields();
+    setThumbnailList([]);
+    setFileList([]);
+    handleFinish({ ...values, fileList, thumbnailList });
   };
   const onFinishFailed = (errorInfo) => {
+    setThumbnailList([]);
+    setFileList([]);
     alert('Failed');
   };
+
+  const [form] = Form.useForm();
+  useEffect(() => {
+    form.setFieldsValue({ ...data });
+  }, [data, form]);
 
   return (
     <>
       <Form
+        form={form}
         name='form'
-        labelCol={{ span: 5 }}
-        wrapperCol={{ span: 15 }}
-        style={{ maxWidth: 800 }}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 18 }}
         onFinish={onFinish}
         onFinishFailed={onFinishFailed}
       >
@@ -81,6 +78,8 @@ const UploadVideo = () => {
         </Form.Item>
         <Form.Item label='Type' name='type' rules={[{ required: true }]}>
           <Select placeholder='Select a type'>
+            <Option value='project-client'>Project - Client </Option>
+            <Option value='project-employee'>Project - Employee </Option>
             <Option value='employees'>Employees</Option>
             <Option value='developers'>Developers</Option>
             <Option value='designers'>Designers</Option>
@@ -99,21 +98,29 @@ const UploadVideo = () => {
         <Form.Item label='Upload a file' name='file'>
           <Upload {...props}>
             <Button icon={<UploadOutlined />}>Select File</Button>
-            <Button
-              type='primary'
-              onClick={handleUpload}
-              disabled={fileList.length === 0}
-              loading={uploading}
-              style={{
-                backgroundColor: 'black',
-                color: 'white',
-                marginTop: 16,
-              }}
-            >
-              {uploading ? 'Uploading' : 'Start Upload'}
-            </Button>
           </Upload>
         </Form.Item>
+        <Form.Item label='Upload a thumbnail' name='thumbnail'>
+          <Upload {...thumbnailProps}>
+            <Button icon={<UploadOutlined />}>Select Photo</Button>
+          </Upload>
+        </Form.Item>
+        <Button key='cancel' onClick={onCancel}>
+          Cancel
+        </Button>
+        {data ? (
+          <Button key='edit' htmlType='submit' style={{ backgroundColor: 'black', color: 'white' }}>
+            Edit
+          </Button>
+        ) : (
+          <Button
+            key='upload'
+            htmlType='submit'
+            style={{ backgroundColor: 'black', color: 'white' }}
+          >
+            Upload
+          </Button>
+        )}
       </Form>
     </>
   );

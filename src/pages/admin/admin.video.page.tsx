@@ -1,10 +1,11 @@
-import { Button, Modal, Select } from 'antd';
+import { Button, Modal, Select, message } from 'antd';
 import AdminHeader from 'components/Header/adminHeader';
 import UploadVideo from 'components/uploadVideo/selectFile.component';
 import VideoCard from 'components/videoCard/videoCard';
 import React from 'react';
 import { useState } from 'react';
 
+import trainingImg from '../../assets/training.jpeg';
 import { empVideoData } from '../../dummyData/empVideoData';
 import { projectsVideoData } from '../../dummyData/projectsVideoData';
 import AdminNavbar from './admin.navbar';
@@ -17,27 +18,30 @@ const AdminVideo = () => {
     { projectId: 2, pName: 'Project2' },
     { projectId: 3, pName: 'Project3' },
   ];
-  // choose an option from a dropbox of employee types
+  // choose an option from a dropbox of employee types or projects
   // employees mean all employees can see the video list
-  const [data, setData] = useState(empVideoData);
+  // projects mean videos for the people who are related to that project
+  const [data, setData] = useState([...empVideoData, ...projectsVideoData]);
+
   const handleChange = (value) => {
     setSelectedProjectId('Select Project');
     setSelectedProjectAudience('Select');
-    if (value === 'developers') {
-      setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developers')));
-    } else if (value === 'designers') {
+    if (value === 'developer') {
+      setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developer')));
+    } else if (value === 'designer') {
       setData(
-        empVideoData.filter((designerVideoData) => designerVideoData.type.includes('designers')),
+        empVideoData.filter((designerVideoData) => designerVideoData.type.includes('designer')),
       );
     } else if (value === 'employees') {
       setData(
         empVideoData.filter(
           (empVideoData) =>
-            empVideoData.type.includes('developers') && empVideoData.type.includes('designers'),
+            empVideoData.type.includes('developer') && empVideoData.type.includes('designer'),
         ),
       );
     }
   };
+
   // handleProjectChange is for the project dropdown (first displayed one)
   const [selectedProjectId, setSelectedProjectId] = useState<any>('Select Project');
   const [selectedProjectAudience, setSelectedProjectAudience] = useState('Select');
@@ -51,7 +55,6 @@ const AdminVideo = () => {
 
   // handleClientVideo is for the project-client dropdown
   // after choosing one project from first dropdown
-
   const handleProjectVideo = (value: string) => {
     setData(
       projectsVideoData.filter(
@@ -61,9 +64,23 @@ const AdminVideo = () => {
     );
     setSelectedProjectAudience(value);
   };
-  const videoList = data.map((videoData) => {
+
+  const [clickedData, setClickedData] = useState<any>();
+  const [clickedI, setClickedI] = useState<any>();
+  const videoList = data.map((videoData, i) => {
     return (
       <VideoCard
+        isAdmin={true}
+        onEdit={() => {
+          setClickedData(videoData);
+          setClickedI(i);
+          showEditModal();
+        }}
+        onDelete={() => {
+          setClickedData(videoData);
+          setClickedI(i);
+          showDeleteModal();
+        }}
         key={videoData.link}
         title={videoData.title}
         description={videoData.description}
@@ -71,22 +88,103 @@ const AdminVideo = () => {
         link={videoData.link}
         cover={videoData.cover}
         visible={videoData.visible}
+        toggleVisibility={() => {
+          const newVideoData = { ...videoData };
+
+          if (newVideoData.visible === true) {
+            newVideoData.visible = false;
+          } else {
+            newVideoData.visible = true;
+          }
+
+          const newData = [...data];
+
+          newData[i] = newVideoData;
+
+          setData(newData);
+        }}
       />
     );
   });
+
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
   };
 
-  const handleUpload = () => {
-    setIsModalOpen(false);
-    // uploading the new video here
+  // const [uploading, setUploading] = useState(false);
+
+  const handleUpload = (values) => {
+    const formData = new FormData();
+    values.fileList.forEach((file) => {
+      formData.append('files[]', file);
+    });
+    values.thumbnailList.forEach((file) => {
+      formData.append('files[]', file);
+    });
+    // setUploading(true);
+    fetch('https://www.mocky.io/v2/5cc8019d300000980a055e76', {
+      method: 'POST',
+      body: formData,
+    })
+      .then((res) => res.json())
+      .then(() => {
+        message.success('upload successfully.');
+      })
+      .catch(() => {
+        message.error('upload failed.');
+      })
+      .finally(() => {
+        // setUploading(false);
+        setIsModalOpen(false);
+        // uploading the new video here
+        const newData = [...data];
+        newData.push({ ...values, cover: trainingImg });
+        setData(newData);
+      });
   };
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+  const showEditModal = () => {
+    setIsEditModalOpen(true);
+  };
+
+  const handleEdit = (values) => {
+    setIsEditModalOpen(false);
+    // editing a video here
+    const newData = [...data];
+
+    newData[clickedI] = { ...newData[clickedI], ...values };
+
+    setData(newData);
+  };
+
+  const handleEditCancel = () => {
+    setIsEditModalOpen(false);
+  };
+
+  const showDeleteModal = () => {
+    setIsDeleteModalOpen(true);
+  };
+
+  const handleDelete = () => {
+    setIsDeleteModalOpen(false);
+    // deleting a video here
+    const newData = [...data];
+
+    newData.splice(clickedI, 1);
+
+    setData(newData);
+  };
+
+  const handleDeleteCancel = () => {
+    setIsDeleteModalOpen(false);
   };
 
   return (
@@ -119,8 +217,8 @@ const AdminVideo = () => {
         <Select
           defaultValue='Select Role'
           options={[
-            { value: 'developers', label: 'Developers' },
-            { value: 'designers', label: 'Designers' },
+            { value: 'developer', label: 'Developers' },
+            { value: 'designer', label: 'Designers' },
             { value: 'employees', label: 'Employees' },
           ]}
           style={{ width: 200, marginLeft: 15 }}
@@ -139,20 +237,46 @@ const AdminVideo = () => {
           open={isModalOpen}
           onOk={handleUpload}
           onCancel={handleCancel}
+          footer={[]}
+          width={600}
+        >
+          <UploadVideo handleFinish={handleUpload} handleCancel={handleCancel} />
+        </Modal>
+        {/* a popup after clicking Edit button on a video card */}
+        <Modal
+          title='Edit a training video'
+          open={isEditModalOpen}
+          onOk={handleEdit}
+          onCancel={handleEditCancel}
+          footer={[]}
+          width={600}
+        >
+          <UploadVideo
+            data={clickedData}
+            handleFinish={handleEdit}
+            handleCancel={handleEditCancel}
+          />
+        </Modal>
+        {/* a popup after clicking Delete button on a video card */}
+        <Modal
+          title='Delete a training video'
+          open={isDeleteModalOpen}
+          onOk={handleDelete}
+          onCancel={handleDeleteCancel}
           footer={[
-            <Button key='cancel' onClick={handleCancel}>
+            <Button key='cancel' onClick={handleDeleteCancel}>
               Cancel
             </Button>,
             <Button
-              key='upload'
-              onClick={handleUpload}
+              key='delete'
+              onClick={handleDelete}
               style={{ backgroundColor: 'black', color: 'white' }}
             >
-              Upload
+              Delete
             </Button>,
           ]}
         >
-          <UploadVideo />
+          Are you sure?
         </Modal>
       </div>
       <div className='videoList'>{videoList}</div>

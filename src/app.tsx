@@ -3,6 +3,7 @@ import { adminsData } from 'dummyData/adminData';
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
+import AdminEmpWorkedHours from 'pages/admin/admin.emp.workedHours';
 import AdminProjectDetails from 'pages/admin/admin.project.details.page';
 import AdminProjects from 'pages/admin/admin.projects.page';
 import AdminProposals from 'pages/admin/admin.proposals.page';
@@ -11,8 +12,11 @@ import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
 // import employee pages
 import EmpCalendar from 'pages/employee/emp.cal.page';
+import EmpClients from 'pages/employee/emp.clients.page';
+import EmpProjectDetails from 'pages/employee/emp.project.details.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
+import EmpVideo from 'pages/employee/emp.video.page';
 import EmpWorkingHoursDetail from 'pages/employee/emp.workinghours.detail.page';
 import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
 import ForgotPasswordPage from 'pages/forgot-password/forgot-password.page';
@@ -61,21 +65,35 @@ export const App = () => {
             ></Route>
 
             <Route path='/admin/employees' element={<AdminEmployees />}></Route>
+            <Route
+              path={`/admin/employees/:empId/workedhours`}
+              element={<AdminEmpWorkedHours />}
+            ></Route>
             <Route path='/admin/clients' element={<AdminClients />}></Route>
             <Route path='/admin/calendar' element={<AdminCalendar />}></Route>
             {/* path='*' is for temporary */}
             <Route path='*' element={<Navigate to='/admin/projects' />}></Route>
+
+            {/* path for SuperAdmin pages */}
             <Route path='/superadmin/showadmins' element={<SuperAdmin />}></Route>
             <Route path='/superadmin/addadmin' element={<AddAdmin />}></Route>
+
             {/* path for Employee pages */}
             <Route path='/employee/projects' element={<EmpProjects />}></Route>
-            <Route path='/employee/taskLists' element={<EmpTaskLists />}></Route>
+            <Route
+              path='/employee/project/:projectId/details'
+              element={<EmpProjectDetails />}
+            ></Route>
+            <Route path='/employee/video' element={<EmpVideo />}></Route>
+
+            <Route path='/employee/tasklist' element={<EmpTaskLists />}></Route>
             <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
             <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
             <Route
               path='/employee/workinghours/detail/:projectId'
               element={<EmpWorkingHoursDetail />}
             ></Route>
+            <Route path='/employee/clients' element={<EmpClients />}></Route>
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>

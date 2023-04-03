@@ -8,6 +8,7 @@ import { useState } from 'react';
 function EditClientAccount(props: any) {
   const [firstName, setFirstName] = useState(props.firstName);
   const [companyName, setCompanyName] = useState(props.companyName);
+  const [type, setType] = useState(props.type);
   const [email, setEmail] = useState(props.email);
   //   const [password, setPassword] = useState({
   //     value: '',
@@ -17,9 +18,9 @@ function EditClientAccount(props: any) {
   useEffect(() => {
     setFirstName(props.firstName);
     setCompanyName(props.companyName);
-    // setPassword({ value: '', isTouched: false });
+    setType(props.type);
     setEmail(props.email);
-  }, [props.email, props.firstName, props.companyName]);
+  }, [props.email, props.firstName, props.companyName, props.type]);
 
   const getIsFormValid = () => {
     if (firstName.length > 0 && email.length > 0 /* && password.value.length >= 6 */) {
@@ -32,7 +33,7 @@ function EditClientAccount(props: any) {
   const clearForm = () => {
     setFirstName(props.firstName);
     setCompanyName(props.companyName);
-    // setPassword({ value: '', isTouched: false });
+    setType(props.type);
     setEmail(props.email);
   };
 
@@ -49,9 +50,7 @@ function EditClientAccount(props: any) {
         <fieldset>
           <h3>Edit Client Account</h3>
           <div className='Field'>
-            <label>
-              Name <sup>*</sup>
-            </label>
+            <label>Name</label>
             <input
               placeholder='First name'
               value={firstName}
@@ -70,6 +69,19 @@ function EditClientAccount(props: any) {
           </div>
           <div className='Field'>
             <label>
+              Type <sup>*</sup>
+            </label>
+            <select
+              placeholder='Type'
+              value={type}
+              onChange={(e) => setType(Number(e.target.value))}
+            >
+              <option value='1'>Ongoing</option>
+              <option value='2'>Single</option>
+            </select>
+          </div>
+          <div className='Field'>
+            <label>
               Email address <sup>*</sup>
             </label>
             <input
@@ -78,18 +90,6 @@ function EditClientAccount(props: any) {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
-          {/* <div className='Field'>
-            <label>
-              Password <sup>*</sup>
-            </label>
-            <input
-              placeholder='Password'
-              type='password'
-              value={password.value}
-              onChange={(e) => setPassword({ ...password, value: e.target.value })}
-            />
-            {password.value.length < 6 && password.isTouched === true && <PasswordErrorMessage />}
-          </div> */}
           <br></br>
           <button type='submit' disabled={!getIsFormValid()}>
             Edit account

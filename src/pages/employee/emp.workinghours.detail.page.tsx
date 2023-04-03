@@ -1,3 +1,4 @@
+import EmpHeader from 'components/Header/empHeader';
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useParams } from 'react-router-dom';
@@ -20,6 +21,7 @@ const EmpWorkingHoursDetail = () => {
   };
   return (
     <div>
+      <EmpHeader />
       {/* call employee navbar */}
       <EmpNavbar />
       <div className='container'>
