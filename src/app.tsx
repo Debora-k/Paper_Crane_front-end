@@ -12,6 +12,7 @@ import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
 // import employee pages
 import EmpCalendar from 'pages/employee/emp.cal.page';
+import EmpClients from 'pages/employee/emp.clients.page';
 import EmpProjectDetails from 'pages/employee/emp.project.details.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
@@ -87,10 +88,12 @@ export const App = () => {
               path='/employee/workinghours/detail/:projectId'
               element={<EmpWorkingHoursDetail />}
             ></Route>
-
+            <Route path='/employee/clients' element={<EmpClients />}></Route>
+            
             {/* path for Client page */}
-          <Route path='/client/projects' element={<ClientProjects />}></Route>
-          <Route path='/client/repository' element={<ClientRepository />}></Route>
+            <Route path='/client/projects' element={<ClientProjects />}></Route>
+            <Route path='/client/repository' element={<ClientRepository />}></Route>
+            
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>
