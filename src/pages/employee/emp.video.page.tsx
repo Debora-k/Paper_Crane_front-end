@@ -4,7 +4,7 @@ import VideoCard from 'components/videoCard/videoCard';
 import React from 'react';
 import { useState } from 'react';
 
-import { AdminEmpData } from '../../dummyData/adminEmpData';
+import { EmpData } from '../../dummyData/empData';
 import { empVideoData } from '../../dummyData/empVideoData';
 import { projectsVideoData } from '../../dummyData/projectsVideoData';
 import EmpNavbar from './emp.navbar';
@@ -22,19 +22,21 @@ const EmpVideo = () => {
 
   // choose an option from a dropbox of employee or projects
   // employee means that a logged in user has at least two roles: 'employee' and 'dev' or 'designer'
-  const [data, setData] = useState(empVideoData);
+  const [data, setData] = useState(
+    empVideoData
+      .filter((empVideoData) => empVideoData.type.includes(EmpData[0].role))
+      .concat(projectsVideoData),
+  );
   // handleProjectChange is for the project dropdown (first displayed one)
   const [selectedProjectId, setSelectedProjectId] = useState<any>('Select Project');
   const handleProjectChange = (value) => {
     setSelectedProjectId(value);
-    if (value === `employee.${AdminEmpData[0].role}`) {
-      setData(
-        empVideoData.filter((empVideoData) => empVideoData.type.includes(AdminEmpData[0].role)),
-      );
+    if (value === `employee.${EmpData[0].role}`) {
+      setData(empVideoData.filter((empVideoData) => empVideoData.type.includes(EmpData[0].role)));
     } else if (value === 'all') {
       setData(
         empVideoData
-          .filter((empVideoData) => empVideoData.type.includes(AdminEmpData[0].role))
+          .filter((empVideoData) => empVideoData.type.includes(EmpData[0].role))
           .concat(projectsVideoData),
       );
     } else {
@@ -82,8 +84,8 @@ const EmpVideo = () => {
               label: 'See All',
             },
             {
-              value: `employee.${AdminEmpData[0].role}`,
-              label: `Employee / ${AdminEmpData[0].role}`,
+              value: `employee.${EmpData[0].role}`,
+              label: `Employee / ${EmpData[0].role}`,
             },
           ].concat(projectOptions)}
           style={{ width: 200, marginRight: 15 }}

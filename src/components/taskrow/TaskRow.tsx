@@ -1,6 +1,6 @@
 import { EditOutlined } from '@ant-design/icons';
 import React from 'react';
-import { TaskRowItem } from 'views/admin/tasklists/adminModatTypes';
+import { TaskRowItem } from 'types/projectDetails/adminModatTypes';
 
 import './taskrow.css';
 

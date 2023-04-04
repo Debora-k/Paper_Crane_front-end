@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import produce from 'immer';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import React from 'react';
 import { DragDropContext, DragDropContextProps } from 'react-beautiful-dnd';
 import styled from 'styled-components';
+import { Status } from 'types/projectDetails/projectDataTypes';
 
-import { useSyncedState } from './SharedHooks';
 import TaskboardCol, { TaskboardColProps } from './TaskboardCol';
 import TaskboardItemFormModal, { TaskboardItemFormValues } from './TaskboardItemFormModal';
 import { TaskboardItem, TaskboardItemStatus } from './TaskboardTypes';
@@ -34,11 +35,16 @@ const defaultItems = {
 
 type TaskboardData = Record<TaskboardItemStatus, TaskboardItem[]>;
 
-function Taskboard() {
-  const [itemsByStatus, setItemsByStatus] = useSyncedState<TaskboardData>(
-    'itemsByStatus',
-    defaultItems,
-  );
+function Taskboard({ tasks }) {
+  const [itemsByStatus, setItemsByStatus] = useState<TaskboardData>(defaultItems);
+
+  useEffect(() => {
+    setItemsByStatus({
+      [TaskboardItemStatus.TO_DO]: tasks.filter((task) => task.status === Status.TO_DO),
+      [TaskboardItemStatus.IN_PROGRESS]: tasks.filter((task) => task.status === Status.IN_PROGRESS),
+      [TaskboardItemStatus.DONE]: tasks.filter((task) => task.status === Status.DONE),
+    });
+  }, [setItemsByStatus, tasks]);
 
   const handleDragEnd: DragDropContextProps['onDragEnd'] = ({ source, destination }) => {
     setItemsByStatus((current) =>
@@ -122,6 +128,7 @@ function Taskboard() {
                 draft[TaskboardItemStatus.TO_DO].push({
                   ...values,
                   id: generateId(),
+                  assignedEmpIds: [],
                 });
               }
             }),
