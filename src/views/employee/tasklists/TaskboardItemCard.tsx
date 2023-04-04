@@ -1,6 +1,7 @@
 import { red } from '@ant-design/colors';
 import { DeleteOutlined, EditOutlined, MoreOutlined } from '@ant-design/icons';
-import { Button, Card, Dropdown, Menu, Modal, Typography } from 'antd';
+import { Avatar, Button, Card, Dropdown, Menu, Modal, Typography } from 'antd';
+import { EmpData } from 'dummyData/empData';
 import React from 'react';
 import styled from 'styled-components';
 
@@ -50,7 +51,14 @@ function TaskboardItemCard({ item, status, isDragging, onEdit, onDelete }: Taskb
           So, we just placed a span tag here. */}
           <span>
             <TaskboardItemCardTitle level={5} ellipsis={{ rows: 2 }}>
-              {item.title}
+              {item.title}{' '}
+              <Avatar.Group>
+                {item.assignedEmpIds.map((empId) => {
+                  return (
+                    <Avatar key={empId} src={EmpData.find((emp) => emp.empId === empId).avatar} />
+                  );
+                })}
+              </Avatar.Group>
             </TaskboardItemCardTitle>
           </span>
         </BaseTooltip>

@@ -1,15 +1,13 @@
 import { PlusOutlined } from '@ant-design/icons';
 import { Button, Form } from 'antd';
 import React from 'react';
-
-
-import { task } from 'views/admin/tasklists/adminDataTypes';
+import { task } from 'types/projectDetails/projectDataTypes';
 
 type AddTaskPropType = {
   openTaskItemModal: (itemToEdit: task, id: number) => void;
-  id: number
+  id: number;
 };
-function AddTask({ openTaskItemModal , id}: AddTaskPropType) {
+function AddTask({ openTaskItemModal, id }: AddTaskPropType) {
   return (
     <>
       <Form
@@ -19,7 +17,12 @@ function AddTask({ openTaskItemModal , id}: AddTaskPropType) {
         autoComplete='off'
       >
         <Form.Item>
-          <Button type='dashed' onClick={()=>openTaskItemModal(null, id)} block icon={<PlusOutlined />}>
+          <Button
+            type='dashed'
+            onClick={() => openTaskItemModal(null, id)}
+            block
+            icon={<PlusOutlined />}
+          >
             Add Task
           </Button>
         </Form.Item>

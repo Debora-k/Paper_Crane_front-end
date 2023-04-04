@@ -67,7 +67,7 @@ function TaskboardCol({ items, status, onClickAdd, onEdit, onDelete }: Taskboard
           >
             {items.map((item, index) => {
               return (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
+                <Draggable key={item.id} draggableId={item.id.toString()} index={index}>
                   {(provided, snapshot) => (
                     <div
                       key={item.id}

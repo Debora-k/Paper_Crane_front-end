@@ -1,7 +1,7 @@
 import { Select } from 'antd';
 import AdminHeader from 'components/Header/adminHeader';
-import { AdminEmpData } from 'dummyData/adminEmpData';
 import { AdminEmpDetailedWorkedHours } from 'dummyData/adminEmpDetailedWorkedHours';
+import { EmpData } from 'dummyData/empData';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
@@ -10,7 +10,7 @@ import AdminNavbar from './admin.navbar';
 
 const AdminEmpWorkedHours = () => {
   const [workedHours] = useState(AdminEmpDetailedWorkedHours);
-  const [employees] = useState(AdminEmpData);
+  const [employees] = useState(EmpData);
   const { empId } = useParams();
   const employee = employees.find((emp) => emp.empId === Number(empId));
   // add current month plus 6 months behind

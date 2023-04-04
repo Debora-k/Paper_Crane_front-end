@@ -1,5 +1,5 @@
 import AdminHeader from 'components/Header/adminHeader';
-import { AdminEmpData } from 'dummyData/adminEmpData';
+import { EmpData } from 'dummyData/empData';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import CreateEmpAccount from 'views/admin/createAccount/admin.emp.createAccount';
@@ -9,7 +9,7 @@ import './admin.emp.page.css';
 import AdminNavbar from './admin.navbar';
 
 const AdminEmployees = () => {
-  const [employees, setEmployees] = useState(AdminEmpData);
+  const [employees, setEmployees] = useState(EmpData);
 
   const [selectedEmployee, setSelectedEmployee] = useState<{
     empId: number;
