@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Components
 import FileInput from './FileInput';
 import AddFolderButton from './AddFolderButton';
 import DeleteFolderButton from './DeleteFolderButton';
+import DragDropBox from 'components/dragDrop/dragDropBox.component';
 
 // Icons
 import FolderIcon from './Icons/folder.svg';
@@ -15,7 +17,14 @@ const IconStyle = {
     height: '25px'
 };
 
-function Folder( {name, children, folderPath, updateFolderTree} ) {
+interface FolderProps {
+    name: string,
+    children: React.ReactNode,
+    folderPath: string,
+    updateFolderTree: () => void,
+}
+
+function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
     const [isOpen, setIsOpen] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [editingName, setEditingName] = useState(false);
@@ -91,9 +100,24 @@ function Folder( {name, children, folderPath, updateFolderTree} ) {
                 </span>  
                 }
             </div>
-            {isOpen && children}
+            {isOpen && (
+                <>
+                    <DragDropBox 
+                        folderPath={folderPath}
+                        updateFolderTree={updateFolderTree}
+                    />
+                    {children}
+                </>
+            )}
         </div>
     );
+}
+
+Folder.propTypes = {
+    name: PropTypes.string.isRequired,
+    children: PropTypes.node.isRequired,
+    folderPath: PropTypes.string.isRequired,
+    updateFolderTree: PropTypes.func.isRequired,
 };
 
 export default Folder;
