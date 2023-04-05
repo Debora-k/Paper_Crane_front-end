@@ -18,10 +18,9 @@ import EmpCalendar from 'pages/employee/emp.cal.page';
 import EmpClients from 'pages/employee/emp.clients.page';
 import EmpProjectDetails from 'pages/employee/emp.project.details.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
+import EmpScopeRequests from 'pages/employee/emp.scope.requests.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
 import EmpVideo from 'pages/employee/emp.video.page';
-import EmpWorkingHoursDetail from 'pages/employee/emp.workinghours.detail.page';
-import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
 import AddAdmin from 'pages/superadmin/addAdmin.page';
 import SuperAdmin from 'pages/superadmin/manageAdmin.page';
 import React, { createContext, useState } from 'react';
@@ -83,11 +82,7 @@ export const App = () => {
 
             <Route path='/employee/tasklist' element={<EmpTaskLists />}></Route>
             <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
-            <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
-            <Route
-              path='/employee/workinghours/detail/:projectId'
-              element={<EmpWorkingHoursDetail />}
-            ></Route>
+            <Route path='/employee/scopeRequests' element={<EmpScopeRequests />}></Route>
             <Route path='/employee/clients' element={<EmpClients />}></Route>
 
             {/* path for Client page */}
