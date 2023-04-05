@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import ClientNavbar from './client.navbar';
+import ClientHeader from 'components/Header/clientHeader';
 import './client.repo.page.css';
 
 const ClientRepository = () => {
@@ -35,6 +36,7 @@ const ClientRepository = () => {
   
   return (
     <div>
+      <ClientHeader />
       <ClientNavbar />
       <div className='container'>
         <div className='repoProjectList'>{projectList}</div>

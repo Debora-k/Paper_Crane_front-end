@@ -1,17 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 import './client.navbar.css';
 
 const ClientNavbar = () => {
   return (
-    <div className='navBar'>
-      <span className='page'>
-        <Link to='/client/projects'>Projects</Link>
-      </span>
-      <span className='page'>
-        <Link to='/client/repository'>Repository</Link>
-      </span>
+    <div className='ClientNavBar'>
+      <NavLink to='/client/projects'>Projects</NavLink>
+
+      <NavLink to='/client/repository'>Repository</NavLink>
     </div>
   );
 };
