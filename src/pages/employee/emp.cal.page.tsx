@@ -1,9 +1,11 @@
 import { DatePicker, useDatePickGetter, useDatePickReset } from '@bcad1591/react-date-picker';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
-import { Button, Modal } from 'antd';
+import { Button, Form, Input, Modal, Select } from 'antd';
+import TextArea from 'antd/es/input/TextArea';
 import EmpHeader from 'components/Header/empHeader';
 import { EmpTimeoffRequests } from 'dummyData/empTimeoffRequests';
+import { projects } from 'dummyData/projectsData';
 import React, { useState } from 'react';
 
 import './emp.cal.page.css';
@@ -35,6 +37,7 @@ const EmpCalendar = () => {
   const resetFunc = useDatePickReset();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isLogOpen, setIsLogOpen] = useState(false);
 
   const handleRequest = () => {
     // Axios should be here:
@@ -65,6 +68,44 @@ const EmpCalendar = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+
+  const logForm = (i) => {
+    return (
+      <div className='logform' key={i}>
+        <Form.Item label='Project' name='project'>
+          <Select
+            placeholder='Select a project'
+            options={projects.map((project) => {
+              return { value: project.id, label: project.pName };
+            })}
+          />
+        </Form.Item>
+        <Form.Item label='Tasks' name='tasks'>
+          <TextArea />
+        </Form.Item>
+        <Form.Item label='Hours worked on' colon={false} name='hours' wrapperCol={{ span: 5 }}>
+          <Input suffix='hours' />
+        </Form.Item>
+      </div>
+    );
+  };
+
+  // inputs are for a log form in daily time log modal
+  const [inputs, setInputs] = useState([logForm(0)]);
+
+  const addLogFunc = () => {
+    setInputs(inputs.concat([logForm(inputs.length + 1)]));
+  };
+
+  const handleLogRequest = (values: any) => {
+    setIsLogOpen(false);
+  };
+
+  const handleLogCancel = () => {
+    setIsLogOpen(false);
+    setInputs([logForm(0)]);
+  };
+
   return (
     <div>
       <EmpHeader />
@@ -91,19 +132,54 @@ const EmpCalendar = () => {
             <Button
               key='request'
               style={{ backgroundColor: 'black', color: 'white' }}
-              onClick={handleRequest}
+              htmlType='submit'
             >
               Send Request
             </Button>,
           ]}
         >
-          {' '}
           <div>
             {/* This is another calendar after clicking 'Request' button */}
             <DatePicker disablePreviousDays />
             <div>{pickedDates.firstPickedDate?.toString()}</div>
             <div>{pickedDates.secondPickedDate?.toString()}</div>
           </div>
+        </Modal>
+        <Modal
+          title={
+            <div>
+              Daily Time Log
+              <Button
+                key='add'
+                style={{ backgroundColor: 'black', color: 'white', marginLeft: 20 }}
+                onClick={addLogFunc}
+              >
+                Add
+              </Button>
+            </div>
+          }
+          open={isLogOpen}
+          onOk={handleLogRequest}
+          onCancel={handleLogCancel}
+          width={600}
+          footer={[]}
+        >
+          <Form onFinish={handleLogRequest}>
+            {inputs}
+
+            <Form.Item>
+              <Button key='cancel' style={{ float: 'right' }} onClick={handleLogCancel}>
+                Cancel
+              </Button>
+              <Button
+                key='request'
+                style={{ backgroundColor: 'black', color: 'white', float: 'right' }}
+                onClick={handleLogRequest}
+              >
+                Submit
+              </Button>
+            </Form.Item>
+          </Form>
         </Modal>
         <FullCalendar
           plugins={[dayGridPlugin]}
@@ -118,9 +194,15 @@ const EmpCalendar = () => {
                 setIsModalOpen(true);
               },
             },
+            Log: {
+              text: 'Log',
+              click: () => {
+                setIsLogOpen(true);
+              },
+            },
           }}
           headerToolbar={{
-            right: 'Request today prev,next',
+            right: 'Log Request today prev,next',
           }}
         />
       </div>

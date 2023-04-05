@@ -10,8 +10,6 @@ const EmpNavbar = () => {
 
       <NavLink to='/employee/tasklist'>Task Lists</NavLink>
 
-      <NavLink to='/employee/workinghours'>Working Hours</NavLink>
-
       <NavLink to='/employee/calendar'>Calendar</NavLink>
 
       <NavLink to='/employee/video'>Video</NavLink>
