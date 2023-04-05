@@ -72,7 +72,7 @@ const EmpCalendar = () => {
   const logForm = (i) => {
     return (
       <div className='logform' key={i}>
-        <Form.Item label='Project' name='project'>
+        <Form.Item label='Project' name={['project', i]}>
           <Select
             placeholder='Select a project'
             options={projects.map((project) => {
@@ -80,10 +80,15 @@ const EmpCalendar = () => {
             })}
           />
         </Form.Item>
-        <Form.Item label='Tasks' name='tasks'>
+        <Form.Item label='Tasks' name={['tasks', i]}>
           <TextArea />
         </Form.Item>
-        <Form.Item label='Hours worked on' colon={false} name='hours' wrapperCol={{ span: 5 }}>
+        <Form.Item
+          label='Hours worked on'
+          colon={false}
+          name={['hours', i]}
+          wrapperCol={{ span: 5 }}
+        >
           <Input suffix='hours' />
         </Form.Item>
       </div>
