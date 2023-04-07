@@ -15,6 +15,18 @@ import EmpNavbar from './emp.navbar';
 const EmpCalendar = () => {
   const [data, setData] = useState(EmpTimeoffRequests);
   const [logData, setLogData] = useState(EmpLog);
+  // totalWorkedHours is for combining the worked hours to display in calendar
+  const totalWorkedHours = [];
+  const logDataCopy = [...logData];
+  for (let i = 0; i < logData.length; i++) {
+    const foundLog = totalWorkedHours.find((log) => log.date === logDataCopy[i].date);
+
+    if (foundLog) {
+      foundLog.workedHours += logDataCopy[i].workedHours;
+    } else {
+      totalWorkedHours.push({ ...logDataCopy[i] });
+    }
+  }
 
   const events: any[] = data
     .filter((request) => request.status !== 'rejected')
@@ -27,7 +39,7 @@ const EmpCalendar = () => {
     }))
     // will add a function which combines all the worked time on the same day in calendar
     .concat(
-      logData.map((log) => {
+      totalWorkedHours.map((log) => {
         return {
           title: `Worked hours:  ${log.workedHours}`,
           start: log.date,
@@ -110,7 +122,6 @@ const EmpCalendar = () => {
   const [form] = Form.useForm();
   const handleLogRequest = (values: any) => {
     setIsLogOpen(false);
-    // { project: ['p1', 'p3'], tasks: ['p1 tasks', 'p3 tasks'], hours: [5, 8]}
 
     const newLogData = [...logData];
 
@@ -138,6 +149,7 @@ const EmpCalendar = () => {
   const handleEventClick = (info) => {
     const date = info.event.start.toISOString().substring(0, 10);
     const logs = logData.filter((log) => log.date === date);
+    setViewing(true);
     setIsLogOpen(true);
     const logForms = [];
     for (let i = 0; i < logs.length; i++) {
@@ -149,6 +161,8 @@ const EmpCalendar = () => {
     setInputs(logForms);
   };
 
+  // these variables are for checking if its a viewing form or not
+  const [viewing, setViewing] = useState(false);
   return (
     <div>
       <EmpHeader />
@@ -188,17 +202,21 @@ const EmpCalendar = () => {
             <div>{pickedDates.secondPickedDate?.toString()}</div>
           </div>
         </Modal>
+
         <Modal
           title={
             <div>
               Daily Time Log
-              <Button
-                key='add'
-                style={{ backgroundColor: 'black', color: 'white', marginLeft: 20 }}
-                onClick={addLogFunc}
-              >
-                Add
-              </Button>
+              {/* if its not viewing then display these buttons in the form */}
+              {viewing === false && (
+                <Button
+                  key='add'
+                  style={{ backgroundColor: 'black', color: 'white', marginLeft: 20 }}
+                  onClick={addLogFunc}
+                >
+                  Add
+                </Button>
+              )}
             </div>
           }
           open={isLogOpen}
@@ -207,21 +225,22 @@ const EmpCalendar = () => {
           width={600}
           footer={[]}
         >
-          <Form form={form} onFinish={handleLogRequest}>
+          <Form form={form} onFinish={handleLogRequest} disabled={viewing}>
             {inputs}
-
-            <Form.Item>
-              <Button key='cancel' style={{ float: 'right' }} onClick={handleLogCancel}>
-                Cancel
-              </Button>
-              <Button
-                key='request'
-                style={{ backgroundColor: 'black', color: 'white', float: 'right' }}
-                htmlType='submit'
-              >
-                Submit
-              </Button>
-            </Form.Item>
+            {viewing === false && (
+              <Form.Item>
+                <Button key='cancel' style={{ float: 'right' }} onClick={handleLogCancel}>
+                  Cancel
+                </Button>
+                <Button
+                  key='request'
+                  style={{ backgroundColor: 'black', color: 'white', float: 'right' }}
+                  htmlType='submit'
+                >
+                  Submit
+                </Button>
+              </Form.Item>
+            )}
           </Form>
         </Modal>
         <FullCalendar
@@ -241,6 +260,7 @@ const EmpCalendar = () => {
               text: 'Log',
               click: () => {
                 setIsLogOpen(true);
+                setViewing(false);
               },
             },
           }}
