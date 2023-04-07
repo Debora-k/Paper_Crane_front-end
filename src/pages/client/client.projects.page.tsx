@@ -1,9 +1,10 @@
 import React from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 import '../../components/progressbar/style.css';
 import ClientNavbar from './client.navbar';
+import ClientHeader from 'components/Header/clientHeader';
 import './client.projects.page.css';
 
 const ClientProjects = () => {
@@ -21,7 +22,8 @@ const ClientProjects = () => {
     listRows.push(
       <div className='row'>
         {/* From "projectId" it leads to the right link */}
-        <Link to={`/client/projects/${projects[i].projectId}`}>{projects[i].pName}</Link>
+        {/* <Link to={`/client/projects/${projects[i].projectId}`}>{projects[i].pName}</Link> */}
+        <p>{projects[i].pName}</p>
         <p>{projects[i].description}</p>
         <div className='progressbar'>
           <CircularProgressbar
@@ -35,7 +37,7 @@ const ClientProjects = () => {
 
   return (
     <div>
-      {/* call employee navbar */}
+      <ClientHeader />
       <ClientNavbar />
       <ul className='body'>{listRows}</ul>
     </div>
