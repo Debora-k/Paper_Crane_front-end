@@ -2,7 +2,6 @@ import { DatePicker, useDatePickGetter, useDatePickReset } from '@bcad1591/react
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import { Button, Form, Input, Modal, Select } from 'antd';
-import TextArea from 'antd/es/input/TextArea';
 import EmpHeader from 'components/Header/empHeader';
 import { EmpLog } from 'dummyData/empLogData';
 import { EmpTimeoffRequests } from 'dummyData/empTimeoffRequests';
@@ -85,6 +84,7 @@ const EmpCalendar = () => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
+  const [form] = Form.useForm();
 
   const logForm = (i) => {
     return (
@@ -95,10 +95,24 @@ const EmpCalendar = () => {
             options={projects.map((project) => {
               return { value: project.id, label: project.pName };
             })}
+            onChange={() => {
+              form.resetFields(['tasks', i]);
+            }}
           />
         </Form.Item>
-        <Form.Item label='Tasks' name={['tasks', i]}>
-          <TextArea />
+        <Form.Item shouldUpdate={true}>
+          {() => {
+            return (
+              <Form.Item label='Tasks' name={['tasks', i]}>
+                <Select
+                  placeholder='Select a task'
+                  options={projects
+                    .find((project) => project.id === form.getFieldValue(['project', i]))
+                    ?.tasks.map((task) => ({ value: task.id, label: task.title }))}
+                />
+              </Form.Item>
+            );
+          }}
         </Form.Item>
         <Form.Item
           label='Hours worked on'
@@ -119,7 +133,6 @@ const EmpCalendar = () => {
     setInputs(inputs.concat([logForm(inputs.length)]));
   };
 
-  const [form] = Form.useForm();
   const handleLogRequest = (values: any) => {
     setIsLogOpen(false);
 
@@ -128,9 +141,9 @@ const EmpCalendar = () => {
     for (let i = 0; i < values.project.length; i++) {
       newLogData.push({
         date: new Date().toISOString().substring(0, 10),
-        workedHours: values.workedHours[i],
+        workedHours: Number(values.workedHours[i]),
         pId: values.project[i],
-        tasks: values.tasks[i],
+        taskId: values.tasks[i],
       });
     }
 
@@ -156,7 +169,7 @@ const EmpCalendar = () => {
       logForms.push(logForm(i));
       form.setFieldValue(['project', i], logs[i].pId);
       form.setFieldValue(['workedHours', i], logs[i].workedHours);
-      form.setFieldValue(['tasks', i], logs[i].tasks);
+      form.setFieldValue(['tasks', i], logs[i].taskId);
     }
     setInputs(logForms);
   };
