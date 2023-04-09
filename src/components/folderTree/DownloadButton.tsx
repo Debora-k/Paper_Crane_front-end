@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Icons
 import DownloadIcon from './Icons/Download.svg';
@@ -16,7 +17,7 @@ const DownloadButton = ( {name, folderPath} ) => {
         formData.append("fileName", name);
         formData.append("folderPath", folderPath);
         
-        axios.post("/download", formData, {
+        axios.post("http://localhost:8080/download", formData, {
             responseType: 'blob'
         })
              .then(response => {
@@ -38,5 +39,10 @@ const DownloadButton = ( {name, folderPath} ) => {
         <img style={IconStyle} src={DownloadIcon} alt="Download file button" onClick={handleClick}/>
     );
 }
+
+DownloadButton.propTypes = {
+    name: PropTypes.string.isRequired,
+    folderPath: PropTypes.string.isRequired
+};
 
 export default DownloadButton;

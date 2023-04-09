@@ -1,9 +1,11 @@
 import { gray } from '@ant-design/colors';
+import { Select } from 'antd';
 import Layout, { Content } from 'antd/lib/layout/layout';
 import EmpHeader from 'components/Header/empHeader';
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 
+import { projects } from '../../dummyData/projectsData';
 import Taskboard from '../../views/employee/tasklists/Taskboard';
 import EmpNavbar from './emp.navbar';
 
@@ -24,13 +26,23 @@ const StyledContent = styled(Content)`
 `;
 
 function EmpTaskLists() {
+  const [selectedProject, setSelectedProject] = useState(projects[0]);
   return (
     <div>
       <EmpHeader />
       <EmpNavbar />
       <StyledLayout>
         <StyledContent>
-          <Taskboard />
+          <Select
+            defaultValue={projects[0].id}
+            onChange={(value: number) => {
+              setSelectedProject(projects.find((project) => project.id === value));
+            }}
+            options={projects.map((project) => {
+              return { value: project.id, label: project.pName };
+            })}
+          />
+          <Taskboard tasks={selectedProject.tasks} />
         </StyledContent>
       </StyledLayout>
     </div>

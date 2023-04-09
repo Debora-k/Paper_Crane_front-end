@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Components
 import DeleteFileButton from './DeleteFileButton';
@@ -81,5 +82,12 @@ function File( {name, folderPath, updateFolderTree} ) {
             }
     </div>;
 }
+
+File.propTypes = {
+    name: PropTypes.string.isRequired,
+    folderPath: PropTypes.string.isRequired,
+    updateFolderTree: PropTypes.func.isRequired,
+};
+
 
 export default File;

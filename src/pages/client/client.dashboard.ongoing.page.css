@@ -17,6 +17,31 @@
   flex-direction: column;
   gap: 14px;
   padding: 14px;
+  overflow-y: auto;
+}
+.project-ctn-item {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px;
+}
+.project-ctn::-webkit-scrollbar {
+  width: 10px;
+}
+.project-ctn::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.project-ctn::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.project-ctn::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.project-ctn.scope {
+  max-height: 150px;
+}
+.project-ctn.projects {
+  max-height: 300px;
 }
 .btn__ctn {
   display: grid;
@@ -69,6 +94,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  position: relative;
 }
 
 .table th {
@@ -115,15 +141,58 @@
   border-top-right-radius: 10px;
 }
 
+.table-ctn {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.table-ctn::-webkit-scrollbar {
+  width: 10px;
+}
+.table-ctn::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.table-ctn::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.table-ctn::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+.table tr:first-child {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.table tr:last-child {
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+}
+
 .training-ctn {
   display: flex;
   flex-direction: column;
   gap: 14px;
   padding: 14px;
   border: 2px solid gray;
-  border-radius: 12px;
   padding: 20px;
   margin: 18px 0;
+  max-height: 270px;
+  overflow-y: auto;
+}
+
+.training-ctn::-webkit-scrollbar {
+  width: 10px;
+}
+.training-ctn::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.training-ctn::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.training-ctn::-webkit-scrollbar-thumb:hover {
+  background: #555;
 }
 
 .training-ctn a {

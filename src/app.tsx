@@ -10,6 +10,9 @@ import AdminProposals from 'pages/admin/admin.proposals.page';
 import AdminRepository from 'pages/admin/admin.repo.page';
 import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
+//import client pages
+import ClientProjects from 'pages/client/client.projects.page';
+import ClientRepository from 'pages/client/client.repo.page';
 // import employee pages
 import EmpCalendar from 'pages/employee/emp.cal.page';
 import EmpClients from 'pages/employee/emp.clients.page';
@@ -28,17 +31,17 @@ import SuperAdmin from 'pages/superadmin/manageAdmin.page';
 import React, { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { DataContextType, admin, project } from 'views/admin/tasklists/adminDataTypes';
+import { DataContextType, admin, projectList } from 'types/projectDetails/projectDataTypes';
 
-import { data } from './dummyData/projectsData';
 import ClientDashboardNonOnGoingPage from 'pages/client/client.dashboard.non.ongoing.page';
 import ClientDashboardOnGoingPage from 'pages/client/client.dashboard.ongoing.page';
+import { projects as projectsData } from './dummyData/projectsData';
 
 export const DataContext = createContext<DataContextType | null>(null);
 
 export const App = () => {
   const [admins, setAdmins] = useState<admin | null>(adminsData);
-  const [projects, setProjects] = useState<project | null>(data);
+  const [projects, setProjects] = useState<projectList | null>(projectsData);
 
   return (
     <div className='App'>
@@ -104,6 +107,10 @@ export const App = () => {
               element={<EmpWorkingHoursDetail />}
             ></Route>
             <Route path='/employee/clients' element={<EmpClients />}></Route>
+
+            {/* path for Client page */}
+            <Route path='/client/projects' element={<ClientProjects />}></Route>
+            <Route path='/client/repository' element={<ClientRepository />}></Route>
           </Routes>
         </BrowserRouter>
       </DataContext.Provider>

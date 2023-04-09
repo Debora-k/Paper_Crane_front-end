@@ -44,8 +44,7 @@ export default function DashboardHeader() {
           </div>
           <div className='dropdown'>
             <div className={`dropdown-content ${showDropdown ? 'active-dropdown' : ''}`}>
-              <Link to={'/client/profile'}>Profile</Link>
-              <Link to={'/client/profile'}>Settings</Link>
+              <Link to={'/'}>John Doe</Link>
               <div className='profile-img-input-container'>
                 <label htmlFor='profile-img-input' className='profile-img-label'>
                   Upload Profile Image
@@ -61,7 +60,7 @@ export default function DashboardHeader() {
                   }}
                 />
               </div>
-              <Link to={'/client/profile'}>Log Out</Link>
+              <Link to={'/login'}>Log Out</Link>
             </div>
           </div>
         </div>

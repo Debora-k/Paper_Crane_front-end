@@ -1,13 +1,34 @@
 import { message } from 'antd';
+import CheckPendingRequestModal from 'components/CheckPendingRequestModal/CheckPendingRequestModal';
 import DashboardHeader from 'components/Header/dashboardHeader';
 import SendRequestModal from 'components/SendRequestModal/SendRequestModal';
 import React, { useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
+import { v4 as uuidv4 } from 'uuid';
 
 import './client.dashboard.ongoing.page.css';
 
 const ClientDashboardNonOnGoingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCheckPendingRequestModalOpen, setIsCheckPendingRequestModalOpen] = useState(false);
+  const [scopes, setScopes] = useState([
+    {
+      id: uuidv4(),
+      name: 'Login Page with Google Signin',
+    },
+    {
+      id: uuidv4(),
+      name: 'Products page',
+    },
+    {
+      id: uuidv4(),
+      name: 'User profile page',
+    },
+    {
+      id: uuidv4(),
+      name: 'Shopping cart page',
+    },
+  ]);
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -18,9 +39,32 @@ const ClientDashboardNonOnGoingPage = () => {
     setIsModalOpen(false);
   };
 
+  const handleCheckPendingRequestOk = () => {
+    setIsCheckPendingRequestModalOpen(false);
+  };
+
+  const handleCheckPendingRequestCancel = () => {
+    setIsCheckPendingRequestModalOpen(false);
+  };
+
+  const scopeChangeHandler = (values: any) => {
+    setScopes(values);
+  };
+
   return (
     <div>
-      <SendRequestModal isModalOpen={isModalOpen} handleOk={handleOk} handleCancel={handleCancel} />
+      <SendRequestModal
+        isModalOpen={isModalOpen}
+        handleOk={handleOk}
+        handleCancel={handleCancel}
+        onChangeScopes={scopeChangeHandler}
+        scopes={scopes}
+      />
+      <CheckPendingRequestModal
+        isModalOpen={isCheckPendingRequestModalOpen}
+        handleOk={handleCheckPendingRequestOk}
+        handleCancel={handleCheckPendingRequestCancel}
+      />
       <DashboardHeader />
       <div className='dashboard-ctn'>
         <h1>Dashboard</h1>
@@ -35,11 +79,10 @@ const ClientDashboardNonOnGoingPage = () => {
           </div>
           <div>
             <h2>Scopes</h2>
-            <div className='project-ctn'>
-              <p>Login Page with Google Signin</p>
-              <p>Products page</p>
-              <p>User profile page</p>
-              <p>Shopping cart page</p>
+            <div className='project-ctn scope'>
+              {scopes.map((scope, index) => (
+                <p key={index}>{scope.name}</p>
+              ))}
             </div>
           </div>
           <div>
@@ -47,7 +90,12 @@ const ClientDashboardNonOnGoingPage = () => {
               <button className='secondary__btn' onClick={() => setIsModalOpen(true)}>
                 Send Request
               </button>
-              <button className='secondary__btn'>Check Pending Requests</button>
+              <button
+                className='secondary__btn'
+                onClick={() => setIsCheckPendingRequestModalOpen(true)}
+              >
+                Check Pending Requests
+              </button>
             </div>
             <div>
               <button className='primary__btn'>View Repository</button>
@@ -55,15 +103,27 @@ const ClientDashboardNonOnGoingPage = () => {
           </div>
           <div>
             <h2>Past Project</h2>
-            <div className='project-ctn'>
-              <h3>Project 4</h3>
-              <p>Start Date: April 1st, 2023</p>
-              <p>Contract End Date: Decemeber 1st, 2023</p>
-            </div>
-            <div className='project-ctn'>
-              <h3>Project 5</h3>
-              <p>Start Date: April 1st, 2023</p>
-              <p>Contract End Date: Decemeber 1st, 2023</p>
+            <div className='project-ctn projects'>
+              <div className='project-ctn-item'>
+                <h3>Project 4</h3>
+                <p>Start Date: April 1st, 2023</p>
+                <p>Contract End Date: Decemeber 1st, 2023</p>
+              </div>
+              <div className='project-ctn-item'>
+                <h3>Project 5</h3>
+                <p>Start Date: April 1st, 2023</p>
+                <p>Contract End Date: Decemeber 1st, 2023</p>
+              </div>
+              <div className='project-ctn-item'>
+                <h3>Project 4</h3>
+                <p>Start Date: April 1st, 2023</p>
+                <p>Contract End Date: Decemeber 1st, 2023</p>
+              </div>
+              <div className='project-ctn-item'>
+                <h3>Project 5</h3>
+                <p>Start Date: April 1st, 2023</p>
+                <p>Contract End Date: Decemeber 1st, 2023</p>
+              </div>
             </div>
           </div>
           <div>
@@ -79,42 +139,84 @@ const ClientDashboardNonOnGoingPage = () => {
             <h2>Training/Offboarding videos</h2>
             <div className='training-ctn'>
               <a
-                href='https://www.youtube.com/watch?v=ASZLaQbbrr8'
+                href='https://youtube.com/#1'
                 target='_blank'
                 rel='noreferrer'
               >
                 Training Video 1 for the clients
               </a>
               <a
-                href='https://www.youtube.com/watch?v=SCLjPxEyHGQ'
+                href='https://youtube.com/#1'
                 target='_blank'
                 rel='noreferrer'
               >
                 Training Video 2 for the clients
               </a>
               <a
-                href='https://www.youtube.com/watch?v=SCLjPxEyHGQ'
+                href='https://youtube.com/#1'
                 target='_blank'
                 rel='noreferrer'
               >
                 Training Video 3 for the clients
               </a>
               <a
-                href='https://www.youtube.com/watch?v=ASZLaQbbrr8'
+                href='https://youtube.com/#1'
                 target='_blank'
                 rel='noreferrer'
               >
                 Training Video 4 for the clients
               </a>
               <a
-                href='https://www.youtube.com/watch?v=ASZLaQbbrr8'
+                href='https://youtube.com/#1'
                 target='_blank'
                 rel='noreferrer'
               >
                 Training Video 1 for the clients
               </a>
               <a
-                href='https://www.youtube.com/watch?v=SCLjPxEyHGQ'
+                href='https://youtube.com/#1'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Training Video 2 for the clients
+              </a>
+              <a
+                href='https://youtube.com/#1'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Training Video 1 for the clients
+              </a>
+              <a
+                href='https://youtube.com/#1'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Training Video 2 for the clients
+              </a>
+              <a
+                href='https://youtube.com/#1'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Training Video 3 for the clients
+              </a>
+              <a
+                href='https://youtube.com/#1'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Training Video 4 for the clients
+              </a>
+              <a
+                href='https://youtube.com/#1'
+                target='_blank'
+                rel='noreferrer'
+              >
+                Training Video 1 for the clients
+              </a>
+              <a
+                href='https://youtube.com/#1'
                 target='_blank'
                 rel='noreferrer'
               >

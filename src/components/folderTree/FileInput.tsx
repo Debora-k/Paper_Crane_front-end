@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 
 // Icons
 import AddFileIcon from './Icons/Addfile.svg';
@@ -26,7 +27,7 @@ const FileInput = ( {folderPath, updateFolderTree} ) =>
         formData.append("file", file);
         formData.append("folderPath", folderPath)
 
-        axios.post('/uploadFile', formData)
+        axios.post('http://localhost:8080/uploadFile', formData)
              .then(response => {
                 console.log(response.data);
                 updateFolderTree(response.data);
@@ -67,5 +68,10 @@ const FileInput = ( {folderPath, updateFolderTree} ) =>
         </span>
     );
 };
+
+FileInput.propTypes = {
+    folderPath: PropTypes.string.isRequired,
+    updateFolderTree: PropTypes.func.isRequired,
+  };
 
 export default FileInput;

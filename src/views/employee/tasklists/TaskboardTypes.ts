@@ -2,6 +2,7 @@ export interface TaskboardItem {
   id: string;
   title: string;
   description: string;
+  assignedEmpIds: number[];
 }
 
 export enum TaskboardItemStatus {
