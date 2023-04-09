@@ -27,6 +27,7 @@ import React, { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DataContextType, admin, projectList } from 'types/projectDetails/projectDataTypes';
+import { useTheme } from 'views/client/ThemeContext';
 
 import { projects as projectsData } from './dummyData/projectsData';
 
@@ -35,9 +36,16 @@ export const DataContext = createContext<DataContextType | null>(null);
 export const App = () => {
   const [admins, setAdmins] = useState<admin | null>(adminsData);
   const [projects, setProjects] = useState<projectList | null>(projectsData);
+  const { theme } = useTheme();
 
   return (
-    <div className='App'>
+    <div
+      className='App'
+      style={{
+        backgroundColor: theme === 'light' ? 'white' : 'black',
+        color: theme === 'dark' ? 'white' : 'black',
+      }}
+    >
       <DataContext.Provider value={{ admins, setAdmins, projects, setProjects }}>
         <BrowserRouter>
           <Routes>

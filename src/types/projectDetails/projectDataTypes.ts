@@ -20,7 +20,7 @@ export type projectList = {
   description?: string;
   estimatedHours?: number;
   currentWorkedHours?: number;
-  client?: string;
+  cId?: number;
   startDate?: string;
   endDate?: string;
   tasks?: task[];

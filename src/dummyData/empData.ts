@@ -8,7 +8,7 @@ export const EmpData = [
     role: 'developer',
     workedHours: 32,
     email: 'fake1@gmail.com',
-    avatar: 'http://localhost:3000/fakeAvatars/avatar1.jpeg',
+    avatar: '/fakeAvatars/avatar1.jpeg',
   },
   {
     empId: 2,
@@ -17,7 +17,7 @@ export const EmpData = [
     role: 'developer',
     workedHours: 32,
     email: 'fake2@gmail.com',
-    avatar: 'http://localhost:3000/fakeAvatars/avatar1.jpeg',
+    avatar: '/fakeAvatars/avatar1.jpeg',
   },
   {
     empId: 3,
@@ -26,7 +26,7 @@ export const EmpData = [
     role: 'developer',
     workedHours: 32,
     email: 'fake3@gmail.com',
-    avatar: 'http://localhost:3000/fakeAvatars/avatar1.jpeg',
+    avatar: '/fakeAvatars/avatar1.jpeg',
   },
   {
     empId: 4,
@@ -35,7 +35,7 @@ export const EmpData = [
     role: 'developer',
     workedHours: 32,
     email: 'fake4@gmail.com',
-    avatar: 'http://localhost:3000/fakeAvatars/avatar1.jpeg',
+    avatar: '/fakeAvatars/avatar1.jpeg',
   },
   {
     empId: 5,
@@ -44,7 +44,7 @@ export const EmpData = [
     role: 'developer',
     workedHours: 32,
     email: 'fake5@gmail.com',
-    avatar: 'http://localhost:3000/fakeAvatars/avatar1.jpeg',
+    avatar: '/fakeAvatars/avatar1.jpeg',
   },
   {
     empId: 6,
@@ -53,6 +53,6 @@ export const EmpData = [
     role: 'developer',
     workedHours: 32,
     email: 'fake6@gmail.com',
-    avatar: 'http://localhost:3000/fakeAvatars/avatar1.jpeg',
+    avatar: '/fakeAvatars/avatar1.jpeg',
   },
 ];
