@@ -66,7 +66,7 @@ function CreateClientAccount() {
               Type <sup>*</sup>
             </label>
             <select value={type} onChange={(e) => setType(Number(e.target.value))}>
-              <option value='2'>Single Contract</option>
+              <option value='2'>Non-ongoing Contract</option>
               <option value='1'>Ongoing Contract</option>
             </select>
           </div>

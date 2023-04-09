@@ -10,6 +10,8 @@ import AdminProposals from 'pages/admin/admin.proposals.page';
 import AdminRepository from 'pages/admin/admin.repo.page';
 import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
+import ClientDashboardNonOnGoingPage from 'pages/client/client.dashboard.non.ongoing.page';
+import ClientDashboardOnGoingPage from 'pages/client/client.dashboard.ongoing.page';
 //import client pages
 import ClientProjects from 'pages/client/client.projects.page';
 import ClientRepository from 'pages/client/client.repo.page';
@@ -18,10 +20,9 @@ import EmpCalendar from 'pages/employee/emp.cal.page';
 import EmpClients from 'pages/employee/emp.clients.page';
 import EmpProjectDetails from 'pages/employee/emp.project.details.page';
 import EmpProjects from 'pages/employee/emp.projects.page';
+import EmpScopeRequests from 'pages/employee/emp.scope.requests.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
 import EmpVideo from 'pages/employee/emp.video.page';
-import EmpWorkingHoursDetail from 'pages/employee/emp.workinghours.detail.page';
-import EmpWorkingHours from 'pages/employee/emp.workinghours.page';
 import ForgotPasswordPage from 'pages/forgot-password/forgot-password.page';
 import Login from 'pages/login/login.page';
 import ResetPasswordPage from 'pages/reset-password/reset-password.page';
@@ -32,9 +33,8 @@ import React, { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DataContextType, admin, projectList } from 'types/projectDetails/projectDataTypes';
+import { useTheme } from 'views/client/ThemeContext';
 
-import ClientDashboardNonOnGoingPage from 'pages/client/client.dashboard.non.ongoing.page';
-import ClientDashboardOnGoingPage from 'pages/client/client.dashboard.ongoing.page';
 import { projects as projectsData } from './dummyData/projectsData';
 
 export const DataContext = createContext<DataContextType | null>(null);
@@ -42,9 +42,16 @@ export const DataContext = createContext<DataContextType | null>(null);
 export const App = () => {
   const [admins, setAdmins] = useState<admin | null>(adminsData);
   const [projects, setProjects] = useState<projectList | null>(projectsData);
+  const { theme } = useTheme();
 
   return (
-    <div className='App'>
+    <div
+      className='App'
+      style={{
+        backgroundColor: theme === 'light' ? 'white' : 'black',
+        color: theme === 'dark' ? 'white' : 'black',
+      }}
+    >
       <DataContext.Provider value={{ admins, setAdmins, projects, setProjects }}>
         <BrowserRouter>
           <Routes>
@@ -101,11 +108,7 @@ export const App = () => {
 
             <Route path='/employee/tasklist' element={<EmpTaskLists />}></Route>
             <Route path='/employee/calendar' element={<EmpCalendar />}></Route>
-            <Route path='/employee/workinghours' element={<EmpWorkingHours />}></Route>
-            <Route
-              path='/employee/workinghours/detail/:projectId'
-              element={<EmpWorkingHoursDetail />}
-            ></Route>
+            <Route path='/employee/scopeRequests' element={<EmpScopeRequests />}></Route>
             <Route path='/employee/clients' element={<EmpClients />}></Route>
 
             {/* path for Client page */}

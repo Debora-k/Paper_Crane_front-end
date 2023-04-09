@@ -1,19 +1,11 @@
 import React, { useEffect } from 'react';
 import { useState } from 'react';
 
-// const PasswordErrorMessage = () => {
-//   return <p className='FieldError'>Password should be at least 6 characters</p>;
-// };
-
 function EditClientAccount(props: any) {
   const [firstName, setFirstName] = useState(props.firstName);
   const [companyName, setCompanyName] = useState(props.companyName);
   const [type, setType] = useState(props.type);
   const [email, setEmail] = useState(props.email);
-  //   const [password, setPassword] = useState({
-  //     value: '',
-  //     isTouched: false,
-  //   });
 
   useEffect(() => {
     setFirstName(props.firstName);
@@ -77,7 +69,7 @@ function EditClientAccount(props: any) {
               onChange={(e) => setType(Number(e.target.value))}
             >
               <option value='1'>Ongoing</option>
-              <option value='2'>Single</option>
+              <option value='2'>Non-ongoing</option>
             </select>
           </div>
           <div className='Field'>
