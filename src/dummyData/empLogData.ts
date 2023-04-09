@@ -4,33 +4,33 @@ export const EmpLog = [
   {
     date: '2023-03-05',
     workedHours: 6,
-    pId: 2,
+    pId: 1,
     //   didn't make an array, because in the log form, tasks part is one textarea
-    tasks: 'Add login page, Add contact us page',
+    taskId: 1,
   },
   {
     date: '2023-03-05',
     workedHours: 2,
-    pId: 3,
+    pId: 1,
     //   didn't make an array, because in the log form, tasks part is one textarea
-    tasks: 'Add login page, Add contact us page',
+    taskId: 5,
   },
   {
     date: '2023-04-01',
     workedHours: 5,
-    pId: 1,
-    tasks: 'Add login page, Add contact us page',
+    pId: 2,
+    taskId: 7,
   },
   {
     date: '2023-04-03',
     workedHours: 7,
-    pId: 5,
-    tasks: 'Add login page, Add contact us page',
+    pId: 2,
+    taskId: 8,
   },
   {
     date: '2023-04-05',
     workedHours: 5,
-    pId: 4,
-    tasks: 'Add login page, Add contact us page',
+    pId: 3,
+    taskId: 14,
   },
 ];
