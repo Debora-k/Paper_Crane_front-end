@@ -1,6 +1,8 @@
 import { DatePickerProvider } from '@bcad1591/react-date-picker';
+import { ConfigProvider } from 'antd';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { ThemeProvider } from 'views/client/ThemeContext';
 
 import { App } from './app';
 import './index.css';
@@ -10,7 +12,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <DatePickerProvider>
-      <App />
+      <ThemeProvider>
+        <ConfigProvider theme={{ token: { fontFamily: 'proxima-nova, sans-serif' } }}>
+          <App />
+        </ConfigProvider>
+      </ThemeProvider>
     </DatePickerProvider>
   </React.StrictMode>,
 );

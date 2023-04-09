@@ -7,7 +7,7 @@ export const projects: projectList = [
     description: 'Project 1',
     estimatedHours: 60,
     currentWorkedHours: 30,
-    client: 'asdf1',
+    cId: 1,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
     tasks: [
@@ -55,7 +55,7 @@ export const projects: projectList = [
     description: 'Project 2',
     estimatedHours: 80,
     currentWorkedHours: 70,
-    client: 'asdf2',
+    cId: 2,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
     tasks: [
@@ -103,7 +103,7 @@ export const projects: projectList = [
     description: 'Project 3',
     estimatedHours: 40,
     currentWorkedHours: 0,
-    client: 'asdf3',
+    cId: 3,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
     tasks: [
@@ -151,7 +151,7 @@ export const projects: projectList = [
     description: 'Project 4',
     estimatedHours: 250,
     currentWorkedHours: 100,
-    client: 'asdf4',
+    cId: 2,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
     tasks: [

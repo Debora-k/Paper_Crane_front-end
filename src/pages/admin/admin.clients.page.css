@@ -1,6 +1,6 @@
 /* container class holds all of elements except the nav bar */
-.container {
-  margin-top: 100px;
+.tabsContainer {
+  margin-top: 80px;
   display: flex;
   align-items: center;
 }
