@@ -18,8 +18,6 @@ function FolderTree( {style, tree, updateFolderTree} ) {
                         <Folder 
                             key={node.name} 
                             name={node.name}
-                            // tree is empty, so TS complains 
-                            // tree={node.children}
                             folderPath={node.folderPath}
                             updateFolderTree={updateFolderTree}
                         >

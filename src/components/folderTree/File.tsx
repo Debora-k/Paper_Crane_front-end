@@ -27,9 +27,9 @@ function File( {name, folderPath, updateFolderTree} ) {
             formData.append("filePath", folderPath + "/" + name);
             formData.append("newName", newName);
 
-            axios.put('/renameFile', formData)
+            axios.put('http://localhost:8080/renameFile', formData)
                  .then(response => {
-                    console.log(response.data);
+                    console.log("file " + name + " has been renamed to " + newName);
                  })
                  .catch(error => {
                     console.log(error);

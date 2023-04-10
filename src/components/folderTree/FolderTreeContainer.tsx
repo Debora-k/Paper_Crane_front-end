@@ -8,14 +8,12 @@ import './FolderTreeContainer.css';
 // Components
 import FolderTree from './FolderTree';
 
-function FolderTreeContainer() {
+function FolderTreeContainer({ repoName }) {
 
     const [tree, setTree] = useState([]);
   
-    // Dummy data
-    // id: 
     const updateFolderTree = () => {
-      axios.get('http://localhost:8080/getFolderStructure')
+      axios.get('http://localhost:8080/getFolderStructure/'+ repoName)
            .then(response => {
               setTree(response.data);
            })
@@ -24,15 +22,14 @@ function FolderTreeContainer() {
             })
     };
   
-    // Initialize the folder structure
+    // Update folder tree on load and when project is changed
     useEffect( () => {
       updateFolderTree();
-  }, []);
+  }, [repoName]);
   
     return (
       <div className="FolderTreeContainer">
         <FolderTree 
-        // style wasn't here at first, due to TS complained, created null style
           style={null}
           tree={tree}
           updateFolderTree={updateFolderTree}
@@ -44,7 +41,8 @@ function FolderTreeContainer() {
   FolderTreeContainer.propTypes = {
     style: PropTypes.object,
     tree: PropTypes.array,
-    updateFolderTree: PropTypes.func
+    updateFolderTree: PropTypes.func,
+    repoName: PropTypes.string
   };
 
 export default FolderTreeContainer;

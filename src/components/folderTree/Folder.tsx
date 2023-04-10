@@ -39,7 +39,7 @@ function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
             formData.append("folderPath", folderPath)
             formData.append("newName", newName);
 
-            axios.put("/renameFolder", formData)
+            axios.put("http://localhost:8080/renameFolder", formData)
                  .then(response => {
                     console.log(response.data);
                  })
