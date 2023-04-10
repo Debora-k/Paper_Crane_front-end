@@ -3,12 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // Icons
-import DownloadIcon from './Icons/Download.svg';
-
-const IconStyle = {
-    width: '20px',
-    height: '20px'
-};
+import { DownloadOutlined } from '@ant-design/icons';
 
 const DownloadButton = ( {name, folderPath} ) => {
 
@@ -36,7 +31,7 @@ const DownloadButton = ( {name, folderPath} ) => {
     }
 
     return (
-        <img style={IconStyle} src={DownloadIcon} alt="Download file button" onClick={handleClick}/>
+        <DownloadOutlined onClick={handleClick} />
     );
 }
 
