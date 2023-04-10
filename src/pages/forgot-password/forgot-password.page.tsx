@@ -6,7 +6,9 @@ import { Link } from 'react-router-dom';
 
 import Logo from '../../assets/logo.png';
 
-const Login = () => {
+type Props = {};
+
+const ForgotPasswordPage = (props: Props) => {
   const [form] = Form.useForm();
 
   return (
@@ -49,31 +51,28 @@ const Login = () => {
               <h1
                 style={{
                   textAlign: 'center',
+                  marginBottom: '20px',
                 }}
               >
-                Log in
+                Reset Password
               </h1>
               <Form form={form} layout='vertical'>
                 <Form.Item label='Email' style={{ marginBottom: '15px' }}>
                   <Input type='email' />
                 </Form.Item>
-                <Form.Item label='Password'>
-                  <Input type='password' />
-                </Form.Item>
-                <Form.Item style={{ marginBottom: '15px' }}>
-                  <div
-                    style={{
-                      width: '100%',
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <Link to='/forgot-password'>Forgot password? </Link>
-                    <Button type='default' htmlType='submit'>
-                      Login
+
+                <Form.Item>
+                  <Link to='/reset-password'>
+                    <Button
+                      type='default'
+                      htmlType='submit'
+                      style={{
+                        width: '100%',
+                      }}
+                    >
+                      Reset Password
                     </Button>
-                  </div>
+                  </Link>
                 </Form.Item>
               </Form>
             </div>
@@ -84,4 +83,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default ForgotPasswordPage;

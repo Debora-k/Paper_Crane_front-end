@@ -10,6 +10,8 @@ import AdminProposals from 'pages/admin/admin.proposals.page';
 import AdminRepository from 'pages/admin/admin.repo.page';
 import AdminRepoHistory from 'pages/admin/admin.repohistory.page';
 import AdminVideo from 'pages/admin/admin.video.page';
+import ClientDashboardNonOnGoingPage from 'pages/client/client.dashboard.non.ongoing.page';
+import ClientDashboardOnGoingPage from 'pages/client/client.dashboard.ongoing.page';
 //import client pages
 import ClientProjects from 'pages/client/client.projects.page';
 import ClientRepository from 'pages/client/client.repo.page';
@@ -21,6 +23,10 @@ import EmpProjects from 'pages/employee/emp.projects.page';
 import EmpScopeRequests from 'pages/employee/emp.scope.requests.page';
 import EmpTaskLists from 'pages/employee/emp.tasklists.page';
 import EmpVideo from 'pages/employee/emp.video.page';
+import ForgotPasswordPage from 'pages/forgot-password/forgot-password.page';
+import Login from 'pages/login/login.page';
+import ResetPasswordPage from 'pages/reset-password/reset-password.page';
+import ResetSuccessPage from 'pages/reset-success/reset-success.page';
 import AddAdmin from 'pages/superadmin/addAdmin.page';
 import SuperAdmin from 'pages/superadmin/manageAdmin.page';
 import React, { createContext, useState } from 'react';
@@ -55,7 +61,19 @@ export const App = () => {
             {/* <Route exact path="/logout" element={<Logout />} /> </Route> */}
 
             {/* These routes are for admins */}
+            <Route
+              path='/client/dashboard/ongoing'
+              element={<ClientDashboardOnGoingPage />}
+            ></Route>
+            <Route
+              path='/client/dashboard/non-ongoing'
+              element={<ClientDashboardNonOnGoingPage />}
+            ></Route>
             <Route path='/admin/projects' element={<AdminProjects />}></Route>
+            <Route path='/login' element={<Login />}></Route>
+            <Route path='/forgot-password' element={<ForgotPasswordPage />}></Route>
+            <Route path='/reset-password' element={<ResetPasswordPage />}></Route>
+            <Route path='/reset-success' element={<ResetSuccessPage />}></Route>
             <Route path={`/admin/project/:projectid`} element={<AdminProjectDetails />}></Route>
             <Route path='/admin/video' element={<AdminVideo />}></Route>
             <Route path='/admin/proposals' element={<AdminProposals />}></Route>

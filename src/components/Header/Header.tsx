@@ -18,7 +18,6 @@ export default function Header() {
           <button className='superadmin-btn'>SuperAdmin Page</button>
         </Link> */}
 
-        <button className='flex-row logout-btn'>Log Out</button>
         <button className='flex-row Contact'>Contact Us</button>
         <button className='flex-row profile-btn'>
           <i className='fa-solid fa-user'></i>
