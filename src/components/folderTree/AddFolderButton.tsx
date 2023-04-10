@@ -3,12 +3,7 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // Icons
-import AddFolderIcon from './Icons/Addfolder.svg';
-
-const addFolder = {
-    width: '25px',
-    height: '25px'
-};
+import { FolderAddOutlined } from '@ant-design/icons';
 
 const AddFolderButton = ( {folderPath, updateFolderTree}) =>
 {
@@ -27,7 +22,7 @@ const AddFolderButton = ( {folderPath, updateFolderTree}) =>
     }
 
     return (
-        <img style={addFolder} src={AddFolderIcon} alt="Add Folder Button" onClick={handleClick}/>
+        <FolderAddOutlined onClick={handleClick} />
     )
 };
 
