@@ -10,6 +10,7 @@ export const Projects: projectList = [
     cId: 1,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
+    assignedEmpIds: [1, 2, 3, 4, 5, 6],
     tasks: [
       {
         id: 1,
@@ -58,12 +59,13 @@ export const Projects: projectList = [
     cId: 2,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
+    assignedEmpIds: [1, 2, 3, 4, 5],
     tasks: [
       {
         id: 7,
         title: 'task 7',
         status: 1,
-        assignedEmpIds: [2, 6],
+        assignedEmpIds: [2],
       },
       {
         id: 8,
@@ -75,7 +77,7 @@ export const Projects: projectList = [
         id: 9,
         title: 'task 9',
         status: 0,
-        assignedEmpIds: [5, 6],
+        assignedEmpIds: [5],
       },
       {
         id: 10,
@@ -93,7 +95,7 @@ export const Projects: projectList = [
         id: 12,
         title: 'task 12',
         status: 0,
-        assignedEmpIds: [1, 2, 3, 4, 5, 6],
+        assignedEmpIds: [1, 2, 3, 4, 5],
       },
     ],
   },
@@ -106,6 +108,7 @@ export const Projects: projectList = [
     cId: 3,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
+    assignedEmpIds: [1, 2, 3],
     tasks: [
       {
         id: 13,
@@ -129,19 +132,19 @@ export const Projects: projectList = [
         id: 16,
         title: 'task 16',
         status: 1,
-        assignedEmpIds: [4],
+        assignedEmpIds: [2],
       },
       {
         id: 17,
         title: 'task 17',
         status: 1,
-        assignedEmpIds: [5],
+        assignedEmpIds: [3],
       },
       {
         id: 18,
         title: 'task 18',
         status: 1,
-        assignedEmpIds: [6],
+        assignedEmpIds: [1],
       },
     ],
   },
@@ -154,6 +157,7 @@ export const Projects: projectList = [
     cId: 2,
     startDate: '2023-03-01',
     endDate: '2023-04-18',
+    assignedEmpIds: [1, 2, 3, 5, 6],
     tasks: [
       {
         id: 19,

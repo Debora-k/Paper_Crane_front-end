@@ -35,7 +35,7 @@ const defaultItems = {
 
 type TaskboardData = Record<TaskboardItemStatus, TaskboardItem[]>;
 
-function Taskboard({ tasks }) {
+function Taskboard({ tasks, selectedProject }) {
   const [itemsByStatus, setItemsByStatus] = useState<TaskboardData>(defaultItems);
 
   useEffect(() => {
@@ -83,6 +83,7 @@ function Taskboard({ tasks }) {
   const initialValues = useMemo<TaskboardItemFormValues>(
     () => ({
       title: itemToEdit?.title ?? '',
+      assignedEmpIds: itemToEdit?.assignedEmpIds ?? [],
       description: itemToEdit?.description ?? '',
     }),
     [itemToEdit],
@@ -121,6 +122,7 @@ function Taskboard({ tasks }) {
                   .find((item) => item.id === itemToEdit.id);
                 if (draftItem) {
                   draftItem.title = values.title;
+                  draftItem.assignedEmpIds = values.assignedEmpIds;
                   draftItem.description = values.description;
                 }
               } else {
@@ -128,13 +130,13 @@ function Taskboard({ tasks }) {
                 draft[TaskboardItemStatus.TO_DO].push({
                   ...values,
                   id: generateId(),
-                  assignedEmpIds: [],
                 });
               }
             }),
           );
         }}
         initialValues={initialValues}
+        selectedProject={selectedProject}
       />
     </>
   );

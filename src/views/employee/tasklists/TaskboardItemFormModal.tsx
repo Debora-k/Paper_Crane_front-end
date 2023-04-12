@@ -1,14 +1,19 @@
-import { Button, Form, Input, Modal, ModalProps } from 'antd';
-import React, { useEffect, useRef } from 'react';
+import { DataContext } from 'SharedData';
+import { Button, Form, Input, Modal, ModalProps, Select } from 'antd';
+import React, { useContext, useEffect, useRef } from 'react';
 
 import { TaskboardItem } from './TaskboardTypes';
 
-export type TaskboardItemFormValues = Pick<TaskboardItem, 'title' | 'description'>;
+export type TaskboardItemFormValues = Pick<
+  TaskboardItem,
+  'title' | 'description' | 'assignedEmpIds'
+>;
 
 type TaskboardItemFormModalProps = Pick<ModalProps, 'visible'> & {
   initialValues: TaskboardItemFormValues;
   onCancel: any;
   onOk: (values: TaskboardItemFormValues) => void;
+  selectedProject: any;
 };
 
 function TaskboardItemFormModal({
@@ -16,6 +21,7 @@ function TaskboardItemFormModal({
   initialValues,
   onCancel,
   onOk,
+  selectedProject,
 }: TaskboardItemFormModalProps) {
   const [form] = Form.useForm<TaskboardItemFormValues>();
 
@@ -29,6 +35,8 @@ function TaskboardItemFormModal({
       form.resetFields();
     }
   }, [form, visible]);
+
+  const { employees } = useContext(DataContext);
 
   return (
     <Modal
@@ -77,11 +85,20 @@ function TaskboardItemFormModal({
         >
           <Input ref={inputRef} autoFocus />
         </Form.Item>
+        <Form.Item name='assignedEmpIds' label='Assigned to'>
+          <Select
+            mode='multiple'
+            options={employees
+              .filter((employee) => selectedProject.assignedEmpIds.includes(employee.empId))
+              .map((employee) => {
+                return { value: employee.empId, label: employee.firstName };
+              })}
+          />
+        </Form.Item>
         <Form.Item
           name='description'
           label='Description'
           rules={[
-            { required: true, message: "'Description' is required" },
             {
               max: 400,
               message: "'Description' can not be longer than 400 characters",
