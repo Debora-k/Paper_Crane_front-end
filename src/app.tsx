@@ -1,5 +1,4 @@
 // import admin pages
-import axios from 'axios';
 import { adminsData } from 'dummyData/adminData';
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
@@ -30,7 +29,7 @@ import ResetPasswordPage from 'pages/reset-password/reset-password.page';
 import ResetSuccessPage from 'pages/reset-success/reset-success.page';
 import AddAdmin from 'pages/superadmin/addAdmin.page';
 import SuperAdmin from 'pages/superadmin/manageAdmin.page';
-import React, { createContext, useEffect, useState } from 'react';
+import React, { createContext, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { DataContextType, admin, projectList } from 'types/projectDetails/projectDataTypes';
@@ -42,20 +41,7 @@ export const DataContext = createContext<DataContextType | null>(null);
 
 export const App = () => {
   const [admins, setAdmins] = useState<admin | null>(adminsData);
-  const [projects, setProjects] = useState<projectList | null>([]);
-
-  // axios for getting projects list
-  useEffect(() => {
-    axios
-      .get('http://localhost:8080/api/v1/projects/')
-      .then((results) => setProjects(results.data))
-      .catch((error) => {
-        console.log(error);
-        // in case back-end isn't connected to front-end, then display dummy data
-        setProjects(projectsData);
-      });
-  }, []);
-
+  const [projects, setProjects] = useState<projectList | null>(projectsData);
   const { theme } = useTheme();
 
   return (
