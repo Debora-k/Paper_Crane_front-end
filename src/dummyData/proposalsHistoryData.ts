@@ -1,4 +1,4 @@
-export const proposalsHistoryData = [
+export const ProposalsHistoryData = [
   {
     id: 1,
     subject: 'This is testing subject',

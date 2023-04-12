@@ -6,8 +6,8 @@ import React from 'react';
 import { useState } from 'react';
 
 import trainingImg from '../../assets/training.jpeg';
-import { empVideoData } from '../../dummyData/empVideoData';
-import { projectsVideoData } from '../../dummyData/projectsVideoData';
+import { EmpVideoData } from '../../dummyData/empVideoData';
+import { ProjectsVideoData } from '../../dummyData/projectsVideoData';
 import AdminNavbar from './admin.navbar';
 import './admin.video.page.css';
 
@@ -21,20 +21,20 @@ const AdminVideo = () => {
   // choose an option from a dropbox of employee types or projects
   // employees mean all employees can see the video list
   // projects mean videos for the people who are related to that project
-  const [data, setData] = useState([...empVideoData, ...projectsVideoData]);
+  const [data, setData] = useState([...EmpVideoData, ...ProjectsVideoData]);
 
   const handleChange = (value) => {
     setSelectedProjectId('Select Project');
     setSelectedProjectAudience('Select');
     if (value === 'developer') {
-      setData(empVideoData.filter((devVideoData) => devVideoData.type.includes('developer')));
+      setData(EmpVideoData.filter((devVideoData) => devVideoData.type.includes('developer')));
     } else if (value === 'designer') {
       setData(
-        empVideoData.filter((designerVideoData) => designerVideoData.type.includes('designer')),
+        EmpVideoData.filter((designerVideoData) => designerVideoData.type.includes('designer')),
       );
     } else if (value === 'employees') {
       setData(
-        empVideoData.filter(
+        EmpVideoData.filter(
           (empVideoData) =>
             empVideoData.type.includes('developer') && empVideoData.type.includes('designer'),
         ),
@@ -49,7 +49,7 @@ const AdminVideo = () => {
     setSelectedProjectId(value);
     setSelectedProjectAudience('Select');
     setData(
-      projectsVideoData.filter((projectsEmpVideoData) => projectsEmpVideoData.projectId === value),
+      ProjectsVideoData.filter((projectsEmpVideoData) => projectsEmpVideoData.projectId === value),
     );
   };
 
@@ -57,7 +57,7 @@ const AdminVideo = () => {
   // after choosing one project from first dropdown
   const handleProjectVideo = (value: string) => {
     setData(
-      projectsVideoData.filter(
+      ProjectsVideoData.filter(
         (clientVideoData) =>
           clientVideoData.projectId === selectedProjectId && clientVideoData.type.includes(value),
       ),

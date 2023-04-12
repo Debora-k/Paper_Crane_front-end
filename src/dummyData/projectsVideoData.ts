@@ -3,7 +3,7 @@ import trainingImg from '../assets/training.jpeg';
 // Each video has two types project & emp OR project & client
 // that means admins can set up a video for only client in a project, or only for employees
 // who are working on the project
-export const projectsVideoData = [
+export const ProjectsVideoData = [
   {
     title: 'Demo front-end and design for project1',
     projectId: 1,

@@ -1,4 +1,4 @@
-export const timeoffRequests = [
+export const TimeOffRequests = [
   {
     userId: 1,
     name: 'emp1',
