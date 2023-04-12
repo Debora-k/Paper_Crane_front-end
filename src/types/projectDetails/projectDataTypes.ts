@@ -4,7 +4,6 @@ export type admin = {
   readonly userId: number;
   name: string;
   email: string;
-  type: string;
 }[];
 
 export type task = {
