@@ -9,13 +9,10 @@ import DeleteFolderButton from './DeleteFolderButton';
 import DragDropBox from 'components/dragDrop/dragDropBox.component';
 
 // Icons
-import FolderIcon from './Icons/folder.svg';
-import EditIcon from './Icons/Edit.svg';
-
-const IconStyle = {
-    width: '25px',
-    height: '25px'
-};
+import { FolderOutlined } from '@ant-design/icons';
+import { EditOutlined } from '@ant-design/icons';
+import { DownOutlined } from '@ant-design/icons';
+import { RightOutlined } from '@ant-design/icons';
 
 interface FolderProps {
     name: string,
@@ -42,7 +39,7 @@ function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
             formData.append("folderPath", folderPath)
             formData.append("newName", newName);
 
-            axios.put("/renameFolder", formData)
+            axios.put("http://localhost:8080/renameFolder", formData)
                  .then(response => {
                     console.log(response.data);
                  })
@@ -74,12 +71,12 @@ function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
                 onMouseEnter={() => setIsHovered(true)}
                 onMouseLeave={() => setIsHovered(false)}
             >
-                <span onClick={() => setIsOpen(!isOpen)}>{isOpen ? ' -' : ' +'}</span>
-                <img style={IconStyle} src={FolderIcon} alt="Folder Icon" />
+                <span onClick={() => setIsOpen(!isOpen)}>{isOpen ? <DownOutlined /> : <RightOutlined />}</span>
+                <FolderOutlined />
                 {editingName ? (
                     <input type="text" value={newName} onChange={handleNameChange} onKeyDown={handleKeyDown} />
                 ) : (
-                    <span>{name}</span>
+                    <span>{" " + name + " "}</span>
                 )}
                 { isHovered && 
                 <span>
@@ -96,7 +93,7 @@ function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
                         folderPath={folderPath}
                         updateFolderTree={updateFolderTree}
                         />
-                    <img style={IconStyle} src={EditIcon} alt="Edit Icon" onClick={handleEditClick} />
+                    <EditOutlined onClick={handleEditClick} />
                 </span>  
                 }
             </div>

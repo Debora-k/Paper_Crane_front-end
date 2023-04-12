@@ -3,12 +3,9 @@ import axios from 'axios';
 import PropTypes from 'prop-types';
 
 // Icons
-import deleteFileIcon from './Icons/Deletefile.svg';
+import { DeleteTwoTone } from '@ant-design/icons';
+import { red } from '@ant-design/colors';
 
-const fileIconStyle = {
-    width: '20px',
-    height: '20px'
-};
 
 function DeleteFileButton( {name, folderPath, updateFolderTree}) {
     const handleClick = async() => {
@@ -30,12 +27,7 @@ function DeleteFileButton( {name, folderPath, updateFolderTree}) {
     }
 
     return (
-        <img 
-                style={fileIconStyle} 
-                src={deleteFileIcon} 
-                alt="Delete a file button"
-                onClick={handleClick}
-                />
+        <DeleteTwoTone onClick={handleClick} twoToneColor={red.primary} />
     )
 }
 

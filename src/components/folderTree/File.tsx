@@ -7,14 +7,8 @@ import DeleteFileButton from './DeleteFileButton';
 import DownloadButton from './DownloadButton';
 
 // Icons
-import EditIcon from './Icons/Edit.svg';
-import fileIcon from './Icons/file.svg';
-
-
-const IconStyle = {
-    width: '20px',
-    height: '20px'
-};
+import { EditOutlined } from '@ant-design/icons';
+import { FileOutlined } from '@ant-design/icons';
 
 function File( {name, folderPath, updateFolderTree} ) {
     const [isHovered, setIsHovered] = useState(false);
@@ -33,9 +27,9 @@ function File( {name, folderPath, updateFolderTree} ) {
             formData.append("filePath", folderPath + "/" + name);
             formData.append("newName", newName);
 
-            axios.put('/renameFile', formData)
+            axios.put('http://localhost:8080/renameFile', formData)
                  .then(response => {
-                    console.log(response.data);
+                    console.log("file " + name + " has been renamed to " + newName);
                  })
                  .catch(error => {
                     console.log(error);
@@ -63,7 +57,7 @@ function File( {name, folderPath, updateFolderTree} ) {
         onMouseLeave={() => {setIsHovered(false)}}
     >
         &nbsp;&nbsp;&nbsp;
-        <img style={IconStyle} src={fileIcon} alt="file icon"/>
+        <FileOutlined />
         {editingName ? (
                 <input type="text" value={newName} onChange={handleNameChange} onKeyDown={handleKeyDown} />
             ) : (
@@ -76,7 +70,7 @@ function File( {name, folderPath, updateFolderTree} ) {
                     folderPath={folderPath}
                     updateFolderTree={updateFolderTree}
                 />
-                <img style={IconStyle} src={EditIcon} alt="Edit Icon" onClick={handleEditClick}/>
+                <EditOutlined onClick={handleEditClick} />
                 <DownloadButton name={name} folderPath={folderPath} />
             </>
             }

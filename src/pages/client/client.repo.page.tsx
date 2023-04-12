@@ -2,7 +2,6 @@
 import FolderTreeContainer from 'components/folderTree/FolderTreeContainer';
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 
 import ClientNavbar from './client.navbar';
 import ClientHeader from 'components/Header/clientHeader';
@@ -15,21 +14,14 @@ const ClientRepository = () => {
     { projectId: 2, pName: 'Project2' },
     { projectId: 3, pName: 'Project3' },
   ];
-  // dropdown for selecting a specific project
-  const [selectedProject, setSelectedProject] = useState(projects[0].projectId);
-  const dropdownList = projects.map((project) => {
-    return (
-      <option key={project.projectId} value={project.projectId}>
-        {project.pName}
-      </option>
-    );
-  });
+
+  const [selectedProject, setSelectedProject] = useState(projects[0].pName);
 
   // read the project list
   const projectList = projects.map((project) => {
     return (
-      <div key={project.projectId}>
-        <Link to={`/client/repository/repohistory/${project.projectId}`}>{project.pName}</Link>
+      <div key={project.projectId} onClick={() => setSelectedProject(project.pName)}>
+        <h3>{project.pName}</h3>
       </div>
     );
   });
@@ -41,14 +33,7 @@ const ClientRepository = () => {
       <div className='container'>
         <div className='repoProjectList'>{projectList}</div>
         <div className='uploadVideo'>
-          <select
-            className='dropdown'
-            value={selectedProject}
-            onChange={(e) => setSelectedProject(Number(e.target.value))}
-          >
-            {dropdownList}
-          </select>
-          <FolderTreeContainer />
+          <FolderTreeContainer repoName={selectedProject}/>
         </div>
       </div>
     </div>
