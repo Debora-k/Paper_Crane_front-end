@@ -1,4 +1,4 @@
-import { DataContext } from 'app';
+import { DataContext } from 'SharedData';
 import AdminHeader from 'components/Header/adminHeader';
 import ProjectRow from 'components/projectrow/ProjectRow';
 import { useContext } from 'react';
