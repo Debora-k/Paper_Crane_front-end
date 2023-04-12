@@ -8,7 +8,7 @@ import { DataContextType, admin, projectList } from 'types/projectDetails/projec
 // import { EmpVideoData } from './dummyData/empVideoData';
 // import { ProjectsVideoData } from './dummyData/projectsVideoData';
 import { Projects as projectsData } from './dummyData/projectsData';
-import { TimeOffRequests } from './dummyData/timeOffRequests';
+import { TimeOffRequests } from './dummyData/timeoffRequests';
 
 export const DataContext = createContext<DataContextType | null>(null);
 

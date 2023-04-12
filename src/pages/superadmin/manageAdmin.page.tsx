@@ -52,7 +52,6 @@ function SuperAdmin() {
       <div className='admin-row align-center' key={index}>
         <div className='userId align-center'>{admin.userId}</div>
         <div className='name align-center'>{admin.name}</div>
-        <div className='details align-center'>{admin.type}</div>
 
         <div className='button-row'>
           <div className='delete-btn' onClick={() => handleEditButton(admin)}>
@@ -99,13 +98,6 @@ function SuperAdmin() {
               <Form.Item
                 label='Name'
                 name='name'
-                rules={[{ required: true, message: 'Please enter the name' }]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                label='Description'
-                name='type'
                 rules={[{ required: true, message: 'Please enter the name' }]}
               >
                 <Input />
