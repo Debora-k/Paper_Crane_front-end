@@ -5,7 +5,7 @@ import { Button, Form, Input, Modal, Select } from 'antd';
 import EmpHeader from 'components/Header/empHeader';
 import { EmpLog } from 'dummyData/empLogData';
 import { EmpTimeoffRequests } from 'dummyData/empTimeoffRequests';
-import { projects } from 'dummyData/projectsData';
+import { Projects } from 'dummyData/projectsData';
 import React, { useState } from 'react';
 
 import './emp.cal.page.css';
@@ -92,7 +92,7 @@ const EmpCalendar = () => {
         <Form.Item label='Project' name={['project', i]}>
           <Select
             placeholder='Select a project'
-            options={projects.map((project) => {
+            options={Projects.map((project) => {
               return { value: project.id, label: project.pName };
             })}
             onChange={() => {
@@ -106,9 +106,9 @@ const EmpCalendar = () => {
               <Form.Item label='Tasks' name={['tasks', i]}>
                 <Select
                   placeholder='Select a task'
-                  options={projects
-                    .find((project) => project.id === form.getFieldValue(['project', i]))
-                    ?.tasks.map((task) => ({ value: task.id, label: task.title }))}
+                  options={Projects.find(
+                    (project) => project.id === form.getFieldValue(['project', i]),
+                  )?.tasks.map((task) => ({ value: task.id, label: task.title }))}
                 />
               </Form.Item>
             );

@@ -1,6 +1,6 @@
+import { DataContext } from 'SharedData';
 import AdminHeader from 'components/Header/adminHeader';
-import { EmpData } from 'dummyData/empData';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CreateEmpAccount from 'views/admin/createAccount/admin.emp.createAccount';
 import EditEmpAccount from 'views/admin/editAccount/admin.emp.editAccount';
@@ -9,7 +9,7 @@ import './admin.emp.page.css';
 import AdminNavbar from './admin.navbar';
 
 const AdminEmployees = () => {
-  const [employees, setEmployees] = useState(EmpData);
+  const { employees, setEmployees } = useContext(DataContext);
 
   const [selectedEmployee, setSelectedEmployee] = useState<{
     empId: number;

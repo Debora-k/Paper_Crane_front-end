@@ -3,7 +3,7 @@ import { Button, Form, Input, Tabs, Upload, message } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
 import TabPane from 'antd/es/tabs/TabPane';
 import AdminHeader from 'components/Header/adminHeader';
-import { proposalsHistoryData } from 'dummyData/proposalsHistoryData';
+import { ProposalsHistoryData } from 'dummyData/proposalsHistoryData';
 import React, { useState } from 'react';
 
 import AdminNavbar from './admin.navbar';
@@ -130,7 +130,7 @@ const AdminProposals = () => {
           </div>
         </TabPane>
         <TabPane tab='Proposals History' key='2'>
-          {proposalsHistoryData.map((proposal) => (
+          {ProposalsHistoryData.map((proposal) => (
             <div className='historyContainer' key={proposal.id}>
               {proposal.subject}, {proposal.sentDate}, {proposal.clientEmail}{' '}
               {proposal.file ? (

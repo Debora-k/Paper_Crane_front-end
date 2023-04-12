@@ -1,4 +1,4 @@
-import { DataContext } from 'app';
+import { DataContext } from 'SharedData';
 import Header from 'components/Header/Header';
 import SuperAdminNavbar from 'components/superAdminNavbar/SuperAdminNavbar';
 import React, { useContext, useState } from 'react';

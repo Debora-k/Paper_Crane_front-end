@@ -1,6 +1,6 @@
 import { projectList } from 'types/projectDetails/projectDataTypes';
 
-export const projects: projectList = [
+export const Projects: projectList = [
   {
     id: 1,
     pName: 'Project1',

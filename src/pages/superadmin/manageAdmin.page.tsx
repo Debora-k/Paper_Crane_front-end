@@ -1,6 +1,6 @@
 import { EditOutlined, MinusCircleOutlined } from '@ant-design/icons';
+import { DataContext } from 'SharedData';
 import { Button, Form, Input, Modal, Space } from 'antd';
-import { DataContext } from 'app';
 import Header from 'components/Header/Header';
 import SuperAdminNavbar from 'components/superAdminNavbar/SuperAdminNavbar';
 import React, { useContext, useState } from 'react';
@@ -52,7 +52,6 @@ function SuperAdmin() {
       <div className='admin-row align-center' key={index}>
         <div className='userId align-center'>{admin.userId}</div>
         <div className='name align-center'>{admin.name}</div>
-        <div className='details align-center'>{admin.type}</div>
 
         <div className='button-row'>
           <div className='delete-btn' onClick={() => handleEditButton(admin)}>
@@ -99,13 +98,6 @@ function SuperAdmin() {
               <Form.Item
                 label='Name'
                 name='name'
-                rules={[{ required: true, message: 'Please enter the name' }]}
-              >
-                <Input />
-              </Form.Item>
-              <Form.Item
-                label='Description'
-                name='type'
                 rules={[{ required: true, message: 'Please enter the name' }]}
               >
                 <Input />

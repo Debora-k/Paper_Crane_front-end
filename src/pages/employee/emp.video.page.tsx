@@ -5,8 +5,8 @@ import React from 'react';
 import { useState } from 'react';
 
 import { EmpData } from '../../dummyData/empData';
-import { empVideoData } from '../../dummyData/empVideoData';
-import { projectsVideoData } from '../../dummyData/projectsVideoData';
+import { EmpVideoData } from '../../dummyData/empVideoData';
+import { ProjectsVideoData } from '../../dummyData/projectsVideoData';
 import EmpNavbar from './emp.navbar';
 import './emp.video.page.css';
 
@@ -23,25 +23,25 @@ const EmpVideo = () => {
   // choose an option from a dropbox of employee or projects
   // employee means that a logged in user has at least two roles: 'employee' and 'dev' or 'designer'
   const [data, setData] = useState(
-    empVideoData
-      .filter((empVideoData) => empVideoData.type.includes(EmpData[0].role))
-      .concat(projectsVideoData),
+    EmpVideoData.filter((empVideoData) => empVideoData.type.includes(EmpData[0].role)).concat(
+      ProjectsVideoData,
+    ),
   );
   // handleProjectChange is for the project dropdown (first displayed one)
   const [selectedProjectId, setSelectedProjectId] = useState<any>('Select Project');
   const handleProjectChange = (value) => {
     setSelectedProjectId(value);
     if (value === `employee.${EmpData[0].role}`) {
-      setData(empVideoData.filter((empVideoData) => empVideoData.type.includes(EmpData[0].role)));
+      setData(EmpVideoData.filter((empVideoData) => empVideoData.type.includes(EmpData[0].role)));
     } else if (value === 'all') {
       setData(
-        empVideoData
-          .filter((empVideoData) => empVideoData.type.includes(EmpData[0].role))
-          .concat(projectsVideoData),
+        EmpVideoData.filter((empVideoData) => empVideoData.type.includes(EmpData[0].role)).concat(
+          ProjectsVideoData,
+        ),
       );
     } else {
       setData(
-        projectsVideoData.filter(
+        ProjectsVideoData.filter(
           (projectsEmpVideoData) => projectsEmpVideoData.projectId === value,
         ),
       );

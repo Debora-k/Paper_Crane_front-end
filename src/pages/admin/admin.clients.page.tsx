@@ -1,9 +1,8 @@
+import { DataContext } from 'SharedData';
 import { Button, Select, Switch, Tabs, TabsProps } from 'antd';
 import AdminHeader from 'components/Header/adminHeader';
-import { AdminClientData } from 'dummyData/adminClientData';
 import { ClientDashboards } from 'dummyData/clientDashboards';
-import { projects } from 'dummyData/projectsData';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import CreateClientAccount from 'views/admin/createAccount/admin.clients.createAccount';
 import EditClientAccount from 'views/admin/editAccount/admin.client.editAccount';
@@ -15,7 +14,7 @@ import AdminNavbar from './admin.navbar';
 const AdminClients = () => {
   const { theme, setTheme } = useTheme();
 
-  const [clients, setClients] = useState(AdminClientData);
+  const { projects, clients, setClients } = useContext(DataContext);
   const [dashboards, setDashboards] = useState(ClientDashboards);
 
   const [selectedClient, setSelectedClient] = useState<{

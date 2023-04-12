@@ -4,7 +4,6 @@ export type admin = {
   readonly userId: number;
   name: string;
   email: string;
-  type: string;
 }[];
 
 export type task = {
@@ -31,6 +30,12 @@ export interface DataContextType {
   setAdmins: React.Dispatch<React.SetStateAction<admin | null>>;
   projects: projectList;
   setProjects: React.Dispatch<React.SetStateAction<projectList | null>>;
+  timeOffData: any[];
+  setTimeOffData: React.Dispatch<React.SetStateAction<any[] | null>>;
+  clients: any[];
+  setClients: React.Dispatch<React.SetStateAction<any[] | null>>;
+  employees: any[];
+  setEmployees: React.Dispatch<React.SetStateAction<any[] | null>>;
 }
 
 export enum Status {

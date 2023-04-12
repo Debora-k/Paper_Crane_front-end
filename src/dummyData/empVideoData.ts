@@ -1,6 +1,6 @@
 import trainingImg from '../assets/training.jpeg';
 
-export const empVideoData = [
+export const EmpVideoData = [
   {
     title: 'This is for junior devs1',
     link: 'https://www.youtube.com/#dev1',

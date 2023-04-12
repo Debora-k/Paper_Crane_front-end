@@ -5,7 +5,7 @@ import EmpHeader from 'components/Header/empHeader';
 import React, { useState } from 'react';
 import styled from 'styled-components';
 
-import { projects } from '../../dummyData/projectsData';
+import { Projects } from '../../dummyData/projectsData';
 import Taskboard from '../../views/employee/tasklists/Taskboard';
 import EmpNavbar from './emp.navbar';
 
@@ -26,7 +26,7 @@ const StyledContent = styled(Content)`
 `;
 
 function EmpTaskLists() {
-  const [selectedProject, setSelectedProject] = useState(projects[0]);
+  const [selectedProject, setSelectedProject] = useState(Projects[0]);
   return (
     <div>
       <EmpHeader />
@@ -34,11 +34,11 @@ function EmpTaskLists() {
       <StyledLayout>
         <StyledContent>
           <Select
-            defaultValue={projects[0].id}
+            defaultValue={Projects[0].id}
             onChange={(value: number) => {
-              setSelectedProject(projects.find((project) => project.id === value));
+              setSelectedProject(Projects.find((project) => project.id === value));
             }}
-            options={projects.map((project) => {
+            options={Projects.map((project) => {
               return { value: project.id, label: project.pName };
             })}
           />

@@ -1,10 +1,10 @@
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
+import { DataContext } from 'SharedData';
 import { Button, Modal } from 'antd';
 import AdminHeader from 'components/Header/adminHeader';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
-import { timeoffRequests } from '../../dummyData/timeoffRequests';
 import './admin.cal.page.css';
 import AdminNavbar from './admin.navbar';
 
@@ -19,9 +19,9 @@ function renderEventContent(eventInfo) {
 }
 
 const AdminCalendar = () => {
-  // eslint-disable-next-line no-unused-vars
-  const [data, setData] = useState(timeoffRequests);
-  const events = data
+  const { timeOffData, setTimeOffData } = useContext(DataContext);
+
+  const events = timeOffData
     .filter((request) => request.status !== 'rejected')
     .map((request) => ({
       // request.type means displaying a role
@@ -46,7 +46,7 @@ const AdminCalendar = () => {
   //  remember which request was to be rejected
   const [areYouSureData, setAreYouSureData] = useState<any>();
 
-  const requestList = data
+  const requestList = timeOffData
     .filter((request) => 'pending' === request.status)
     .map((request) => {
       return (
@@ -63,7 +63,7 @@ const AdminCalendar = () => {
             key='approve'
             style={{ backgroundColor: 'black', color: 'white' }}
             onClick={() => {
-              setData((previousData) => {
+              setTimeOffData((previousData) => {
                 const newData = previousData.slice();
 
                 for (let i = 0; i < newData.length; i++) {
@@ -87,7 +87,7 @@ const AdminCalendar = () => {
             key='reject'
             onClick={() => {
               if (areYouSureData === request) {
-                setData((previousData) => {
+                setTimeOffData((previousData) => {
                   const newData = previousData.slice();
                   for (let i = 0; i < newData.length; i++) {
                     // Checking userId and startDate due to one employee can have several time-off requests
@@ -141,7 +141,7 @@ const AdminCalendar = () => {
           customButtons={{
             Request: {
               text: `New Requests (${
-                data.filter((request) => 'pending' === request.status).length
+                timeOffData.filter((request) => 'pending' === request.status).length
               })`,
               click: () => {
                 setIsModalOpen(true);

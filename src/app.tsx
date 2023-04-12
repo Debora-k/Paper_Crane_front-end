@@ -1,5 +1,5 @@
 // import admin pages
-import { adminsData } from 'dummyData/adminData';
+import SharedData from 'SharedData';
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
@@ -29,19 +29,12 @@ import ResetPasswordPage from 'pages/reset-password/reset-password.page';
 import ResetSuccessPage from 'pages/reset-success/reset-success.page';
 import AddAdmin from 'pages/superadmin/addAdmin.page';
 import SuperAdmin from 'pages/superadmin/manageAdmin.page';
-import React, { createContext, useState } from 'react';
+import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { DataContextType, admin, projectList } from 'types/projectDetails/projectDataTypes';
 import { useTheme } from 'views/client/ThemeContext';
 
-import { projects as projectsData } from './dummyData/projectsData';
-
-export const DataContext = createContext<DataContextType | null>(null);
-
 export const App = () => {
-  const [admins, setAdmins] = useState<admin | null>(adminsData);
-  const [projects, setProjects] = useState<projectList | null>(projectsData);
   const { theme } = useTheme();
 
   return (
@@ -52,7 +45,7 @@ export const App = () => {
         color: theme === 'dark' ? 'white' : 'black',
       }}
     >
-      <DataContext.Provider value={{ admins, setAdmins, projects, setProjects }}>
+      <SharedData>
         <BrowserRouter>
           <Routes>
             {/* Comment out few pages until working on it */}
@@ -116,7 +109,7 @@ export const App = () => {
             <Route path='/client/repository' element={<ClientRepository />}></Route>
           </Routes>
         </BrowserRouter>
-      </DataContext.Provider>
+      </SharedData>
     </div>
   );
 };
