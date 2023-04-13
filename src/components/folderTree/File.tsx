@@ -10,7 +10,7 @@ import DownloadButton from './DownloadButton';
 import { EditOutlined } from '@ant-design/icons';
 import { FileOutlined } from '@ant-design/icons';
 
-function File( {name, folderPath, updateFolderTree} ) {
+function File({ name, folderPath, updateFolderTree }) {
     const [isHovered, setIsHovered] = useState(false);
     const [editingName, setEditingName] = useState(false);
     const [newName, setNewName] = useState(name);
@@ -27,21 +27,25 @@ function File( {name, folderPath, updateFolderTree} ) {
             formData.append("filePath", folderPath + "/" + name);
             formData.append("newName", newName);
 
-            axios.put('http://localhost:8080/renameFile', formData)
-                 .then(response => {
+            axios.put('http://localhost:8080/api/renameFile', formData, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("userToken")}`
+                }
+            })
+                .then(response => {
                     console.log("file " + name + " has been renamed to " + newName);
-                 })
-                 .catch(error => {
+                })
+                .catch(error => {
                     console.log(error);
-                 })
-            
+                })
+
             updateFolderTree();
         } else if (event.key === 'Escape') {
             setEditingName(false);
         }
     }, [name, folderPath, updateFolderTree, newName]);
 
-    useEffect( () => {
+    useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
@@ -53,17 +57,17 @@ function File( {name, folderPath, updateFolderTree} ) {
     }
 
     return <div
-        onMouseEnter={() => {setIsHovered(true)}}
-        onMouseLeave={() => {setIsHovered(false)}}
+        onMouseEnter={() => { setIsHovered(true) }}
+        onMouseLeave={() => { setIsHovered(false) }}
     >
         &nbsp;&nbsp;&nbsp;
         <FileOutlined />
         {editingName ? (
-                <input type="text" value={newName} onChange={handleNameChange} onKeyDown={handleKeyDown} />
-            ) : (
+            <input type="text" value={newName} onChange={handleNameChange} onKeyDown={handleKeyDown} />
+        ) : (
             <span>{name}</span>
-            )}
-            { isHovered && 
+        )}
+        {isHovered &&
             <>
                 <DeleteFileButton
                     name={name}
@@ -73,7 +77,7 @@ function File( {name, folderPath, updateFolderTree} ) {
                 <EditOutlined onClick={handleEditClick} />
                 <DownloadButton name={name} folderPath={folderPath} />
             </>
-            }
+        }
     </div>;
 }
 

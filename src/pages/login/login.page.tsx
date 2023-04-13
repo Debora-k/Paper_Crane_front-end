@@ -2,17 +2,50 @@ import { Container } from '@mui/material';
 import { Button, Col, Form, Input, Row } from 'antd';
 import Header from 'components/Header/Header';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import axios, { HttpStatusCode } from 'axios';
 
 import Logo from '../../assets/logo.png';
 
 const Login = () => {
   const [form] = Form.useForm();
+  const navigate = useNavigate();
 
+  const handleSubmit = (request) => {
+    axios
+      .post("http://localhost:8080/api/v1/login/authenticate", {
+        email: request.email,
+        password: request.password,
+      })
+      .then((response) => {
+        if (response.status === HttpStatusCode.Ok) {
+          if (response.data && response.data.id && response.data.email && response.data.role && response.data.token) {
+
+            const { id, email, role, token } = response.data;
+
+            sessionStorage.setItem('userId', id);
+            sessionStorage.setItem('userEmail', email);
+            sessionStorage.setItem('userRole', role);
+            sessionStorage.setItem('userToken', token);
+
+            axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+            var url = `/${role.toLowerCase()}/projects`;
+            if (role.toLowerCase() === 'client') {
+              url = `/${role.toLowerCase()}/dashboard/non-ongoing`;
+            }
+            navigate(url);
+
+          }
+        }
+      })
+      .catch(() => {
+        alert("Invalid username or password!");
+      });
+  };
   return (
     <div>
       <Header />
-
       <Container maxWidth='md' style={{ height: 'calc(100vh - 80px)' }}>
         <Row
           style={{
@@ -28,7 +61,7 @@ const Login = () => {
             }}
           >
             <div className='logo'>
-              <img className='invertedLogo' src={Logo} alt='logo' width={'100px'} />
+              <img className='invertedLogo' src={Logo} alt='logo' width={'200px'} />
             </div>
           </Col>
 
@@ -53,11 +86,11 @@ const Login = () => {
               >
                 Log in
               </h1>
-              <Form form={form} layout='vertical'>
-                <Form.Item label='Email' style={{ marginBottom: '15px' }}>
+              <Form form={form} layout='vertical' onFinish={handleSubmit}>
+                <Form.Item label='Email' style={{ marginBottom: '15px' }} name="email">
                   <Input type='email' />
                 </Form.Item>
-                <Form.Item label='Password'>
+                <Form.Item label='Password' name="password">
                   <Input type='password' />
                 </Form.Item>
                 <Form.Item style={{ marginBottom: '15px' }}>
@@ -70,7 +103,7 @@ const Login = () => {
                     }}
                   >
                     <Link to='/forgot-password'>Forgot password? </Link>
-                    <Button type='default' htmlType='submit'>
+                    <Button type='primary' htmlType='submit'>
                       Login
                     </Button>
                   </div>
@@ -83,5 +116,7 @@ const Login = () => {
     </div>
   );
 };
+
+
 
 export default Login;

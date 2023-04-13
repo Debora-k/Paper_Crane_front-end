@@ -22,6 +22,7 @@ export type projectList = {
   cId?: number;
   startDate?: string;
   endDate?: string;
+  assignedEmpIds?: number[];
   tasks?: task[];
 }[];
 

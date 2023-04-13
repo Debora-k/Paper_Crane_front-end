@@ -34,6 +34,7 @@ function EmpTaskLists() {
       <StyledLayout>
         <StyledContent>
           <Select
+            style={{ marginLeft: 75 }}
             defaultValue={Projects[0].id}
             onChange={(value: number) => {
               setSelectedProject(Projects.find((project) => project.id === value));
@@ -42,7 +43,7 @@ function EmpTaskLists() {
               return { value: project.id, label: project.pName };
             })}
           />
-          <Taskboard tasks={selectedProject.tasks} />
+          <Taskboard tasks={selectedProject.tasks} selectedProject={selectedProject} />
         </StyledContent>
       </StyledLayout>
     </div>

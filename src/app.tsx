@@ -67,7 +67,7 @@ export const App = () => {
             <Route path='/forgot-password' element={<ForgotPasswordPage />}></Route>
             <Route path='/reset-password' element={<ResetPasswordPage />}></Route>
             <Route path='/reset-success' element={<ResetSuccessPage />}></Route>
-            <Route path={`/admin/project/:projectid`} element={<AdminProjectDetails />}></Route>
+            <Route path={`/admin/project/:projectId`} element={<AdminProjectDetails />}></Route>
             <Route path='/admin/video' element={<AdminVideo />}></Route>
             <Route path='/admin/proposals' element={<AdminProposals />}></Route>
 
