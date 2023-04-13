@@ -21,7 +21,7 @@ interface FolderProps {
     updateFolderTree: () => void,
 }
 
-function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
+function Folder({ name, children, folderPath, updateFolderTree }: FolderProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
     const [editingName, setEditingName] = useState(false);
@@ -34,19 +34,23 @@ function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
     const handleKeyDown = useCallback((event) => {
         if (event.key === 'Enter') {
             setEditingName(false);
-            
+
             const formData = new FormData();
             formData.append("folderPath", folderPath)
             formData.append("newName", newName);
 
-            axios.put("http://localhost:8080/renameFolder", formData)
-                 .then(response => {
+            axios.put("http://localhost:8080/api/renameFolder", formData, {
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("userToken")}`
+                }
+            })
+                .then(response => {
                     console.log(response.data);
-                 })
-                 .catch(error => {
+                })
+                .catch(error => {
                     console.log(error);
-                 })
-            
+                })
+
             updateFolderTree();
 
         } else if (event.key === 'Escape') {
@@ -54,7 +58,7 @@ function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
         }
     }, [folderPath, newName, updateFolderTree]);
 
-    useEffect( () => {
+    useEffect(() => {
         window.addEventListener('keydown', handleKeyDown);
         return () => {
             window.removeEventListener('keydown', handleKeyDown);
@@ -78,28 +82,28 @@ function Folder( {name, children, folderPath, updateFolderTree}: FolderProps ) {
                 ) : (
                     <span>{" " + name + " "}</span>
                 )}
-                { isHovered && 
-                <span>
-                    <FileInput 
-                        folderPath={folderPath} 
-                        updateFolderTree={updateFolderTree}
+                {isHovered &&
+                    <span>
+                        <FileInput
+                            folderPath={folderPath}
+                            updateFolderTree={updateFolderTree}
                         />
-                    <AddFolderButton 
-                        folderPath={folderPath}
-                        updateFolderTree={updateFolderTree}
+                        <AddFolderButton
+                            folderPath={folderPath}
+                            updateFolderTree={updateFolderTree}
                         />
-                    <DeleteFolderButton
-                        name={name}
-                        folderPath={folderPath}
-                        updateFolderTree={updateFolderTree}
+                        <DeleteFolderButton
+                            name={name}
+                            folderPath={folderPath}
+                            updateFolderTree={updateFolderTree}
                         />
-                    <EditOutlined onClick={handleEditClick} />
-                </span>  
+                        <EditOutlined onClick={handleEditClick} />
+                    </span>
                 }
             </div>
             {isOpen && (
                 <>
-                    <DragDropBox 
+                    <DragDropBox
                         folderPath={folderPath}
                         updateFolderTree={updateFolderTree}
                     />
