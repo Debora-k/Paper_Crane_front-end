@@ -5,14 +5,19 @@ import DefaultImage from '../../assets/avatar.jpeg';
 import Logo from '../../assets/logo.png';
 import './dashboardHeader.css';
 
-export default function DashboardHeader() {
+export default function DashboardHeader({ theme }: any) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [profileImage, setProfileImage] = useState();
   return (
     <div className='header--container'>
       <Link to={'/'}>
         <div className='logo'>
-          <img className='invertedLogo' src={Logo} alt='logo' width={'100px'} />
+          <img
+            className={theme === 'light' ? 'invertedLogo' : 'logo'}
+            src={Logo}
+            alt='logo'
+            width={'100px'}
+          />
         </div>
       </Link>
 
@@ -26,7 +31,13 @@ export default function DashboardHeader() {
             <div className='profile--image'>
               <img src={profileImage ? profileImage : DefaultImage} alt='profile' width={'50px'} />
             </div>
-            <button className='dropbtn'>
+            <button
+              className='dropbtn'
+              style={{
+                backgroundColor: theme === 'light' ? 'white' : 'black',
+                color: theme === 'dark' ? 'white' : 'black',
+              }}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='16'

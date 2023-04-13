@@ -37,6 +37,8 @@ export interface DataContextType {
   setClients: React.Dispatch<React.SetStateAction<any[] | null>>;
   employees: any[];
   setEmployees: React.Dispatch<React.SetStateAction<any[] | null>>;
+  dashboards: any[];
+  setDashboards: React.Dispatch<React.SetStateAction<any[] | null>>;
 }
 
 export enum Status {

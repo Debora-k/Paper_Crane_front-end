@@ -12,7 +12,7 @@ import './admin.clients.page.css';
 import AdminNavbar from './admin.navbar';
 
 const AdminClients = () => {
-  const { theme, setTheme } = useTheme();
+  const { setTheme } = useTheme();
 
   const { projects, clients, setClients } = useContext(DataContext);
   const [dashboards, setDashboards] = useState(ClientDashboards);
@@ -181,8 +181,6 @@ const AdminClients = () => {
         <div
           className='dashboardContainer'
           style={{
-            backgroundColor: theme === 'light' ? 'white' : 'black',
-            color: theme === 'dark' ? 'white' : 'black',
             fontSize:
               selectedDashboard?.fontSize === 'small'
                 ? '13px'
@@ -293,10 +291,7 @@ const AdminClients = () => {
               </div>
               <div>
                 {/* This preview button leads to client's dashboard as a client */}
-                <Link
-                  target='_blank'
-                  to={`/client/dashboard/${selectedClient.type === 1 ? 'ongoing' : 'non-ongoing'}`}
-                >
+                <Link target='_blank' to={`/client/dashboard/${selectedClient.cId}`}>
                   <Button>Preview</Button>
                 </Link>
               </div>

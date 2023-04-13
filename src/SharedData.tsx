@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { AdminClientData } from 'dummyData/adminClientData';
 import { AdminsData } from 'dummyData/adminData';
+import { ClientDashboards } from 'dummyData/clientDashboards';
 import { EmpData } from 'dummyData/empData';
 import React, { createContext, useEffect, useState } from 'react';
 import { DataContextType, admin, projectList } from 'types/projectDetails/projectDataTypes';
@@ -18,6 +19,7 @@ const SharedData: React.FC<any> = ({ children }) => {
   const [timeOffData, setTimeOffData] = useState([]);
   const [clients, setClients] = useState([]);
   const [employees, setEmployees] = useState([]);
+  const [dashboards, setDashboards] = useState([]);
   // const [empVideoData, setEmpVideoData] = useState([]);
   // const [projectsVideoData, setProjectsVideoData] = useState([]);
 
@@ -44,6 +46,19 @@ const SharedData: React.FC<any> = ({ children }) => {
   //       setEmployees(EmpData);
   //     });
   // }, []);
+
+  // axios for getting clients' dashboards
+  useEffect(() => {
+    axios
+      // /dashboards does not exist yet on back-end
+      .get('http://localhost:8080/api/v1/dashboards/')
+      .then((results) => setDashboards(results.data))
+      .catch((error) => {
+        console.log(error);
+        // in case back-end isn't connected to front-end, then display dummy data
+        setDashboards(ClientDashboards);
+      });
+  }, []);
 
   // axios for getting employees
   useEffect(() => {
@@ -121,6 +136,8 @@ const SharedData: React.FC<any> = ({ children }) => {
         setClients,
         employees,
         setEmployees,
+        dashboards,
+        setDashboards,
       }}
     >
       {children}

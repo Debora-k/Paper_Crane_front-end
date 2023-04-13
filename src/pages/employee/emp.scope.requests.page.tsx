@@ -56,7 +56,7 @@ const EmpScopeRequests = () => {
                 return (
                   <div className='scope' key={i}>
                     <p className='columnMedium'>{scope.pName}</p>
-                    <p className='columnLarge'>{scope.scopeList}</p>
+                    <p className='columnLarge'>{scope.scopeName}</p>
                     <p className='columnMedium'>{scope.clientName}</p>
                     <p className='columnMedium'>{scope.date}</p>
                     <Button
@@ -119,7 +119,7 @@ const EmpScopeRequests = () => {
                   return (
                     <div className='scope' key={i}>
                       <p>{scope.pName}</p>
-                      <p>{scope.scopeList}</p>
+                      <p>{scope.scopeName}</p>
                       <p>{scope.clientName}</p>
                       <p>{scope.status}</p>
                       <p>{scope.date}</p>

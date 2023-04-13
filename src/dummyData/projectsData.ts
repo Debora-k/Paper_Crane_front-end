@@ -58,7 +58,7 @@ export const Projects: projectList = [
     currentWorkedHours: 70,
     cId: 2,
     startDate: '2023-03-01',
-    endDate: '2023-04-18',
+    endDate: '2023-04-05',
     assignedEmpIds: [1, 2, 3, 4, 5],
     tasks: [
       {
