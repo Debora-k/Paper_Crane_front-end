@@ -13,22 +13,6 @@ import { TimeOffRequests } from './dummyData/timeoffRequests';
 export const DataContext = createContext<DataContextType | null>(null);
 
 const SharedData: React.FC<any> = ({ children }) => {
-  const [user, setUser] = useState<any>();
-
-  // temporary for testing until frontend has login
-  useEffect(() => {
-    axios
-      .post('http://localhost:8080/authenticate', {
-        email: 'admin1@email.com',
-        password: '123456',
-      })
-      .then((results) => setUser(results.data))
-      .catch((error) => {
-        console.log(error);
-        setUser({ email: 'dummy@gmail.com' });
-      });
-  }, []);
-
   const [admins, setAdmins] = useState<admin | null>(AdminsData);
   const [projects, setProjects] = useState<projectList | null>([]);
   const [timeOffData, setTimeOffData] = useState([]);
@@ -63,55 +47,67 @@ const SharedData: React.FC<any> = ({ children }) => {
 
   // axios for getting employees
   useEffect(() => {
-    if (user === undefined) return;
     axios
-      .get('http://localhost:8080/api/v1/employees/')
+      .get('http://localhost:8080/api/v1/employees/', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
+        }
+      })
       .then((results) => setEmployees(results.data))
       .catch((error) => {
         console.log(error);
         // in case back-end isn't connected to front-end, then display dummy data
         setEmployees(EmpData);
       });
-  }, [user]);
+  }, []);
 
   // axios for getting clients
   useEffect(() => {
-    if (user === undefined) return;
     axios
-      .get('http://localhost:8080/api/v1/clients/')
+      .get('http://localhost:8080/api/v1/clients/', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
+        }
+      })
       .then((results) => setClients(results.data))
       .catch((error) => {
         console.log(error);
         // in case back-end isn't connected to front-end, then display dummy data
         setClients(AdminClientData);
       });
-  }, [user]);
+  }, []);
 
   // axios for getting time-off requests
   useEffect(() => {
-    if (user === undefined) return;
     axios
-      .get('http://localhost:8080/api/v1/time_off_requests/')
+      .get('http://localhost:8080/api/v1/time_off_requests/', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
+        }
+      })
       .then((results) => setTimeOffData(results.data))
       .catch((error) => {
         console.log(error);
         // in case back-end isn't connected to front-end, then display dummy data
         setTimeOffData(TimeOffRequests);
       });
-  }, [user]);
+  }, []);
 
   // axios for getting projects list
   useEffect(() => {
-    if (user === undefined) return;
     axios
-      .get('http://localhost:8080/api/v1/projects/')
+      .get('http://localhost:8080/api/v1/projects/', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
+        }
+      })
       .then((results) => setProjects(results.data))
       .catch((error) => {
         console.log(error);
         // in case back-end isn't connected to front-end, then display dummy data
         setProjects(projectsData);
       });
-  }, [user]);
+  }, []);
   return (
     <DataContext.Provider
       value={{

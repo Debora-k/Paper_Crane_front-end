@@ -7,22 +7,27 @@ import { DeleteTwoTone } from '@ant-design/icons';
 import { red } from '@ant-design/colors';
 
 
-function DeleteFileButton( {name, folderPath, updateFolderTree}) {
-    const handleClick = async() => {
+function DeleteFileButton({ name, folderPath, updateFolderTree }) {
+    const handleClick = async () => {
         if (window.confirm(`Are you sure you want to delete the file "${name}"?`)) {
             const formData = new FormData();
-        
+
             formData.append("fileName", name);
             formData.append("folderPath", folderPath);
-    
-            axios.delete("http://localhost:8080/deleteFile", { data: formData })
-                 .then(response => {
+
+            axios.delete("http://localhost:8080/api/deleteFile", {
+                data: formData,
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("userToken")}`
+                }
+            })
+                .then(response => {
                     console.log(response.data);
                     updateFolderTree();
-                 })
-                 .catch(error => {
+                })
+                .catch(error => {
                     console.log(error);
-                 })
+                })
         }
     }
 

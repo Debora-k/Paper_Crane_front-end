@@ -6,22 +6,26 @@ import PropTypes from 'prop-types';
 import { DeleteTwoTone } from '@ant-design/icons';
 import { red } from '@ant-design/colors';
 
-const DeleteFolderButton = ( {name, folderPath, updateFolderTree}) =>
-{
+const DeleteFolderButton = ({ name, folderPath, updateFolderTree }) => {
     const handleClick = () => {
-        if(window.confirm(`Are you sure you want to delete the "${name}" folder and ALL of it's contents?`)) {
+        if (window.confirm(`Are you sure you want to delete the "${name}" folder and ALL of it's contents?`)) {
             const formData = new FormData();
 
             formData.append("folderPath", folderPath);
-    
-            axios.delete("http://localhost:8080/deleteFolder", { data: formData })
-                 .then(response => {
+
+            axios.delete("http://localhost:8080/api/deleteFolder", {
+                data: formData,
+                headers: {
+                    'Authorization': `Bearer ${sessionStorage.getItem("userToken")}`
+                }
+            })
+                .then(response => {
                     console.log(response.data);
                     updateFolderTree();
-                 })
-                 .catch(error => {
+                })
+                .catch(error => {
                     console.log(error);
-                 })
+                })
         }
     }
 
@@ -34,6 +38,6 @@ DeleteFolderButton.propTypes = {
     name: PropTypes.string.isRequired,
     folderPath: PropTypes.string.isRequired,
     updateFolderTree: PropTypes.func.isRequired,
-  };
+};
 
 export default DeleteFolderButton;

@@ -7,6 +7,7 @@ import { CircularProgressbar } from 'react-circular-progressbar';
 
 
 import './client.dashboard.ongoing.page.css';
+import { Link } from 'react-router-dom';
 
 const ClientDashboardNonOnGoingPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -98,7 +99,9 @@ const ClientDashboardNonOnGoingPage = () => {
               </button>
             </div>
             <div>
-              <button className='primary__btn'>View Repository</button>
+              <Link to="/client/repository/">
+                <button className='primary__btn'>View Repository</button>
+              </Link>
             </div>
           </div>
           <div>
