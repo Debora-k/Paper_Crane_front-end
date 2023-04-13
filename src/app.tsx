@@ -1,5 +1,5 @@
 // import admin pages
-import SharedData from 'SharedData';
+import SharedData, { DataContext } from 'SharedData';
 import AdminCalendar from 'pages/admin/admin.cal.page';
 import AdminClients from 'pages/admin/admin.clients.page';
 import AdminEmployees from 'pages/admin/admin.emp.page';
@@ -29,10 +29,18 @@ import ResetPasswordPage from 'pages/reset-password/reset-password.page';
 import ResetSuccessPage from 'pages/reset-success/reset-success.page';
 import AddAdmin from 'pages/superadmin/addAdmin.page';
 import SuperAdmin from 'pages/superadmin/manageAdmin.page';
-import React from 'react';
-import { Navigate } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { useTheme } from 'views/client/ThemeContext';
+
+const Dashboard = () => {
+  const { clients } = useContext(DataContext);
+  const { cId } = useParams();
+  const client = clients.find((client) => client.cId === Number(cId));
+
+  return client?.type === 1 ? <ClientDashboardOnGoingPage /> : <ClientDashboardNonOnGoingPage />;
+};
 
 export const App = () => {
   const { theme } = useTheme();
@@ -54,14 +62,6 @@ export const App = () => {
             {/* <Route exact path="/logout" element={<Logout />} /> </Route> */}
 
             {/* These routes are for admins */}
-            <Route
-              path='/client/dashboard/ongoing'
-              element={<ClientDashboardOnGoingPage />}
-            ></Route>
-            <Route
-              path='/client/dashboard/non-ongoing'
-              element={<ClientDashboardNonOnGoingPage />}
-            ></Route>
             <Route path='/admin/projects' element={<AdminProjects />}></Route>
             <Route path='/login' element={<Login />}></Route>
             <Route path='/forgot-password' element={<ForgotPasswordPage />}></Route>
@@ -104,7 +104,8 @@ export const App = () => {
             <Route path='/employee/scopeRequests' element={<EmpScopeRequests />}></Route>
             <Route path='/employee/clients' element={<EmpClients />}></Route>
 
-            {/* path for Client page */}
+            {/* These routes are for clients */}
+            <Route path='/client/dashboard/:cId' element={<Dashboard />}></Route>
             <Route path='/client/projects' element={<ClientProjects />}></Route>
             <Route path='/client/repository' element={<ClientRepository />}></Route>
           </Routes>

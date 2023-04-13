@@ -293,10 +293,7 @@ const AdminClients = () => {
               </div>
               <div>
                 {/* This preview button leads to client's dashboard as a client */}
-                <Link
-                  target='_blank'
-                  to={`/client/dashboard/${selectedClient.type === 1 ? 'ongoing' : 'non-ongoing'}`}
-                >
+                <Link target='_blank' to={`/client/dashboard/${selectedClient.cId}`}>
                   <Button>Preview</Button>
                 </Link>
               </div>
