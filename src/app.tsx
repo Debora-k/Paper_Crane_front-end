@@ -39,6 +39,10 @@ const Dashboard = () => {
   const { cId } = useParams();
   const client = clients.find((client) => client.cId === Number(cId));
 
+  if (client === undefined) {
+    return null;
+  }
+
   return client?.type === 1 ? <ClientDashboardOnGoingPage /> : <ClientDashboardNonOnGoingPage />;
 };
 

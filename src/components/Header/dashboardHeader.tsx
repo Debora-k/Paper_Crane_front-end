@@ -31,7 +31,13 @@ export default function DashboardHeader({ theme }: any) {
             <div className='profile--image'>
               <img src={profileImage ? profileImage : DefaultImage} alt='profile' width={'50px'} />
             </div>
-            <button className='dropbtn'>
+            <button
+              className='dropbtn'
+              style={{
+                backgroundColor: theme === 'light' ? 'white' : 'black',
+                color: theme === 'dark' ? 'white' : 'black',
+              }}
+            >
               <svg
                 xmlns='http://www.w3.org/2000/svg'
                 width='16'
