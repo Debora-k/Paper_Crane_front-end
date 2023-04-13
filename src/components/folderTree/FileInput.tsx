@@ -13,7 +13,7 @@ const FileInput = ({ folderPath, updateFolderTree }) => {
     formData.append("folderPath", folderPath)
 
     try {
-      const response = await axios.post('http://localhost:8080/uploadFile', formData, {
+      const response = await axios.post('http://localhost:8080/api/uploadFile', formData, {
         headers: {
           'Authorization': `Bearer ${sessionStorage.getItem("userToken")}`
         }
@@ -28,7 +28,7 @@ const FileInput = ({ folderPath, updateFolderTree }) => {
         if (overwrite) {
           formData.append("overwrite", "true");
           try {
-            const response = await axios.post('/uploadFile', formData);
+            const response = await axios.post('http://localhost:8080/api/uploadFile', formData);
             console.log(response.data);
             updateFolderTree(response.data);
           } catch (error) {
