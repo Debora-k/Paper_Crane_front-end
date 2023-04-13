@@ -18,22 +18,22 @@ const AdminProjectDetails = () => {
       <AdminNavbar />
       <div className='container'>
         <div className='firstColumn'>
-          <div className='title'>{selectedProject.pName}</div>
-          <p>{`Worked hours: ${selectedProject.currentWorkedHours}`}</p>
-          <p>{`Total Working hours: ${selectedProject.estimatedHours}`}</p>
+          <div className='title'>{selectedProject?.pName}</div>
+          <p>{`Worked hours: ${selectedProject?.currentWorkedHours}`}</p>
+          <p>{`Total Working hours: ${selectedProject?.estimatedHours}`}</p>
         </div>
         <div className='secondColumn'>
-          <p className='projectInfo'>{`Start Date: ${selectedProject.startDate}`}</p>
-          <p className='projectInfo'>{`End Date: ${selectedProject.endDate}`}</p>
+          <p className='projectInfo'>{`Start Date: ${selectedProject?.startDate}`}</p>
+          <p className='projectInfo'>{`End Date: ${selectedProject?.endDate}`}</p>
           <p className='projectInfo'>
-            {`Estimated Hours: ${selectedProject.estimatedHours} hours`}
+            {`Estimated Hours: ${selectedProject?.estimatedHours} hours`}
           </p>
         </div>
         <div className='progressbar'>
           <CircularProgressbar
-            value={(selectedProject.currentWorkedHours / selectedProject.estimatedHours) * 100}
+            value={(selectedProject?.currentWorkedHours / selectedProject?.estimatedHours) * 100}
             text={`
-              ${(selectedProject.currentWorkedHours / selectedProject.estimatedHours) * 100} %
+              ${(selectedProject?.currentWorkedHours / selectedProject?.estimatedHours) * 100} %
             `}
           />
         </div>
