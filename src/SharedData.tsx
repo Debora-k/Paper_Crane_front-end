@@ -48,7 +48,7 @@ const SharedData: React.FC<any> = ({ children }) => {
   // axios for getting employees
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/v1/employees/', {
+      .get('http://localhost:8080/api/v1/employees', {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
         }
@@ -64,7 +64,7 @@ const SharedData: React.FC<any> = ({ children }) => {
   // axios for getting clients
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/v1/clients/', {
+      .get('http://localhost:8080/api/v1/clients', {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
         }
@@ -80,7 +80,7 @@ const SharedData: React.FC<any> = ({ children }) => {
   // axios for getting time-off requests
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/v1/time_off_requests/', {
+      .get('http://localhost:8080/api/v1/time_off_requests', {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
         }
@@ -96,7 +96,7 @@ const SharedData: React.FC<any> = ({ children }) => {
   // axios for getting projects list
   useEffect(() => {
     axios
-      .get('http://localhost:8080/api/v1/projects/', {
+      .get('http://localhost:8080/api/v1/projects', {
         headers: {
           Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
         }
