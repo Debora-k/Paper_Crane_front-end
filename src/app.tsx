@@ -48,6 +48,9 @@ export const App = () => {
       <SharedData>
         <BrowserRouter>
           <Routes>
+            {/* Loads the login page when users enter the site */}
+            <Route path='/' element={<Navigate to='/login' />} />
+            
             {/* Comment out few pages until working on it */}
             {/* <Route exact path='/login' element={<Login />}></Route> */}
             {/* <Route exact path='/client/projects' element={<ClientProjects />}></Route> */}
