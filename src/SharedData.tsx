@@ -51,7 +51,11 @@ const SharedData: React.FC<any> = ({ children }) => {
   useEffect(() => {
     axios
       // /dashboards does not exist yet on back-end
-      .get('http://localhost:8080/api/v1/dashboards/')
+      .get('http://localhost:8080/api/v1/dashboards', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
+        }
+      })
       .then((results) => setDashboards(results.data))
       .catch((error) => {
         console.log(error);

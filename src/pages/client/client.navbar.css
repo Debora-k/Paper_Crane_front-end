@@ -24,9 +24,9 @@
 .ClientNavBar > a {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  align-items: center;
+  width: 10%;
   height: 40px;
-  padding-left: 50px;
   border-radius: 20px;
   cursor: pointer;
   color: #000;

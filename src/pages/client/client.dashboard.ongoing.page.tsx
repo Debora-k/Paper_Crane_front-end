@@ -7,7 +7,7 @@ import { EmpLog } from 'dummyData/empLogData';
 import { ProjectsVideoData } from 'dummyData/projectsVideoData';
 import { Scopes } from 'dummyData/scopeData';
 import React, { useContext, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 import './client.dashboard.ongoing.page.css';
 
@@ -128,14 +128,17 @@ const ClientDashboardOnGoingPage = () => {
               </button>
             </div>
             <div>
-              <button
-                className='primary__btn'
-                style={{
-                  borderColor: dashboard.theme === 'dark' ? 'white' : 'black',
-                }}
-              >
-                View Repository
-              </button>
+              <Link to="/client/repository">
+                <button
+                  className='primary__btn'
+                  style={{
+                    borderColor: dashboard.theme === 'dark' ? 'white' : 'black',
+                  }}
+                >
+                  View Repository
+                </button>
+              </Link>
+              
             </div>
           </div>
           <div>

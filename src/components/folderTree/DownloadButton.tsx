@@ -12,7 +12,7 @@ const DownloadButton = ({ name, folderPath }) => {
         formData.append("fileName", name);
         formData.append("folderPath", folderPath);
 
-        axios.post("http://localhost:8080/download", formData, {
+        axios.post("http://localhost:8080/api/download", formData, {
             responseType: 'blob',
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem("userToken")}`
