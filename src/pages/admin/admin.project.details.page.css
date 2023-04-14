@@ -16,11 +16,11 @@
   align-items: center;
 }
 
-.projectInfo {
-  font-size: 9px;
-}
-
 .container {
   display: flex;
   gap: 100px;
+}
+
+.scopesContainer {
+  margin-top: 20px;
 }

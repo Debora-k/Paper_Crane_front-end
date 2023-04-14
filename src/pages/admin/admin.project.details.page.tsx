@@ -1,6 +1,7 @@
 import { DataContext } from 'SharedData';
 import AdminHeader from 'components/Header/adminHeader';
-import React, { useContext } from 'react';
+import { Scopes } from 'dummyData/scopeData';
+import React, { useContext, useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useParams } from 'react-router-dom';
 
@@ -10,8 +11,12 @@ import './admin.project.details.page.css';
 const AdminProjectDetails = () => {
   let { projectId } = useParams();
   const { projects } = useContext(DataContext);
+  const [scopes] = useState(Scopes);
 
   const selectedProject = projects.find((project) => project.id === Number(projectId));
+  if (selectedProject === undefined) {
+    return null;
+  }
   return (
     <div>
       <AdminHeader />
@@ -21,6 +26,16 @@ const AdminProjectDetails = () => {
           <div className='title'>{selectedProject?.pName}</div>
           <p>{`Worked hours: ${selectedProject?.currentWorkedHours}`}</p>
           <p>{`Total Working hours: ${selectedProject?.estimatedHours}`}</p>
+          <div className='scopesContainer'>
+            <h2>Scopes</h2>
+            <div>
+              {scopes
+                .filter((scope) => scope.pId === selectedProject.id)
+                .map((scope, index) => (
+                  <p key={index}>{scope.scopeName}</p>
+                ))}
+            </div>
+          </div>
         </div>
         <div className='secondColumn'>
           <p className='projectInfo'>{`Start Date: ${selectedProject?.startDate}`}</p>

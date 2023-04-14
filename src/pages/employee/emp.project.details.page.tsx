@@ -1,5 +1,7 @@
+import { DataContext } from 'SharedData';
 import EmpHeader from 'components/Header/empHeader';
-import React from 'react';
+import { Scopes } from 'dummyData/scopeData';
+import React, { useContext, useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useParams } from 'react-router-dom';
 
@@ -8,41 +10,45 @@ import './emp.project.details.page.css';
 
 const EmpProjectDetails = () => {
   let { projectId } = useParams();
-  //   fake data about project start date, deadline, and expected/estimated working hours
-  const getProjectDetail = () => {
-    return {
-      projectId: projectId,
-      pName: 'Project1',
-      startDate: new Date('Feburary 25, 2023'),
-      endDate: new Date('March 25, 2023'),
-      estimatedHours: 60,
-      currentWorkedHours: 30,
-    };
-  };
+  const { projects } = useContext(DataContext);
+  const [scopes] = useState(Scopes);
+
+  const selectedProject = projects.find((project) => project.id === Number(projectId));
+  if (selectedProject === undefined) {
+    return null;
+  }
   return (
     <div>
       <EmpHeader />
       <EmpNavbar />
       <div className='container'>
         <div className='firstColumn'>
-          <div className='title'>{getProjectDetail().pName}</div>
-          <p>{`Worked hours: ${getProjectDetail().currentWorkedHours}`}</p>
-          <p>{`Total Working hours: ${getProjectDetail().estimatedHours}`}</p>
+          <div className='title'>{selectedProject.pName}</div>
+          <p>{`Worked hours: ${selectedProject.currentWorkedHours}`}</p>
+          <p>{`Total Working hours: ${selectedProject.estimatedHours}`}</p>
+          <div className='scopesContainer'>
+            <h2>Scopes</h2>
+            <div>
+              {scopes
+                .filter((scope) => scope.pId === selectedProject.id)
+                .map((scope, index) => (
+                  <p key={index}>{scope.scopeName}</p>
+                ))}
+            </div>
+          </div>
         </div>
         <div className='secondColumn'>
-          <p className='projectInfo'>{`Start Date: ${getProjectDetail().startDate}`}</p>
-          <p className='projectInfo'>{`End Date: ${getProjectDetail().endDate}`}</p>
+          <p className='projectInfo'>{`Start Date: ${selectedProject.startDate}`}</p>
+          <p className='projectInfo'>{`End Date: ${selectedProject.endDate}`}</p>
           <p className='projectInfo'>
-            {`Estimated Hours: ${getProjectDetail().estimatedHours} hours`}
+            {`Estimated Hours: ${selectedProject.estimatedHours} hours`}
           </p>
         </div>
         <div className='progressbar'>
           <CircularProgressbar
-            value={
-              (getProjectDetail().currentWorkedHours / getProjectDetail().estimatedHours) * 100
-            }
+            value={(selectedProject.currentWorkedHours / selectedProject.estimatedHours) * 100}
             text={`
-              ${(getProjectDetail().currentWorkedHours / getProjectDetail().estimatedHours) * 100} %
+              ${(selectedProject.currentWorkedHours / selectedProject.estimatedHours) * 100} %
             `}
           />
         </div>
