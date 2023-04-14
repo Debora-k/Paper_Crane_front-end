@@ -2,6 +2,7 @@ import { DatePicker, useDatePickGetter, useDatePickReset } from '@bcad1591/react
 import dayGridPlugin from '@fullcalendar/daygrid';
 import FullCalendar from '@fullcalendar/react';
 import { Button, Form, Input, Modal, Select } from 'antd';
+import axios from 'axios';
 import EmpHeader from 'components/Header/empHeader';
 import { EmpLog } from 'dummyData/empLogData';
 import { EmpTimeoffRequests } from 'dummyData/empTimeoffRequests';
@@ -95,8 +96,26 @@ const EmpCalendar = () => {
             options={Projects.map((project) => {
               return { value: project.id, label: project.pName };
             })}
-            onChange={() => {
+            onChange={(value) => {
               form.resetFields(['tasks', i]);
+
+              axios
+                .get(`http://localhost:8080/api/v1/tasks/${value}/tasks`, {
+                  headers: {
+                    Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+                  },
+                })
+                .then((results) => {
+                  const project = Projects.find(
+                    (project) => project.id === form.getFieldValue(['project', i]),
+                  );
+                  if (project) {
+                    project.tasks = results.data;
+                  }
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
             }}
           />
         </Form.Item>
