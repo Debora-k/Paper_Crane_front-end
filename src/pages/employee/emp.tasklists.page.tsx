@@ -1,8 +1,9 @@
 import { gray } from '@ant-design/colors';
 import { Select } from 'antd';
 import Layout, { Content } from 'antd/lib/layout/layout';
+import axios from 'axios';
 import EmpHeader from 'components/Header/empHeader';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
 
 import { Projects } from '../../dummyData/projectsData';
@@ -27,6 +28,23 @@ const StyledContent = styled(Content)`
 
 function EmpTaskLists() {
   const [selectedProject, setSelectedProject] = useState(Projects[0]);
+
+  // axios for getting tasks
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/v1/tasks/${selectedProject.id}/tasks`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
+      })
+      .then((results) => setSelectedProject({ ...selectedProject, tasks: results.data }))
+      .catch((error) => {
+        console.log(error);
+        // in case back-end isn't connected to front-end, then display dummy data
+        setSelectedProject(selectedProject);
+      });
+  }, [selectedProject]);
+
   return (
     <div>
       <EmpHeader />

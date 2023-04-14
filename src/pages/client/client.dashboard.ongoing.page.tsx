@@ -1,19 +1,20 @@
 import { DataContext } from 'SharedData';
 import { Select, message } from 'antd';
+import axios from 'axios';
 import CheckPendingRequestModal from 'components/CheckPendingRequestModal/CheckPendingRequestModal';
 import DashboardHeader from 'components/Header/dashboardHeader';
 import SendRequestModal from 'components/SendRequestModal/SendRequestModal';
 import { EmpLog } from 'dummyData/empLogData';
 import { ProjectsVideoData } from 'dummyData/projectsVideoData';
 import { Scopes } from 'dummyData/scopeData';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 
 import './client.dashboard.ongoing.page.css';
 
 const ClientDashboardOnGoingPage = () => {
   // getting dashboards data from back-end
-  const { dashboards, projects } = useContext(DataContext);
+  const { dashboards, projects, setProjects } = useContext(DataContext);
   const { cId } = useParams();
   const [projectId, setProjectId] = useState<number>();
   const project = projects.find(
@@ -46,6 +47,29 @@ const ClientDashboardOnGoingPage = () => {
   const scopeChangeHandler = (values: any) => {
     setScopes(values);
   };
+
+  // axios for getting tasks
+  useEffect(() => {
+    if (project === undefined) {
+      return;
+    }
+    axios
+      .get(`http://localhost:8080/api/v1/tasks/${project.id}/tasks`, {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
+      })
+      .then((results) => {
+        const projectsCopy = [...projects];
+        projectsCopy[projects.indexOf(project)] = { ...project, tasks: results.data };
+        setProjects(projectsCopy);
+      })
+      .catch((error) => {
+        console.log(error);
+        // in case back-end isn't connected to front-end, then display dummy data
+        setProjects(projects);
+      });
+  }, [project, projects, setProjects]);
 
   if (project === undefined || dashboard === undefined) {
     return null;
@@ -129,7 +153,7 @@ const ClientDashboardOnGoingPage = () => {
               </button>
             </div>
             <div>
-              <Link to="/client/repository">
+              <Link to='/client/repository'>
                 <button
                   className='primary__btn'
                   style={{
@@ -139,7 +163,6 @@ const ClientDashboardOnGoingPage = () => {
                   View Repository
                 </button>
               </Link>
-              
             </div>
           </div>
           <div>

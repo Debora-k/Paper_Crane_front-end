@@ -14,7 +14,7 @@ import { TimeOffRequests } from './dummyData/timeoffRequests';
 export const DataContext = createContext<DataContextType | null>(null);
 
 const SharedData: React.FC<any> = ({ children }) => {
-  const [admins, setAdmins] = useState<admin | null>(AdminsData);
+  const [admins, setAdmins] = useState<admin | null>([]);
   const [projects, setProjects] = useState<projectList | null>([]);
   const [timeOffData, setTimeOffData] = useState([]);
   const [clients, setClients] = useState([]);
@@ -47,14 +47,30 @@ const SharedData: React.FC<any> = ({ children }) => {
   //     });
   // }, []);
 
+  // axios for getting admins
+  useEffect(() => {
+    axios
+      .get('http://localhost:8080/api/v1/admins', {
+        headers: {
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
+      })
+      .then((results) => setAdmins(results.data))
+      .catch((error) => {
+        console.log(error);
+        // in case back-end isn't connected to front-end, then display dummy data
+        setAdmins(AdminsData);
+      });
+  }, []);
+
   // axios for getting clients' dashboards
   useEffect(() => {
     axios
       // /dashboards does not exist yet on back-end
       .get('http://localhost:8080/api/v1/dashboards', {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
-        }
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
       })
       .then((results) => setDashboards(results.data))
       .catch((error) => {
@@ -69,8 +85,8 @@ const SharedData: React.FC<any> = ({ children }) => {
     axios
       .get('http://localhost:8080/api/v1/employees', {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
-        }
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
       })
       .then((results) => setEmployees(results.data))
       .catch((error) => {
@@ -85,8 +101,8 @@ const SharedData: React.FC<any> = ({ children }) => {
     axios
       .get('http://localhost:8080/api/v1/clients', {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
-        }
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
       })
       .then((results) => setClients(results.data))
       .catch((error) => {
@@ -101,8 +117,8 @@ const SharedData: React.FC<any> = ({ children }) => {
     axios
       .get('http://localhost:8080/api/v1/time_off_requests', {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
-        }
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
       })
       .then((results) => setTimeOffData(results.data))
       .catch((error) => {
@@ -117,8 +133,8 @@ const SharedData: React.FC<any> = ({ children }) => {
     axios
       .get('http://localhost:8080/api/v1/projects', {
         headers: {
-          Authorization: `Bearer ${sessionStorage.getItem("userToken")}`
-        }
+          Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+        },
       })
       .then((results) => setProjects(results.data))
       .catch((error) => {
