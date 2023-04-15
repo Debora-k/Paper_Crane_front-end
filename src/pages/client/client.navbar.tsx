@@ -4,9 +4,10 @@ import { NavLink } from 'react-router-dom';
 import './client.navbar.css';
 
 const ClientNavbar = () => {
+  const cId = '/client/dashboard/' + sessionStorage.getItem("cId");
   return (
     <div className='ClientNavBar'>
-      <NavLink to='/client/dashboard/non-ongoing'>&lt; Back</NavLink>
+      <NavLink to={cId}>&lt; Back</NavLink>
     </div>
   );
 };

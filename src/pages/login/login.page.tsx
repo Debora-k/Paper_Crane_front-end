@@ -31,11 +31,29 @@ const Login = () => {
             axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
 
             var url = `/${role.toLowerCase()}/projects`;
+            var cId;
             if (role.toLowerCase() === 'client') {
-              url = `/${role.toLowerCase()}/dashboard/non-ongoing`;
+                axios
+                  // /dashboards does not exist yet on back-end
+                  .get('http://localhost:8080/api/v1/dashboards', {
+                    headers: {
+                      Authorization: `Bearer ${sessionStorage.getItem('userToken')}`,
+                    },
+                  })
+                  .then((results) => {
+                    cId = sessionStorage.setItem('cId', results.data[0].cId);
+                    if (cId != null) {
+                      url = `/${role.toLowerCase()}/dashboard/${sessionStorage.getItem("cId")}`;
+                    }
+                  })
+                  .catch((error) => {
+                    sessionStorage.setItem('cId', "1");
+                    url = `/${role.toLowerCase()}/dashboard/${sessionStorage.getItem("cId")}`;
+                  });
+                  navigate(url);
+            } else {
+              navigate(url);
             }
-            navigate(url);
-
           }
         }
       })
