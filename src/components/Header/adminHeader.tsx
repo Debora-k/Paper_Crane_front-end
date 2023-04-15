@@ -19,7 +19,9 @@ export default function AdminHeader() {
             <button className='flex-row Proposals'>Proposals</button>
           </div>
         </Link>
-        <button className='flex-row logout-btn'>Log Out</button>
+        <Link to='/login'>
+          <button className='flex-row logout-btn'>Log Out</button>
+        </Link>
         <button className='flex-row profile-btn'>
           <i className='fa-solid fa-user'></i>
         </button>

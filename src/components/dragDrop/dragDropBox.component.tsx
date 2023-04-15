@@ -9,7 +9,7 @@ const DragDropBox = ({ folderPath, updateFolderTree }) => {
   const props = {
     name: 'file',
     multiple: true,
-    action: 'http://localhost:8080/uploadFile',
+    action: 'http://localhost:8080/api/uploadFile',
     data: { folderPath },
     onChange(info) {
       const { status } = info.file;
