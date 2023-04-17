@@ -44,13 +44,14 @@ const Login = () => {
                     cId = sessionStorage.setItem('cId', results.data[0].cId);
                     if (cId != null) {
                       url = `/${role.toLowerCase()}/dashboard/${sessionStorage.getItem("cId")}`;
+                      navigate(url);
                     }
                   })
                   .catch((error) => {
                     sessionStorage.setItem('cId', "1");
                     url = `/${role.toLowerCase()}/dashboard/${sessionStorage.getItem("cId")}`;
+                    navigate(url);
                   });
-                  navigate(url);
             } else {
               navigate(url);
             }
