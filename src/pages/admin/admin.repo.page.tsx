@@ -25,7 +25,6 @@ const AdminRepository = () => {
     .then(response => {
       setProjects(response.data);
       if (response.data[0] === undefined) { setProjects(backUpProjects); }
-      console.log(response.data);
     })
     .catch(error => {
     })
