@@ -56,6 +56,8 @@ const ClientDashboardNonOnGoingPage = () => {
         backgroundColor: dashboard.theme === 'light' ? 'white' : 'black',
         color: dashboard.theme === 'dark' ? 'white' : 'black',
         fontSize: dashboard.fontSize,
+        overflow: 'scroll',
+        height: '100vh',
       }}
     >
       <SendRequestModal
