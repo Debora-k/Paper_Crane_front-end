@@ -64,6 +64,11 @@ const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: a
 
   const [form] = Form.useForm();
   useEffect(() => {
+    if (data.type.includes('project')) {
+      setIsProjectClicked(true);
+    } else {
+      setIsProjectClicked(false);
+    }
     form.setFieldsValue({ ...data });
   }, [data, form]);
 
@@ -103,7 +108,7 @@ const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: a
           </Select>
         </Form.Item>
         {isProjectClicked && (
-          <Form.Item label='Project' name='project' rules={[{ required: true }]}>
+          <Form.Item label='Project' name='projectId' rules={[{ required: true }]}>
             <Select
               placeholder='Select a project'
               options={projects.map((project) => {
