@@ -1,8 +1,9 @@
+import { DataContext } from 'SharedData';
 import { Button, Modal, Select, message } from 'antd';
 import AdminHeader from 'components/Header/adminHeader';
 import UploadVideo from 'components/uploadVideo/selectFile.component';
 import VideoCard from 'components/videoCard/videoCard';
-import React from 'react';
+import React, { useContext } from 'react';
 import { useState } from 'react';
 
 import trainingImg from '../../assets/training.jpeg';
@@ -13,11 +14,7 @@ import './admin.video.page.css';
 
 const AdminVideo = () => {
   // bring Database of projects with projects' names
-  const projects = [
-    { projectId: 1, pName: 'Project1' },
-    { projectId: 2, pName: 'Project2' },
-    { projectId: 3, pName: 'Project3' },
-  ];
+  const { projects } = useContext(DataContext);
   // choose an option from a dropbox of employee types or projects
   // employees mean all employees can see the video list
   // projects mean videos for the people who are related to that project
@@ -196,7 +193,7 @@ const AdminVideo = () => {
         <Select
           value={selectedProjectId}
           defaultValue='Select Project'
-          options={projects.map((project) => ({ value: project.projectId, label: project.pName }))}
+          options={projects.map((project) => ({ value: project.id, label: project.pName }))}
           style={{ width: 200, marginRight: 15 }}
           onChange={handleProjectChange}
         ></Select>
