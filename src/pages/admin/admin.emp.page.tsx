@@ -23,14 +23,14 @@ const AdminEmployees = () => {
   const columHeaders = [
     <div key='headers' className='empRows'>
       <p className='columnHeaderSmall'>ID</p>
-      <p className='columnHeader'>First Name</p>
-      <p className='columnHeader'>Last Name</p>
-      <p className='columnHeader'>Role</p>
-      <p className='columnHeader'>Worked Hours</p>
+      <p className='empColumnHeader'>First Name</p>
+      <p className='empColumnHeader'>Last Name</p>
+      <p className='empColumnHeader'>Role</p>
+      <p className='empColumnHeader'>Worked Hours</p>
       {/* these empty p are for 'buttons' column header */}
-      <p className='buttonColumn'></p>
-      <p className='buttonColumn'></p>
-      <p className='buttonColumn'></p>
+      <p className='empButtonColumn'></p>
+      <p className='empButtonColumn'></p>
+      <p className='empButtonColumn'></p>
     </div>,
   ];
 
@@ -40,29 +40,29 @@ const AdminEmployees = () => {
   for (let i = 0; i < employees.length; i++) {
     empRows.push(
       <div className='empRows'>
-        <p className='buttonColumn'>{employees[i].empId}</p>
+        <p className='empButtonColumn'>{employees[i].empId}</p>
 
-        <p className='column'>{employees[i].firstName}</p>
+        <p className='empColumn'>{employees[i].firstName}</p>
 
-        <p className='column'>{employees[i].lastName} </p>
+        <p className='empColumn'>{employees[i].lastName} </p>
 
-        <p className='column'>{employees[i].role}</p>
+        <p className='empColumn'>{employees[i].role}</p>
 
-        <p className='column'>{employees[i].workedHours}</p>
+        <p className='empColumn'>{employees[i].workedHours}</p>
 
-        <p className='buttonColumn'>
+        <p className='empButtonColumn'>
           <Link to={`/admin/employees/${employees[i].empId}/workedhours`}>
             <button type='button'>View</button>
           </Link>
         </p>
         {/* edit button */}
-        <p className='buttonColumn'>
+        <p className='empButtonColumn'>
           <button type='button' onClick={() => setSelectedEmployee(employees[i])}>
             Edit
           </button>
         </p>
         {/* delete button */}
-        <p className='buttonColumn'>
+        <p className='empButtonColumn'>
           <button
             type='button'
             onClick={() =>
