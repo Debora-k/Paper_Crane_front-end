@@ -1,7 +1,8 @@
 import { UploadOutlined } from '@ant-design/icons';
+import { DataContext } from 'SharedData';
 import { Button, Form, Input, Select, Upload } from 'antd';
 import TextArea from 'antd/es/input/TextArea';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import React from 'react';
 
 const { Option } = Select;
@@ -10,6 +11,8 @@ const { Option } = Select;
 const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: any) => {
   const [fileList, setFileList] = useState([]);
   const [thumbnailList, setThumbnailList] = useState([]);
+  const [isProjectClicked, setIsProjectClicked] = useState(false);
+  const { projects } = useContext(DataContext);
 
   const props = {
     onRemove: (file) => {
@@ -38,20 +41,25 @@ const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: a
     fileList: thumbnailList,
   };
   const onCancel = () => {
+    form.resetFields();
     setThumbnailList([]);
     setFileList([]);
     handleCancel();
+    setIsProjectClicked(false);
   };
   const onFinish = (values) => {
     form.resetFields();
     setThumbnailList([]);
     setFileList([]);
     handleFinish({ ...values, fileList, thumbnailList });
+    setIsProjectClicked(false);
   };
   const onFinishFailed = (errorInfo) => {
+    form.resetFields();
     setThumbnailList([]);
     setFileList([]);
     alert('Failed');
+    setIsProjectClicked(false);
   };
 
   const [form] = Form.useForm();
@@ -77,7 +85,16 @@ const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: a
           <Input />
         </Form.Item>
         <Form.Item label='Type' name='type' rules={[{ required: true }]}>
-          <Select placeholder='Select a type'>
+          <Select
+            placeholder='Select a type'
+            onChange={(value) => {
+              if (value === 'project-client' || value === 'project-employee') {
+                setIsProjectClicked(true);
+              } else {
+                setIsProjectClicked(false);
+              }
+            }}
+          >
             <Option value='project-client'>Project - Client </Option>
             <Option value='project-employee'>Project - Employee </Option>
             <Option value='employees'>Employees</Option>
@@ -85,6 +102,16 @@ const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: a
             <Option value='designers'>Designers</Option>
           </Select>
         </Form.Item>
+        {isProjectClicked && (
+          <Form.Item label='Project' name='project' rules={[{ required: true }]}>
+            <Select
+              placeholder='Select a project'
+              options={projects.map((project) => {
+                return { label: project.pName, value: project.id };
+              })}
+            />
+          </Form.Item>
+        )}
         <Form.Item
           label='Description'
           name='description'
