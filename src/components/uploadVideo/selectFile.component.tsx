@@ -64,10 +64,12 @@ const UploadVideo = ({ data, handleCancel, handleFinish, handleFinishFailed }: a
 
   const [form] = Form.useForm();
   useEffect(() => {
-    if (data.type.includes('project')) {
-      setIsProjectClicked(true);
-    } else {
-      setIsProjectClicked(false);
+    if (data !== undefined) {
+      if (data.type.includes('project')) {
+        setIsProjectClicked(true);
+      } else {
+        setIsProjectClicked(false);
+      }
     }
     form.setFieldsValue({ ...data });
   }, [data, form]);
