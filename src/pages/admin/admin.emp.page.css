@@ -14,18 +14,19 @@
 }
 
 /* Columns from AdminEmpRows */
-.column {
+.empColumn {
   flex-grow: 5;
   flex-basis: 0;
   display: flex;
   align-items: center;
 }
 
-.buttonColumn {
+.empButtonColumn {
   flex-grow: 2;
+  flex-basis: 0;
 }
 
-.columnHeader {
+.empColumnHeader {
   flex-grow: 5;
   flex-basis: 0;
   font-weight: bold;
