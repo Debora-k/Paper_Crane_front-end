@@ -32,7 +32,8 @@ import SuperAdmin from 'pages/superadmin/manageAdmin.page';
 import React, { useContext } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { useTheme } from 'views/client/ThemeContext';
+
+// import { useTheme } from 'views/client/ThemeContext';
 
 const Dashboard = () => {
   const { clients } = useContext(DataContext);
@@ -47,22 +48,22 @@ const Dashboard = () => {
 };
 
 export const App = () => {
-  const { theme } = useTheme();
+  // const { theme } = useTheme();
 
   return (
     <div
       className='App'
-      style={{
-        backgroundColor: theme === 'light' ? 'white' : 'black',
-        color: theme === 'dark' ? 'white' : 'black',
-      }}
+      // style={{
+      //   backgroundColor: theme === 'light' ? 'white' : 'black',
+      //   color: theme === 'dark' ? 'white' : 'black',
+      // }}
     >
       <SharedData>
         <BrowserRouter>
           <Routes>
             {/* Loads the login page when users enter the site */}
             <Route path='/' element={<Navigate to='/login' />} />
-            
+
             {/* Comment out few pages until working on it */}
             {/* <Route exact path='/login' element={<Login />}></Route> */}
             {/* <Route exact path='/client/projects' element={<ClientProjects />}></Route> */}
